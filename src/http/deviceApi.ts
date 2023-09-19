@@ -25,8 +25,17 @@ export const createDevice = async (device: any) => {
   return data;
 };
 
-export const fetchDevices = async () => {
-  const { data } = await $host.get("api/device");
+export const updateDevice = async (id: number, device: any) => {
+  const { data } = await $authHost.put(`api/device/${id}`, device);
+  return data;
+};
+
+export const fetchDevices = async (pagination?: any) => {
+  const { data } = pagination?.current
+    ? await $host.get(
+        `/api/device?page=${pagination?.current}&limit=${pagination?.pageSize}`
+      )
+    : await $host.get(`/api/device`);
   return data;
 };
 

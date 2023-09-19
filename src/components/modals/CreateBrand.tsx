@@ -18,7 +18,7 @@ export const CreateBrand = ({ show, onHide }: any) => {
     <>
       <Modal show={show} onHide={onHide} backdrop="static" keyboard={false}>
         <Modal.Header closeButton>
-          <Modal.Title>Add new type</Modal.Title>
+          <Modal.Title>Add new brand</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form

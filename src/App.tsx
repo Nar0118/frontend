@@ -1,8 +1,8 @@
 import { BrowserRouter } from "react-router-dom";
 import AppRouter from "./components/AppRouter";
-import { Header } from "./components/navbar/Navbar";
 import { Provider } from "react-redux";
 import store from "./store/store";
+import { Header } from "./components/feature/navbar/Navbar";
 
 const App = () => {
   return (

@@ -1,13 +1,9 @@
-import jwtDecode from "jwt-decode";
-import { useContext } from "react";
-// import { Context } from "..";
 import { Switch, Route } from "react-router-dom";
+import { useSelector } from "react-redux";
 import { authRoutes, publicRoutes } from "../routes/routes";
 
 function AppRouter() {
-  const token = localStorage.getItem("token");
-  let user: { role?: string } = {};
-  if (token) user = jwtDecode(token);
+  const user = useSelector((state: any) => state.user);
 
   return (
     <Switch>

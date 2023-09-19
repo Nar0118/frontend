@@ -1,4 +1,4 @@
-import { fetchOneBasket, removeFromBasket } from "../http/deviceApi";
+import { fetchOneBasket, removeFromBasket } from "../../http/deviceApi";
 import { useLayoutEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import {
@@ -12,7 +12,7 @@ import {
   MDBTypography,
 } from "mdb-react-ui-kit";
 import { useHistory } from "react-router-dom";
-import { CHECKOUT_ROUTE, DEVICE_ROUTE, SHOP_ROUTE } from "../utils/constants";
+import { CHECKOUT_ROUTE, DEVICE_ROUTE, SHOP_ROUTE } from "../../utils/constants";
 import { Button } from "react-bootstrap";
 
 export default function Basket() {
@@ -90,7 +90,7 @@ export default function Basket() {
                             <div className="d-flex flex-row align-items-center">
                               <div style={{ cursor: "pointer" }}>
                                 <MDBCardImage
-                                  src={item.device.img}
+                                  src={item?.device?.img}
                                   fluid
                                   className="rounded-3"
                                   style={{ width: "65px" }}

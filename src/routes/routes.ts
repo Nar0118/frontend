@@ -1,9 +1,9 @@
-import Admin from "../pages/Admin";
-import Auth from "../pages/Auth";
-import Basket from "../pages/Basket";
-import DevicePage from "../pages/DevicePage";
-import Checkout from "../pages/Checkout";
-import Shop from "../pages/Shop";
+import Admin from "../pages/admin";
+import Auth from "../pages/auth";
+import Basket from "../pages/basket";
+import DevicePage from "../pages/product";
+import Checkout from "../pages/checkout";
+import Shop from "../pages/shop";
 import {
   ADMIN_ROUTE,
   BASKET_ROUTE,

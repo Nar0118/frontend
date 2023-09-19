@@ -1,14 +1,13 @@
 import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { Avatar, List, Rate } from "antd";
-import jwtDecode from "jwt-decode";
 import { Container, Col, Row, Button, Card, Modal } from "react-bootstrap";
 import Image from "react-bootstrap/Image";
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { createBasket, createRate, fetchOneDevice, removeOneDevice } from "../http/deviceApi";
+import { createBasket, createRate, fetchOneDevice, removeOneDevice } from "../../http/deviceApi";
 import { StarOutlined } from "@ant-design/icons";
-import { SHOP_ROUTE } from "../utils/constants";
+import { SHOP_ROUTE } from "../../utils/constants";
 
 const DevicePage = () => {
   const user = useSelector((state: any) => state.user);
@@ -23,7 +22,6 @@ const DevicePage = () => {
   const getDevice = async () => {
     try {
       const data = await fetchOneDevice(params["id"]);
-      console.log(2323232, data);
       setDevice(data);
 
       let sum = 0;
@@ -51,11 +49,9 @@ const DevicePage = () => {
         userId: user?.id,
         quantity: count,
       });
-      console.log("data", data);
     } catch (error) {
       console.error("Error creating basket:", error);
     }
-
   };
 
   const handleRemoveModal = (param: boolean) => {
@@ -102,7 +98,6 @@ const DevicePage = () => {
         <Col md={4}>
           <Image
             width={300}
-            height={300}
             // src={process.env.REACT_APP_API_URL + "/uploads/" + device?.img}
             src={device?.img}
             alt={device?.img}

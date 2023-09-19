@@ -1,0 +1,23 @@
+.error {
+  border: 1px solid red;
+  color: rgb(255, 4, 4);
+  padding: "20px";
+
+  :global(.ant-notification-notice-message) {
+    color: red;
+    font-weight: 700;
+  }
+}
+
+.success {
+  border: none;
+  color: black;
+  padding: "20px";
+
+  :global(.ant-notification-notice) {
+    color: green !important;
+    background: green !important;
+  }
+
+  // ant-notification-notice notification_success__qBvuK css-dev-only-do-not-override-i0102m ant-notification-notice-closable
+}

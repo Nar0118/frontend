@@ -19,7 +19,7 @@ export const DeviceItem = ({ device }: any) => {
   }, []);
 
   return (
-    <Col md={3} onClick={() => history.push(DEVICE_ROUTE + "/" + device.id)}>
+    <Col md={3} onClick={() => history.push(`${DEVICE_ROUTE}/${device.id}`)}>
       <Card style={{ width: 150, cursor: "pointer" }} border={"light"}>
         <Image
           width={150}

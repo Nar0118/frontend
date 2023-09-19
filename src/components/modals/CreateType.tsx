@@ -9,8 +9,6 @@ import { createType, fetchTypes } from "../../http/deviceApi";
 export const CreateType = ({ show, onHide }: PropsType) => {
   const [types, setTypes] = useState<any>([]);
 
-  console.log(44444444444, types);
-  
   const onFinish = async (values: any) => {
     console.log("Success:", values);
     createType(values).then(() => onHide());

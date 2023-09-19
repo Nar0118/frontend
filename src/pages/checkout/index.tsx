@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
-import jwtDecode from "jwt-decode";
+import { useSelector } from "react-redux";
 import { Form, Input, Button, Radio } from "antd";
-import { createOrder, fetchOneBasket, payment } from "../http/deviceApi";
+import { createOrder, fetchOneBasket, payment } from "../../http/deviceApi";
 import {
   MDBCard,
   MDBCardBody,
@@ -10,12 +10,10 @@ import {
   MDBCol,
   MDBTypography,
 } from "mdb-react-ui-kit";
-import { BASKET_ROUTE } from "../utils/constants";
+import { BASKET_ROUTE } from "../../utils/constants";
 
 export default function Checkout() {
-  const token = localStorage.getItem("token");
-  let user: { role?: string; id?: number } = {};
-  if (token) user = jwtDecode(token);
+  const user = useSelector((state: any) => state.user);
   const [subtotal, setSubtotal] = useState<number>(0);
   const [deviceIds, setDeviceIds] = useState<number[]>([]);
   const history = useHistory();
@@ -26,13 +24,15 @@ export default function Checkout() {
   ];
 
   useEffect(() => {
-    user &&
-      user.id &&
+    if (user?.id) {
       fetchOneBasket(user.id).then((data: any) => {
         let total: number = 0;
         const deviceIds: number[] = [];
-        data.map((datum: any) => {
-          total += datum.quantity * datum.device.price;
+        if (data?.length === 0) {
+          history.push(BASKET_ROUTE);
+        }
+        data?.forEach((datum: any) => {
+          total += datum.quantity * datum?.device?.price;
           deviceIds.push(datum.deviceId);
         });
         setDeviceIds(deviceIds);
@@ -41,6 +41,7 @@ export default function Checkout() {
         }
         setSubtotal(total);
       });
+    }
   }, []);
 
   // const getPaymentMethod = (values: any) => {
@@ -69,7 +70,6 @@ export default function Checkout() {
         userId: user.id,
       })
         .then((res) => {
-          console.log(1111, res);
           if (res) {
             // createOrder({ userId: user.id, subtotal, deviceIds });
           }

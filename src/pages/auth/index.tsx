@@ -3,13 +3,13 @@ import { NavLink, useLocation, useHistory } from "react-router-dom";
 import { Form } from "react-bootstrap";
 import Button from "react-bootstrap/esm/Button";
 import { useDispatch, useSelector } from "react-redux";
-import { registration, login } from "../http/userApi";
+import { registration, login } from "../../http/userApi";
 import {
   LOGIN_ROUTE,
   REGISTRATION_ROUTE,
   SHOP_ROUTE,
-} from "../utils/constants";
-import { LOG_IN } from "../store/actionTypes";
+} from "../../utils/constants";
+import { LOG_IN } from "../../store/actionTypes";
 
 const Auth = () => {
   const location = useLocation();
