@@ -1,12 +1,12 @@
-import { useEffect, useLayoutEffect, useState } from "react";
+import { useLayoutEffect, useState } from "react";
 import { Button, Container } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { CreateBrand } from "../../components/modals/CreateBrand";
 import { CreateType } from "../../components/modals/CreateType";
 import { CreateEditDevice } from "../../components/modals/CreateEditDevice";
-import { SHOP_ROUTE } from "../../utils/constants";
 import Table from "../../components/share/table";
+import { SHOP_ROUTE } from "../../utils/constants";
 
 function Admin() {
   const user = useSelector((state: any) => state.user);
@@ -23,27 +23,29 @@ function Admin() {
 
   return (
     <Container className="d-flex flex-column">
-      <Button
-        variant="outline-dark"
-        className="mt-2"
-        onClick={() => setTypeVisible(true)}
-      >
-        Add type
-      </Button>
-      <Button
-        variant="outline-dark"
-        className="mt-2"
-        onClick={() => setBrandVisible(true)}
-      >
-        Add brand
-      </Button>
-      <Button
-        variant="outline-dark"
-        className="mt-2"
-        onClick={() => setDeviceVisible(true)}
-      >
-        Add device
-      </Button>
+      <div className="d-flex justify-content-between">
+        <Button
+          variant="outline-dark"
+          className="mt-2"
+          onClick={() => setTypeVisible(true)}
+        >
+          Add type
+        </Button>
+        <Button
+          variant="outline-dark"
+          className="mt-2"
+          onClick={() => setDeviceVisible(true)}
+        >
+          Add Product
+        </Button>
+        <Button
+          variant="outline-dark"
+          className="mt-2"
+          onClick={() => setBrandVisible(true)}
+        >
+          Add brand
+        </Button>
+      </div>
       <CreateBrand show={brandVisible} onHide={() => setBrandVisible(false)} />
       <CreateType show={typeVisible} onHide={() => setTypeVisible(false)} />
       <CreateEditDevice

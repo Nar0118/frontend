@@ -6,8 +6,12 @@ import { createBrand } from "../../http/deviceApi";
 
 export const CreateBrand = ({ show, onHide }: any) => {
   const onFinish = async (values: any) => {
-    console.log("Success:", values);
-    createBrand(values).then(() => onHide());
+    try {
+      await createBrand(values);
+      onHide();
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   const onFinishFailed = (errorInfo: any) => {

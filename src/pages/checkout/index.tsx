@@ -10,7 +10,8 @@ import {
   MDBCol,
   MDBTypography,
 } from "mdb-react-ui-kit";
-import { BASKET_ROUTE } from "../../utils/constants";
+import { SHOP_ROUTE } from "../../utils/constants";
+import openNotification from "../../components/share/notice";
 
 export default function Checkout() {
   const user = useSelector((state: any) => state.user);
@@ -23,24 +24,37 @@ export default function Checkout() {
     { label: "Online payment", value: "card" },
   ];
 
+  const fetchData = async () => {
+    try {
+      const data = await fetchOneBasket(user.id);
+
+      let total = 0;
+      const deviceIds: number[] = [];
+
+      if (data?.length === 0) {
+        history.push(SHOP_ROUTE);
+      }
+
+      data?.forEach((datum: any) => {
+        total += datum.quantity * datum?.device?.price;
+        deviceIds.push(datum.deviceId);
+      });
+
+      setDeviceIds(deviceIds);
+
+      if (!total) {
+        history.push(SHOP_ROUTE);
+      }
+
+      setSubtotal(total);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   useEffect(() => {
     if (user?.id) {
-      fetchOneBasket(user.id).then((data: any) => {
-        let total: number = 0;
-        const deviceIds: number[] = [];
-        if (data?.length === 0) {
-          history.push(BASKET_ROUTE);
-        }
-        data?.forEach((datum: any) => {
-          total += datum.quantity * datum?.device?.price;
-          deviceIds.push(datum.deviceId);
-        });
-        setDeviceIds(deviceIds);
-        if (!total) {
-          history.push(BASKET_ROUTE);
-        }
-        setSubtotal(total);
-      });
+      fetchData();
     }
   }, []);
 
@@ -56,29 +70,40 @@ export default function Checkout() {
   // };
 
   const onFinish = async (values: any) => {
-    if (values.paymentMethod === "cash") {
-      return createOrder({
-        ...values,
-        price: subtotal,
-        userId: user.id,
-        deviceIds: deviceIds,
-      }).then((res: any) => console.log(res));
-    }
-    if (subtotal) {
-      payment({
-        cartItems: { ...values, price: subtotal + 2000, userId: user.id, subtotal, deviceIds },
-        userId: user.id,
-      })
-        .then((res) => {
-          if (res) {
-            // createOrder({ userId: user.id, subtotal, deviceIds });
-          }
+    try {
+      if (values.paymentMethod === "cash") {
+        await createOrder({
+          ...values,
+          price: subtotal,
+          userId: user.id,
+          deviceIds: deviceIds,
+        });
 
-          if (res?.url) {
-            window.location.href = res.url;
-          }
-        })
-        .catch((error) => console.error(error));
+      } else if (subtotal && values.paymentMethod === "card") {
+        const res = await payment({
+          cartItems: { ...values, price: subtotal + 2000, userId: user.id, subtotal, deviceIds },
+          userId: user.id,
+        });
+
+        if (res) {
+          // createOrder({ userId: user.id, subtotal, deviceIds });
+        }
+
+        if (res?.url) {
+          window.location.href = res.url;
+        }
+      }
+
+      openNotification({
+        descriptions: 'Success!',
+        messages: 'Order has been successfully created!',
+      });
+      history.push(SHOP_ROUTE);
+    } catch (error) {
+      openNotification({
+        descriptions: 'Error!',
+        messages: 'Something went wrong!',
+      });
     }
   };
 
@@ -133,11 +158,6 @@ export default function Checkout() {
       <Form.Item name="paymentMethod" label="Payment method">
         <Radio.Group options={paymentMethod} />
       </Form.Item>
-      {/* <Form.Item>
-          <Button type="primary" htmlType="submit">
-            Pay
-          </Button>
-        </Form.Item> */}
       <MDBCol>
         <MDBCard className="bg-primary text-white rounded-3">
           <MDBCardBody>

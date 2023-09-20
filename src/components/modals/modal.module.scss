@@ -1,0 +1,28 @@
+.container {
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    appearance: none;
+    margin: 0;
+  }
+
+  textarea {
+    resize: none;
+  }
+
+  .inputContainer {
+    border-radius: 10px;
+    border: 1px solid;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: 12px;
+    cursor: pointer;
+    padding: 18px 0;
+    margin-top: 20px;
+  }
+
+  .uploadFileInput {
+    display: none;
+  }
+}

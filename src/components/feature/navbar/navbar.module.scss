@@ -1,0 +1,27 @@
+.nav {
+  display: flex;
+  column-gap: 20px;
+
+  a {
+    color: #000;
+    text-decoration: none;
+
+    &:hover,
+    &:focus,
+    &:focus-visible,
+    &:active {
+      color: #1677ff;
+      text-decoration: underline;
+    }
+  }
+}
+@media only screen and (max-width: 991px) {
+  .nav {
+    justify-content: center;
+    display: grid;
+
+    a {
+      text-align: center;
+    }
+  }
+}

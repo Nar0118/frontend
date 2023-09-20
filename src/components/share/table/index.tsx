@@ -10,17 +10,13 @@ import { CreateEditDevice } from '../../modals/CreateEditDevice';
 const Table = ({ deviceVisible }: any) => {
     const history = useHistory();
     const [data, setData] = useState<any[]>([]);
-    const [pagination, setPagination] = useState({
+    const [show, setShow] = useState<boolean>(false);
+    const [modal, setModal] = useState<any>();
+    const [pagination, setPagination] = useState<any>({
         current: 1,
         pageSize: 10,
         total: 0,
     });
-    const [show, setShow] = useState<boolean>(false);
-    const [modal, setModal] = useState<any>();
-
-    useEffect(() => {
-        fetchData();
-    }, [pagination.current, pagination.pageSize, deviceVisible]);
 
     const fetchData = async () => {
         try {
@@ -34,6 +30,11 @@ const Table = ({ deviceVisible }: any) => {
             console.error('Error fetching data:', error);
         }
     };
+
+    useEffect(() => {
+        fetchData();
+    }, [pagination.current, pagination.pageSize, deviceVisible]);
+
 
     const handleTableChange = (pagination: any, filters: any, sorter: any) => {
         setPagination(pagination);
@@ -110,16 +111,6 @@ const Table = ({ deviceVisible }: any) => {
             key: 'description',
         },
         {
-            title: 'Created date',
-            dataIndex: 'createdAt',
-            key: 'createdAt',
-        },
-        {
-            title: 'UpdatedAt date',
-            dataIndex: 'updatedAt',
-            key: 'updatedAt',
-        },
-        {
             title: 'Rating',
             dataIndex: 'ratings',
             key: 'ratings',
@@ -138,6 +129,16 @@ const Table = ({ deviceVisible }: any) => {
                     </Button>
                 </Space>
             ),
+        },
+        {
+            title: 'Created date',
+            dataIndex: 'createdAt',
+            key: 'createdAt',
+        },
+        {
+            title: 'UpdatedAt date',
+            dataIndex: 'updatedAt',
+            key: 'updatedAt',
         },
     ];
 
@@ -158,16 +159,9 @@ const Table = ({ deviceVisible }: any) => {
             </Modal> :
                 <CreateEditDevice
                     show={show}
-                    onHide={() => setShow(false)}
+                    onHide={() => { setShow(false); fetchData() }}
                     selectedDevice={modal?.device}
-                    editDevice={(event: any) => {
-                        const updatedData: any[] = data.map((e: any) => {
-                            if (e.id === event.id) {
-                                e = event;
-                            }
-                        })
-                        setData(updatedData)
-                    }} />}
+                />}
             <AntTable
                 dataSource={data}
                 columns={columns}

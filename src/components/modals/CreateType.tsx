@@ -10,8 +10,12 @@ export const CreateType = ({ show, onHide }: PropsType) => {
   const [types, setTypes] = useState<any>([]);
 
   const onFinish = async (values: any) => {
-    console.log("Success:", values);
-    createType(values).then(() => onHide());
+    try {
+      await createType(values);
+      onHide();
+    } catch (error) {
+      console.error(error);
+    };
   };
 
   const onFinishFailed = (errorInfo: any) => {

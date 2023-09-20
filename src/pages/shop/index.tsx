@@ -4,9 +4,7 @@ import Container from "react-bootstrap/esm/Container";
 import Row from "react-bootstrap/esm/Row";
 import { useSelector } from "react-redux";
 import { BrandBar } from "../../components/brandBar/BrandBar";
-import { DeviceList } from "../../components/deviceList/DeviceList";
 import { ProductList } from "../../components/feature/ProductList/ProductListWithPagination";
-import Table from "../../components/share/table";
 import { TypeBar } from "../../components/typeBar/TypeBar";
 import { fetchDevices } from "../../http/deviceApi";
 
@@ -17,7 +15,7 @@ const Shop = () => {
   const getDevices = async () => {
     try {
       const res = await fetchDevices();
-      
+
       setDevices(res.rows);
     } catch (e) {
       console.error(e);
@@ -32,7 +30,6 @@ const Shop = () => {
 
   return (
     <Container>
-      {/* <Table devices={devices} /> */}
       <ProductList />
       <Row className="mt-2">
         <Col md={3} className="mt-1">

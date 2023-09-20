@@ -14,6 +14,10 @@ import {
 import { useHistory } from "react-router-dom";
 import { CHECKOUT_ROUTE, DEVICE_ROUTE, SHOP_ROUTE } from "../../utils/constants";
 import { Button } from "react-bootstrap";
+import openNotification from "../../components/share/notice";
+import { CloseCircleOutlined } from "@ant-design/icons";
+
+import styles from './basket.module.scss';
 
 export default function Basket() {
   const user = useSelector((state: any) => state.user);
@@ -58,6 +62,25 @@ export default function Basket() {
     }
   };
 
+  const removeFromCart = async (id: number) => {
+    try {
+      await removeFromBasket(id);
+      const filteredBasket = basket.filter((e: any) => e.id !== id);
+      setBasket(filteredBasket);
+      if (!filteredBasket.length) {
+        history.push(SHOP_ROUTE);
+      }
+
+      openNotification({
+        descriptions: filteredBasket.length ? 'Product has been successfully removed!' : 'Your cart is empty!',
+        messages: 'Removed',
+        status: 'success'
+      });
+    } catch (e) {
+      console.error(e);
+    }
+  }
+
   return (
     <section className="h-100 h-custom" style={{ backgroundColor: "#eee" }}>
       <MDBContainer className="py-5 h-100">
@@ -84,7 +107,7 @@ export default function Basket() {
                       </div>
                     </div>
                     {basket?.map((item: any) => (
-                      <MDBCard className="mb-3" key={item.id}>
+                      <MDBCard className={`mb-3 ${styles.basketItems}`} key={item.id}>
                         <MDBCardBody>
                           <div className="d-flex justify-content-between">
                             <div className="d-flex flex-row align-items-center">
@@ -128,40 +151,34 @@ export default function Basket() {
                             </div>
                           </div>
                         </MDBCardBody>
-                        <div className="d-flex  align-items-center justify-content-center column gap-2">
+                        <div className="d-flex  align-items-center justify-content-center column gap-2 mb-2">
                           <Button
                             variant="outline-dark"
                             onClick={() => handleCount("minus")}
+                            style={{
+                              padding: '0px 7px'
+                            }}
                           >
                             -
                           </Button>
-                          <h5>{item?.quantity}</h5>
+                          <h5 className="mb-0">{item?.quantity}</h5>
                           <Button
                             variant="outline-dark"
                             onClick={() => handleCount("plus")}
+                            style={{
+                              padding: '0px 7px'
+                            }}
                           >
                             +
                           </Button>
                         </div>
                         <Button
                           variant="outline-danger"
-                          onClick={async () => {
-                            try {
-                              await removeFromBasket(item.id);
-                              if (!basket.filter((e: any) => e.id !== item.id)?.length) {
-                                history.push(SHOP_ROUTE);
-                              }
-                            } catch (e) {
-                              console.error(e);
-                            }
-                          }}
+                          onClick={() => removeFromCart(item.id)}
                           disabled={!subtotal}
-                          style={{
-                            float: 'right'
-                          }}
+                          className={styles.remove}
                         >
-                          Remove from cart
-                          <i className="fas fa-long-arrow-alt-right ms-2"></i>
+                          <CloseCircleOutlined />
                         </Button>
                       </MDBCard>
                     ))}

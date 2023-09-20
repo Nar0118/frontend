@@ -80,16 +80,21 @@ const DevicePage = () => {
     setRate(e);
   };
 
-  const handleSubmit = (e: any) => {
+  const handleSubmit = async (e: any) => {
     e.preventDefault();
-    createRate({
-      userId: user.id,
-      deviceId: params["id"],
-      rate,
-      comment: e.target[0].value,
-    }).then((res: any[]) => {
+
+    try {
+      await createRate({
+        userId: user.id,
+        deviceId: params["id"],
+        rate,
+        comment: e.target[0].value,
+      });
+
       getDevice();
-    });
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
@@ -115,7 +120,9 @@ const DevicePage = () => {
                   <StarOutlined />
                 </>
               ) : (
-                <span>There is no rating yet...</span>
+                <span style={{
+                  fontSize: '10px'
+                }}>There is no rating yet...</span>
               )}
             </h2>
           </Row>
@@ -145,7 +152,8 @@ const DevicePage = () => {
               Add to cart
             </Button>
           </Card>
-          {(user.role === "ADMIN") ? <Button onClick={() => handleRemoveModal(true)}>Remove device</Button> : <></>}
+          {(user.role === "ADMIN") ?
+            <Button onClick={() => handleRemoveModal(true)}>Remove product</Button> : <></>}
           <Modal show={show} onHide={() => handleRemoveModal(false)} backdrop="static" keyboard={false}>
             <Modal.Header closeButton>
             </Modal.Header>

@@ -1,0 +1,16 @@
+.basketItems {
+  position: relative;
+
+  .remove {
+    width: fit-content;
+    padding: 0;
+    border: none;
+    height: 16px;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    position: absolute;
+    right: 4px;
+    top: 5px;
+  }
+}

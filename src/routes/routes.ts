@@ -4,6 +4,8 @@ import Basket from "../pages/basket";
 import DevicePage from "../pages/product";
 import Checkout from "../pages/checkout";
 import Shop from "../pages/shop";
+import CheckoutSuccess from "../pages/CheckoutSuccess";
+import Account from "../pages/account";
 import {
   ADMIN_ROUTE,
   BASKET_ROUTE,
@@ -13,8 +15,8 @@ import {
   LOGIN_ROUTE,
   REGISTRATION_ROUTE,
   SHOP_ROUTE,
+  ACCOUNT,
 } from "../utils/constants";
-import CheckoutSuccess from "../pages/CheckoutSuccess";
 
 export const authRoutes = [
   {
@@ -32,6 +34,10 @@ export const authRoutes = [
   {
     path: CHECKOUT_SUCCESS,
     Component: CheckoutSuccess,
+  },
+  {
+    path: ACCOUNT,
+    Component: Account,
   },
 ];
 

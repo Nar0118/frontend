@@ -6,3 +6,4 @@ export const BASKET_ROUTE = '/basket';
 export const DEVICE_ROUTE = '/device';
 export const CHECKOUT_ROUTE = '/checkout';
 export const CHECKOUT_SUCCESS = '/checkout-success';
+export const ACCOUNT = '/account';

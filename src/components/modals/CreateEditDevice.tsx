@@ -6,6 +6,8 @@ import { PropsType } from "./type";
 import { createDevice, fetchBrands, fetchTypes, updateDevice } from "../../http/deviceApi";
 import openNotification from "../share/notice";
 
+import styles from './modal.module.scss';
+
 export const CreateEditDevice = ({ show, onHide, selectedDevice }: PropsType) => {
   const [brand, setBrand] = useState<string>(selectedDevice?.brandId || '0');
   const [type, setType] = useState<string>(selectedDevice?.typeId || '0');
@@ -54,14 +56,13 @@ export const CreateEditDevice = ({ show, onHide, selectedDevice }: PropsType) =>
       formData.append("img", base64String);
 
       try {
-        editDevice ? await updateDevice(editDevice.id, formData) : await createDevice(formData);
-
+        editDevice?.id ? await updateDevice(editDevice.id, formData) : await createDevice(formData);
         setBase64String('');
         onHide();
 
         openNotification({
           descriptions: `Product has been successfully ${editDevice ? 'updated' : 'created'}!`,
-          messages: `${editDevice ? 'Updated' : 'Created'}`,
+          messages: `${editDevice?.id ? 'Updated' : 'Created'}`,
         });
       } catch (error) {
         openNotification({
@@ -102,9 +103,9 @@ export const CreateEditDevice = ({ show, onHide, selectedDevice }: PropsType) =>
   }
 
   return (
-    <Modal show={show} onHide={onHide} backdrop="static" keyboard={false}>
+    <Modal show={show} onHide={onHide} backdrop="static" keyboard={false} className={styles.container}>
       <Modal.Header closeButton>
-        <Modal.Title>Add new device</Modal.Title>
+        <Modal.Title>{editDevice?.id ? 'Edit this product' : 'Add new product'}</Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <Col className="d-flex justify-content-between">
@@ -150,21 +151,39 @@ export const CreateEditDevice = ({ show, onHide, selectedDevice }: PropsType) =>
           </div>
           <div className="form-group">
             <label htmlFor="description">Description:</label>
-            <textarea required className="form-control" id="description" value={editDevice?.description} onChange={(e) => {
+            <textarea  required className="form-control" id="description" value={editDevice?.description} onChange={(e) => {
               if (editDevice) {
                 onChangeEdit('description', e.target.value);
               }
             }} />
           </div>
           <div className="form-group">
-            <label htmlFor="file">Upload file:</label>
-            <input
-              required={!editDevice || !!base64String}
-              type="file"
+            <label htmlFor="count">Count:</label>
+            <input required
+              type='number'
               className="form-control"
-              id="file"
+              id="count"
+              value={editDevice?.count}
+              onChange={(e) => {
+                if (editDevice) {
+                  onChangeEdit('count', e.target.value);
+                }
+              }} />
+          </div>
+          <div className="form-group">
+            <label htmlFor="files" className={styles.inputContainer}>
+              <img src="https://ik.imagekit.io/2zlgs27bjo/public/icons/uploadFile.svg?updatedAt=1694518769111" alt="uploadFile" />
+              Upload image
+            </label>
+            <input
+              id="files"
+              className={styles.uploadFileInput}
+              required={!editDevice || !!base64String}
+              // multiple
+              // disabled={!!base64String || !!editDevice?.id}
               onChange={handleFileSelection}
-            />
+              name="file"
+              type="file" />
           </div>
           <button className="btn btn-outline-success mt-2" type="submit">
             Submit
