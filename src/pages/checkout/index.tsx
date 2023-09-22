@@ -31,21 +31,12 @@ export default function Checkout() {
       let total = 0;
       const deviceIds: number[] = [];
 
-      if (data?.length === 0) {
-        history.push(SHOP_ROUTE);
-      }
-
       data?.forEach((datum: any) => {
         total += datum.quantity * datum?.device?.price;
         deviceIds.push(datum.deviceId);
       });
 
       setDeviceIds(deviceIds);
-
-      if (!total) {
-        history.push(SHOP_ROUTE);
-      }
-
       setSubtotal(total);
     } catch (error) {
       console.error(error);

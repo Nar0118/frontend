@@ -74,6 +74,15 @@ export const createOrder = async (order: any) => {
   return data;
 };
 
+export const getOrder = async (pagination?: any) => {
+  const { data } = pagination?.current
+    ? await $host.get(
+        `/api/order?page=${pagination?.current}&limit=${pagination?.pageSize}`
+      )
+    : await $host.get(`/api/order`);
+  return data;
+};
+
 export const payment = async (payload: any) => {
   const { data } = await $authHost.post(
     "api/stripe/create-checkout-session",

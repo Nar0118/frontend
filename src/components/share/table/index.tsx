@@ -56,6 +56,8 @@ const Table = ({ deviceVisible }: any) => {
     }
 
     const handleEdit = (device: any) => {
+        console.log('device', device);
+
         setShow(true);
         setModal({ type: 'edit', device });
     }

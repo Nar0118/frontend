@@ -1,14 +1,16 @@
-import { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
-import { Avatar, List, Rate } from "antd";
-import { Container, Col, Row, Button, Card, Modal } from "react-bootstrap";
+import { Avatar, Dropdown, List, Rate, Space, Button, Tooltip } from "antd";
+import { Container, Col, Row, Card, Modal } from "react-bootstrap";
 import Image from "react-bootstrap/Image";
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { createBasket, createRate, fetchOneDevice, removeOneDevice } from "../../http/deviceApi";
-import { StarOutlined } from "@ant-design/icons";
-import { BASKET_ROUTE, SHOP_ROUTE } from "../../utils/constants";
+import { DownOutlined, StarOutlined, UserOutlined } from "@ant-design/icons";
+import { BASKET_ROUTE, LOGIN_ROUTE, SHOP_ROUTE } from "../../utils/constants";
 import openNotification from "../../components/share/notice";
+
+import styles from './product.module.scss';
 
 const DevicePage = () => {
   const user = useSelector((state: any) => state.user);
@@ -45,6 +47,10 @@ const DevicePage = () => {
 
   const handleAddCart = async () => {
     try {
+      if (!user?.id) {
+        return history.push(LOGIN_ROUTE);
+      }
+
       await createBasket({
         deviceId: device?.id,
         userId: user?.id,
@@ -115,52 +121,31 @@ const DevicePage = () => {
             alt={device?.img}
           />
         </Col>
-        <Col md={4}>
-          <Row>
-            <h2>{device?.name}</h2>
-          </Row>
-          <Row>
-            <h2 className="d-flex align-items-center column gap-2">
-              {rating ? (
-                <>
-                  <span>{rating}</span>
-                  <StarOutlined />
-                </>
-              ) : (
-                <span style={{
-                  fontSize: '10px'
-                }}>There is no rating yet...</span>
-              )}
-            </h2>
-          </Row>
-        </Col>
+
         <Col md={4}>
           <Card
-            className="d-flex flex-column align-items-center justify-content-around"
-            style={{ width: 300, height: 300, fontSize: 32, border: "5px FOR" }}
+            className="d-flex flex-column  justify-content-around p-2"
+            style={{ border: "5px FOR" }}
           >
-            <h3>{device?.price}AMD</h3>
-            <div className="d-flex  align-items-center justify-content-center column gap-2">
-              <Button
-                variant="outline-dark"
-                onClick={() => handleCount("minus")}
-              >
+            <h3>{device?.name}</h3>
+            <h3>{device?.price} AMD</h3>
+            <div className="d-flex align-items-center column gap-2" style={{flexWrap: 'wrap'}}>
+              <Button onClick={() => handleCount("minus")}>
                 -
               </Button>
               <h5>{count}</h5>
-              <Button
-                variant="outline-dark"
-                onClick={() => handleCount("plus")}
-              >
+              <Button onClick={() => handleCount("plus")}>
                 +
               </Button>
+              <button onClick={handleAddCart} className={`${styles.addCart} ${styles.btn}`}>
+                В корзину
+              </button>
             </div>
-            <Button variant="outline-dark" onClick={handleAddCart}>
-              Add to cart
-            </Button>
           </Card>
-          {(user.role === "ADMIN") ?
-            <Button onClick={() => handleRemoveModal(true)}>Remove product</Button> : <></>}
+
+          {(user?.role === "ADMIN") ?
+            <button onClick={() => handleRemoveModal(true)} className={`${styles.removeProduct} ${styles.btn}`}>Удалить</button>
+            : <></>}
           <Modal show={show} onHide={() => handleRemoveModal(false)} backdrop="static" keyboard={false}>
             <Modal.Header closeButton>
             </Modal.Header>
@@ -178,7 +163,14 @@ const DevicePage = () => {
         {device?.description}
       </Row>
       <Row className="d-flex flex-column m-3 max-width-100">
-        <h6>Your rating</h6>
+        <h6>Your rating ({rating ? (
+          <>
+            {rating}
+            <StarOutlined />
+          </>
+        ) :
+          <></>
+        })</h6>
         <Rate onChange={handleRate} />
         <form onSubmit={handleSubmit} className="mt-2">
           <div className="form-group mt-2">

@@ -30,14 +30,15 @@ export default function Basket() {
     try {
       const data = await fetchOneBasket(user.id);
       if (data?.length === 0) {
-        history.push(SHOP_ROUTE);
       } else {
         setBasket(data);
         let total = 0;
-        data.forEach((datum: any) => {
-          total += datum.quantity * datum.device.price;
-        });
-        setSubtotal(total);
+        if (data?.length) {
+          data.forEach((datum: any) => {
+            total += datum.quantity * datum.device.price;
+          });
+          setSubtotal(total);
+        }
       }
     } catch (error) {
       console.error("Error fetching data:", error);
@@ -68,7 +69,6 @@ export default function Basket() {
       const filteredBasket = basket.filter((e: any) => e.id !== id);
       setBasket(filteredBasket);
       if (!filteredBasket.length) {
-        history.push(SHOP_ROUTE);
       }
 
       openNotification({

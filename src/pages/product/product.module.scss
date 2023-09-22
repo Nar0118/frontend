@@ -1,0 +1,27 @@
+.addCart {
+  background: #0095d1;
+  border: 1px solid transparent;
+  transition: 1s;
+
+  &:hover {
+    color: #0095d1;
+    background: #fff;
+    border-color: #0095d1;
+  }
+}
+
+.removeProduct {
+  background: #d07171;
+}
+
+.editProduct {
+  display: inline-block;
+  background: green;
+}
+
+.btn {
+  font-size: 18px;
+  color: #fff;
+  border: none;
+  padding: 10px 31px;
+}

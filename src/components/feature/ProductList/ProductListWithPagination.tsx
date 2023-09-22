@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import { Button } from 'react-bootstrap';
 import { List, Card, Pagination } from 'antd';
 import { createBasket, fetchDevices } from '../../../http/deviceApi';
-import { BASKET_ROUTE, DEVICE_ROUTE } from '../../../utils/constants';
+import { BASKET_ROUTE, DEVICE_ROUTE, LOGIN_ROUTE } from '../../../utils/constants';
 import openNotification from '../../share/notice';
 
 const pageSize = 10;
@@ -36,6 +36,10 @@ export const ProductList = () => {
 
     const handleAddCart = async (id: number) => {
         try {
+            if (!user?.id) {
+                return history.push(LOGIN_ROUTE);
+            }
+
             await createBasket({
                 deviceId: id,
                 userId: user.id,
