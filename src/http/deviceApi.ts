@@ -45,12 +45,12 @@ export const fetchOneDevice = async (id: number) => {
 };
 
 export const removeOneDevice = async (id: number) => {
-  const { data } = await $host.delete(`api/device/${id}`);
+  const { data } = await $authHost.delete(`api/device/${id}`);
   return data;
 };
 
 export const fetchOneBasket = async (id: number) => {
-  const { data } = await $host.get(`api/basket/${id}`);
+  const { data } = await $authHost.get(`api/basket/${id}`);
   return data;
 };
 
