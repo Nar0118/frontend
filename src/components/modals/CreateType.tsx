@@ -1,13 +1,13 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import Modal from "react-bootstrap/Modal";
 import { PropsType } from "./type";
 import { Form } from "antd";
 import Input from "antd/es/input";
 import Button from "antd/es/button";
-import { createType, fetchTypes } from "../../http/deviceApi";
+import { createType } from "../../http/deviceApi";
 
 export const CreateType = ({ show, onHide }: PropsType) => {
-  const [types, setTypes] = useState<any>([]);
+  // const [types, setTypes] = useState<any>([]);
 
   const onFinish = async (values: any) => {
     try {
@@ -24,9 +24,9 @@ export const CreateType = ({ show, onHide }: PropsType) => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const typesData = await fetchTypes();
+      // const typesData = await fetchTypes();
 
-      setTypes(typesData);
+      // setTypes(typesData);
     };
 
     fetchData();

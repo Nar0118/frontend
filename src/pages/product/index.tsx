@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { Avatar, List, Rate } from "antd";
 import { Container, Col, Row, Button, Card, Modal } from "react-bootstrap";
@@ -7,7 +7,8 @@ import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { createBasket, createRate, fetchOneDevice, removeOneDevice } from "../../http/deviceApi";
 import { StarOutlined } from "@ant-design/icons";
-import { SHOP_ROUTE } from "../../utils/constants";
+import { BASKET_ROUTE, SHOP_ROUTE } from "../../utils/constants";
+import openNotification from "../../components/share/notice";
 
 const DevicePage = () => {
   const user = useSelector((state: any) => state.user);
@@ -19,7 +20,7 @@ const DevicePage = () => {
   const params = useParams() as any;
   const history = useHistory();
 
-  const getDevice = async () => {
+  const getDevice = useCallback(async () => {
     try {
       const data = await fetchOneDevice(params["id"]);
       setDevice(data);
@@ -36,18 +37,24 @@ const DevicePage = () => {
     } catch (error) {
       console.error("Error fetching data:", error);
     }
-  };
+  }, [params]);
 
   useEffect(() => {
     getDevice();
-  }, []);
+  }, [getDevice]);
 
   const handleAddCart = async () => {
     try {
-      const data = await createBasket({
+      await createBasket({
         deviceId: device?.id,
         userId: user?.id,
         quantity: count,
+      });
+
+      openNotification({
+        descriptions: `Product has been added to cart!`,
+        messages: 'Added',
+        redirect: BASKET_ROUTE,
       });
     } catch (error) {
       console.error("Error creating basket:", error);

@@ -12,19 +12,22 @@ import {
 import { LOG_IN } from "../../store/actionTypes";
 
 const Auth = () => {
-  const location = useLocation();
-  const isLogin = location.pathname === LOGIN_ROUTE;
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const history = useHistory();
-  const dispatch = useDispatch();
   const state = useSelector((state: any) => state);
+  const dispatch = useDispatch();
+  const location = useLocation();
+  const history = useHistory();
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  const [isLogin, setIsLogin] = useState<boolean>(false);
 
   useEffect(() => {
+    const isLogin = location.pathname === LOGIN_ROUTE;
+    setIsLogin(isLogin);
+
     if (state.user) {
       history.push(SHOP_ROUTE);
     }
-  }, []);
+  }, [history, state, location]);
 
   const click = async () => {
     try {

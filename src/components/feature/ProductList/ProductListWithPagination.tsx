@@ -1,10 +1,10 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { Button } from 'react-bootstrap';
 import { List, Card, Pagination } from 'antd';
 import { createBasket, fetchDevices } from '../../../http/deviceApi';
-import { DEVICE_ROUTE } from '../../../utils/constants';
+import { BASKET_ROUTE, DEVICE_ROUTE } from '../../../utils/constants';
 import openNotification from '../../share/notice';
 
 const pageSize = 10;
@@ -16,7 +16,7 @@ export const ProductList = () => {
     const [totalItems, setTotalItems] = useState<number>(0);
     const [devices, setDevices] = useState<any[]>([]);
 
-    const getDevices = async () => {
+    const getDevices = useCallback(async () => {
         try {
             const res = await fetchDevices({ current: currentPage, pageSize });
             setTotalItems(res.count)
@@ -24,11 +24,11 @@ export const ProductList = () => {
         } catch (e) {
             console.error(e);
         }
-    }
+    }, [currentPage])
 
     useEffect(() => {
         getDevices();
-    }, [currentPage]);
+    }, [currentPage, getDevices]);
 
     const handlePageChange = (page: number): void => {
         setCurrentPage(page);
@@ -45,6 +45,7 @@ export const ProductList = () => {
             openNotification({
                 descriptions: "Product has been added into cart!",
                 messages: "Added",
+                redirect: BASKET_ROUTE,
             });
         } catch (error) {
             console.error("Error creating basket:", error);

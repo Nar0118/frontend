@@ -1,6 +1,8 @@
-import { fetchOneBasket, removeFromBasket } from "../../http/deviceApi";
-import { useLayoutEffect, useState } from "react";
+import { useCallback, useLayoutEffect, useState } from "react";
+import { useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { Button } from "react-bootstrap";
+import { CloseCircleOutlined } from "@ant-design/icons";
 import {
   MDBCard,
   MDBCardBody,
@@ -11,11 +13,9 @@ import {
   MDBRow,
   MDBTypography,
 } from "mdb-react-ui-kit";
-import { useHistory } from "react-router-dom";
 import { CHECKOUT_ROUTE, DEVICE_ROUTE, SHOP_ROUTE } from "../../utils/constants";
-import { Button } from "react-bootstrap";
 import openNotification from "../../components/share/notice";
-import { CloseCircleOutlined } from "@ant-design/icons";
+import { fetchOneBasket, removeFromBasket } from "../../http/deviceApi";
 
 import styles from './basket.module.scss';
 
@@ -26,7 +26,7 @@ export default function Basket() {
   const [count, setCount] = useState<number>(0);
   const history = useHistory();
 
-  const fetchData = async () => {
+  const fetchData = useCallback(async () => {
     try {
       const data = await fetchOneBasket(user.id);
       if (data?.length === 0) {
@@ -42,11 +42,11 @@ export default function Basket() {
     } catch (error) {
       console.error("Error fetching data:", error);
     }
-  };
+  }, [user, history]);
 
   useLayoutEffect(() => {
     fetchData();
-  }, []);
+  }, [fetchData]);
 
 
   const handleCount = (type: string) => {

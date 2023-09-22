@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { Nav, Navbar } from "react-bootstrap";
 import { ShoppingCartOutlined } from "@ant-design/icons";
-import { ACCOUNT, ADMIN_ROUTE, BASKET_ROUTE, CHECKOUT_ROUTE, LOGIN_ROUTE, SHOP_ROUTE } from "../../../utils/constants";
+import { ACCOUNT_ROUTE, ADMIN_ROUTE, BASKET_ROUTE, CHECKOUT_ROUTE, LOGIN_ROUTE, SHOP_ROUTE } from "../../../utils/constants";
 import { LOG_OUT } from "../../../store/actionTypes";
 
 import styles from './navbar.module.scss';
@@ -52,7 +52,7 @@ export const Header = () => {
       id: 6,
       title: 'Account',
       auth: user,
-      route: ACCOUNT,
+      route: ACCOUNT_ROUTE,
     },
     {
       id: 7,

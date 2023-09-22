@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { Form, Input, Button, Radio } from "antd";
@@ -10,7 +10,7 @@ import {
   MDBCol,
   MDBTypography,
 } from "mdb-react-ui-kit";
-import { SHOP_ROUTE } from "../../utils/constants";
+import { ACCOUNT_ROUTE, SHOP_ROUTE } from "../../utils/constants";
 import openNotification from "../../components/share/notice";
 
 export default function Checkout() {
@@ -24,7 +24,7 @@ export default function Checkout() {
     { label: "Online payment", value: "card" },
   ];
 
-  const fetchData = async () => {
+  const fetchData = useCallback(async () => {
     try {
       const data = await fetchOneBasket(user.id);
 
@@ -50,13 +50,13 @@ export default function Checkout() {
     } catch (error) {
       console.error(error);
     }
-  };
+  }, [user, history]);
 
   useEffect(() => {
     if (user?.id) {
       fetchData();
     }
-  }, []);
+  }, [fetchData, user]);
 
   // const getPaymentMethod = (values: any) => {
   //   switch (values.paymentMethod) {
@@ -97,6 +97,7 @@ export default function Checkout() {
       openNotification({
         descriptions: 'Success!',
         messages: 'Order has been successfully created!',
+        redirect: ACCOUNT_ROUTE,
       });
       history.push(SHOP_ROUTE);
     } catch (error) {

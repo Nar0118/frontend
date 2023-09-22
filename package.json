@@ -54,6 +54,7 @@
     ]
   },
   "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "@types/react-highlight-words": "^0.16.4",
     "@types/react-router-dom": "^5.3.3",
     "node-sass": "^9.0.0"

@@ -10,12 +10,12 @@ import {
   ADMIN_ROUTE,
   BASKET_ROUTE,
   CHECKOUT_ROUTE,
-  CHECKOUT_SUCCESS,
+  CHECKOUT_SUCCESS_ROUTE,
   DEVICE_ROUTE,
   LOGIN_ROUTE,
   REGISTRATION_ROUTE,
   SHOP_ROUTE,
-  ACCOUNT,
+  ACCOUNT_ROUTE,
 } from "../utils/constants";
 
 export const authRoutes = [
@@ -32,11 +32,11 @@ export const authRoutes = [
     Component: Checkout,
   },
   {
-    path: CHECKOUT_SUCCESS,
+    path: CHECKOUT_SUCCESS_ROUTE,
     Component: CheckoutSuccess,
   },
   {
-    path: ACCOUNT,
+    path: ACCOUNT_ROUTE,
     Component: Account,
   },
 ];

@@ -1,7 +1,7 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useHistory } from "react-router-dom";
 import Modal from "react-bootstrap/Modal";
-import { Button, Space, Table as AntTable, Form } from 'antd';
+import { Button, Space, Table as AntTable } from 'antd';
 import { fetchDevices, removeOneDevice } from '../../../http/deviceApi';
 import { DEVICE_ROUTE } from '../../../utils/constants';
 import openNotification from '../notice';
@@ -18,26 +18,28 @@ const Table = ({ deviceVisible }: any) => {
         total: 0,
     });
 
-    const fetchData = async () => {
+    const fetchData = useCallback(async (defaultPagination?: any) => {
         try {
-            const response = await fetchDevices(pagination);
+            const paginationState = defaultPagination || pagination;
+            const response = await fetchDevices(paginationState);
             setData(response.rows);
             setPagination({
-                ...pagination,
+                ...paginationState,
                 total: response.count,
             });
         } catch (error) {
             console.error('Error fetching data:', error);
         }
-    };
+    }, [pagination]);
 
     useEffect(() => {
         fetchData();
-    }, [pagination.current, pagination.pageSize, deviceVisible]);
+    }, []);
 
 
     const handleTableChange = (pagination: any, filters: any, sorter: any) => {
         setPagination(pagination);
+        fetchData(pagination);
     };
 
     const checkRating = (device: any): string => {

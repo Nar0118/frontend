@@ -7,6 +7,7 @@ import { createDevice, fetchBrands, fetchTypes, updateDevice } from "../../http/
 import openNotification from "../share/notice";
 
 import styles from './modal.module.scss';
+import { SHOP_ROUTE } from "../../utils/constants";
 
 export const CreateEditDevice = ({ show, onHide, selectedDevice }: PropsType) => {
   const [brand, setBrand] = useState<string>(selectedDevice?.brandId || '0');
@@ -63,19 +64,20 @@ export const CreateEditDevice = ({ show, onHide, selectedDevice }: PropsType) =>
         openNotification({
           descriptions: `Product has been successfully ${editDevice ? 'updated' : 'created'}!`,
           messages: `${editDevice?.id ? 'Updated' : 'Created'}`,
+          redirect: SHOP_ROUTE,
+          status: 'success'
         });
       } catch (error) {
         openNotification({
           descriptions: "Something went wrong!",
           messages: "Error",
-          status: 'success'
         });
       }
     } else {
       openNotification({
         descriptions: "Please fill all field!",
+        redirect: SHOP_ROUTE,
         messages: "Warning",
-        status: 'success'
       });
     }
   };
@@ -151,24 +153,11 @@ export const CreateEditDevice = ({ show, onHide, selectedDevice }: PropsType) =>
           </div>
           <div className="form-group">
             <label htmlFor="description">Description:</label>
-            <textarea  required className="form-control" id="description" value={editDevice?.description} onChange={(e) => {
+            <textarea required className="form-control" id="description" value={editDevice?.description} onChange={(e) => {
               if (editDevice) {
                 onChangeEdit('description', e.target.value);
               }
             }} />
-          </div>
-          <div className="form-group">
-            <label htmlFor="count">Count:</label>
-            <input required
-              type='number'
-              className="form-control"
-              id="count"
-              value={editDevice?.count}
-              onChange={(e) => {
-                if (editDevice) {
-                  onChangeEdit('count', e.target.value);
-                }
-              }} />
           </div>
           <div className="form-group">
             <label htmlFor="files" className={styles.inputContainer}>
@@ -192,12 +181,12 @@ export const CreateEditDevice = ({ show, onHide, selectedDevice }: PropsType) =>
         {(base64String && !editDevice) && (
           <img src={base64String} style={{
             maxWidth: '466px',
-          }} />
+          }} alt={base64String} />
         )}
         {editDevice && (
           <img src={editDevice.img} style={{
             maxWidth: '466px',
-          }} />
+          }} alt={editDevice.img} />
         )}
       </Modal.Body>
       <Modal.Footer>

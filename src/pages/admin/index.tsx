@@ -19,7 +19,7 @@ function Admin() {
     if (user.role !== "ADMIN") {
       history.push(SHOP_ROUTE);
     }
-  }, []);
+  }, [history, user]);
 
   return (
     <Container className="d-flex flex-column">

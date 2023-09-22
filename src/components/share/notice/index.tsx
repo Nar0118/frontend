@@ -12,11 +12,14 @@ function getNecessaryStyle(status: any) {
     };
 }
 
-export default function openNotification({ status, messages, descriptions }: any) {
+export default function openNotification({ status, messages, descriptions, redirect }: any) {
     notification.open({
         message: messages,
         description: descriptions,
         // icon: <Icon name='solicy.svg' width={30} height={38} />,
         className: `${getNecessaryStyle(status)}`,
+        onClick: () => {
+            if (redirect) window.location.href = redirect;
+        }
     });
 };
