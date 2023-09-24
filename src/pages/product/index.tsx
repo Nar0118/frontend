@@ -1,16 +1,22 @@
-import React, { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
-import { Avatar, Dropdown, List, Rate, Space, Button, Tooltip } from "antd";
+import { Avatar, List, Rate, Button } from "antd";
 import { Container, Col, Row, Card, Modal } from "react-bootstrap";
 import Image from "react-bootstrap/Image";
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { createBasket, createRate, fetchOneDevice, removeOneDevice } from "../../http/deviceApi";
-import { DownOutlined, StarOutlined, UserOutlined } from "@ant-design/icons";
+import { useTranslation } from "react-i18next";
+import {
+  createBasket,
+  createRate,
+  fetchOneDevice,
+  removeOneDevice,
+} from "../../http/deviceApi";
+import { StarOutlined } from "@ant-design/icons";
 import { BASKET_ROUTE, LOGIN_ROUTE, SHOP_ROUTE } from "../../utils/constants";
 import openNotification from "../../components/share/notice";
 
-import styles from './product.module.scss';
+import styles from "./product.module.scss";
 
 const DevicePage = () => {
   const user = useSelector((state: any) => state.user);
@@ -21,6 +27,7 @@ const DevicePage = () => {
   const [show, setShow] = useState<boolean>(false);
   const params = useParams() as any;
   const history = useHistory();
+  const { t, i18n } = useTranslation();
 
   const getDevice = useCallback(async () => {
     try {
@@ -59,7 +66,7 @@ const DevicePage = () => {
 
       openNotification({
         descriptions: `Product has been added to cart!`,
-        messages: 'Added',
+        messages: "Added",
         redirect: BASKET_ROUTE,
       });
     } catch (error) {
@@ -69,12 +76,12 @@ const DevicePage = () => {
 
   const handleRemoveModal = (param: boolean) => {
     setShow(param);
-  }
+  };
 
   const remove = () => {
     removeOneDevice(params["id"]);
     history.push(SHOP_ROUTE);
-  }
+  };
 
   const handleCount = (type: string) => {
     switch (type) {
@@ -128,53 +135,67 @@ const DevicePage = () => {
             style={{ border: "5px FOR" }}
           >
             <h3>{device?.name}</h3>
-            <h3>{device?.price} AMD</h3>
-            <div className="d-flex align-items-center column gap-2" style={{flexWrap: 'wrap'}}>
-              <Button onClick={() => handleCount("minus")}>
-                -
-              </Button>
+            <h6>{device?.price} AMD</h6>
+            <div
+              className="d-flex align-items-center column gap-2"
+              style={{ flexWrap: "wrap" }}
+            >
+              <Button onClick={() => handleCount("minus")}>-</Button>
               <h5>{count}</h5>
-              <Button onClick={() => handleCount("plus")}>
-                +
-              </Button>
-              <button onClick={handleAddCart} className={`${styles.addCart} ${styles.btn}`}>
-                В корзину
+              <Button onClick={() => handleCount("plus")}>+</Button>
+              <button
+                onClick={handleAddCart}
+                className={`${styles.addCart} ${styles.btn}`}
+              >
+                {t("product.add_to_cart")}
               </button>
             </div>
           </Card>
 
-          {(user?.role === "ADMIN") ?
-            <button onClick={() => handleRemoveModal(true)} className={`${styles.removeProduct} ${styles.btn}`}>Удалить</button>
-            : <></>}
-          <Modal show={show} onHide={() => handleRemoveModal(false)} backdrop="static" keyboard={false}>
-            <Modal.Header closeButton>
-            </Modal.Header>
-            <Modal.Body>
-              Are you sure you want to remove this device?
-            </Modal.Body>
+          {user?.role === "ADMIN" ? (
+            <button
+              onClick={() => handleRemoveModal(true)}
+              className={`${styles.removeProduct} ${styles.btn}`}
+            >
+              {t("product.remove")}
+            </button>
+          ) : (
+            <></>
+          )}
+          <Modal
+            show={show}
+            onHide={() => handleRemoveModal(false)}
+            backdrop="static"
+            keyboard={false}
+          >
+            <Modal.Header closeButton></Modal.Header>
+            <Modal.Body>{t("product.are_you_sure")}</Modal.Body>
             <Modal.Footer>
-              <Button onClick={remove}>Remove</Button>
+              <Button onClick={remove}>{t("product.remove")}</Button>
             </Modal.Footer>
           </Modal>
         </Col>
       </Row>
       <Row className="d-flex flex-column m-3 max-width-100">
-        <h3 className="m-0 p-0">Description</h3>
+        <h3 className="m-0 p-0">{t("product.description")}</h3>
         {device?.description}
       </Row>
       <Row className="d-flex flex-column m-3 max-width-100">
-        <h6>Your rating ({rating ? (
-          <>
-            {rating}
-            <StarOutlined />
-          </>
-        ) :
+        {rating ? (
+          <h6>
+            {t("product.your_rating")} (
+            <>
+              {rating}
+              <StarOutlined />
+            </>)
+          </h6>
+        ) : (
           <></>
-        })</h6>
+        )}
         <Rate onChange={handleRate} />
         <form onSubmit={handleSubmit} className="mt-2">
           <div className="form-group mt-2">
-            <label htmlFor="review">Your review *</label>
+            <label htmlFor="review">{t("product.your_review")} *</label>
             <textarea
               required
               cols={20}
@@ -184,40 +205,38 @@ const DevicePage = () => {
             />
           </div>
           <button className="btn btn-outline-success mt-2" type="submit">
-            Submit
+            {t("product.submit")}
           </button>
         </form>
       </Row>
-      {
-        device?.ratings?.length ? (
-          <List
-            itemLayout="horizontal"
-            dataSource={device?.ratings}
-            renderItem={(item: any, index: any) => (
-              <List.Item>
-                <List.Item.Meta
-                  avatar={
-                    <Avatar
-                      src={`https://joesch.moe/api/v1/random?key=${index}`}
-                    />
-                  }
-                  title={
-                    <>
-                      <a href="https://ant.design">{item.user.email}</a>
-                      <br />
-                      <Rate defaultValue={item.rate} disabled={true} />
-                    </>
-                  }
-                  description={item.comment}
-                />
-              </List.Item>
-            )}
-          />
-        ) : (
-          ""
-        )
-      }
-    </Container >
+      {device?.ratings?.length ? (
+        <List
+          itemLayout="horizontal"
+          dataSource={device?.ratings}
+          renderItem={(item: any, index: any) => (
+            <List.Item>
+              <List.Item.Meta
+                avatar={
+                  <Avatar
+                    src={`https://joesch.moe/api/v1/random?key=${index}`}
+                  />
+                }
+                title={
+                  <>
+                    <a href="https://ant.design">{item.user.email}</a>
+                    <br />
+                    <Rate defaultValue={item.rate} disabled={true} />
+                  </>
+                }
+                description={item.comment}
+              />
+            </List.Item>
+          )}
+        />
+      ) : (
+        ""
+      )}
+    </Container>
   );
 };
 

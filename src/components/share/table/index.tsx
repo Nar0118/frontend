@@ -36,7 +36,6 @@ const Table = ({ deviceVisible }: any) => {
         fetchData();
     }, []);
 
-
     const handleTableChange = (pagination: any, filters: any, sorter: any) => {
         setPagination(pagination);
         fetchData(pagination);

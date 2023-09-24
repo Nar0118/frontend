@@ -77,8 +77,8 @@ const Account = () => {
     },
     {
       title: 'Итого',
-      dataIndex: 'total',
-      key: 'total',
+      dataIndex: 'price',
+      key: 'price',
     },
     {
       title: 'Действия',

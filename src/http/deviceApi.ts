@@ -76,10 +76,10 @@ export const createOrder = async (order: any) => {
 
 export const getOrder = async (pagination?: any) => {
   const { data } = pagination?.current
-    ? await $host.get(
+    ? await $authHost.get(
         `/api/order?page=${pagination?.current}&limit=${pagination?.pageSize}`
       )
-    : await $host.get(`/api/order`);
+    : await $authHost.get(`/api/order`);
   return data;
 };
 

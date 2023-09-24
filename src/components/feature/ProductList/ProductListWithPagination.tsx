@@ -2,6 +2,7 @@ import { useCallback, useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { Button } from 'react-bootstrap';
+import { useTranslation } from "react-i18next";
 import { List, Card, Pagination } from 'antd';
 import { createBasket, fetchDevices } from '../../../http/deviceApi';
 import { BASKET_ROUTE, DEVICE_ROUTE, LOGIN_ROUTE } from '../../../utils/constants';
@@ -12,6 +13,7 @@ const pageSize = 10;
 export const ProductList = () => {
     const user = useSelector((state: any) => state.user);
     const history = useHistory();
+    const { t, i18n } = useTranslation();
     const [currentPage, setCurrentPage] = useState<number>(1);
     const [totalItems, setTotalItems] = useState<number>(0);
     const [devices, setDevices] = useState<any[]>([]);
@@ -59,7 +61,7 @@ export const ProductList = () => {
     return (
         <div>
             <List
-                grid={{ gutter: 16, column: 3 }}
+                grid={{ gutter: 16, column: window.innerWidth > 500 ? 3 : 2 }}
                 dataSource={devices}
                 renderItem={(item) => (
                     <List.Item style={{
@@ -69,9 +71,9 @@ export const ProductList = () => {
                             <img src={item.img} alt={item.name} style={{
                                 width: '-webkit-fill-available'
                             }} onClick={() => history.push(`${DEVICE_ROUTE}/${item.id}`)} />
-                            <p>Price: ${item.price}</p>
+                            <p>{t('product.price')}: {item.price} AMD</p>
                             <Button variant="outline-dark" onClick={() => handleAddCart(item.id)}>
-                                Add to cart
+                                {t('product.add_to_cart')}
                             </Button>
                         </Card>
                     </List.Item>

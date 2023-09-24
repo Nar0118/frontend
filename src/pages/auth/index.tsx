@@ -74,12 +74,12 @@ const Auth = () => {
 
         {isLogin ? (
           <div className="d-f">
-            Don't you have an account?{" "}
+            Don't you have an account?
             <NavLink to={REGISTRATION_ROUTE}>Click here to register...</NavLink>
           </div>
         ) : (
           <div className="d-f">
-            Do you have already an account?{" "}
+            Do you have already an account?
             <NavLink to={LOGIN_ROUTE}>Click here to login...</NavLink>
           </div>
         )}

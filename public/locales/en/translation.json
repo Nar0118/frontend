@@ -1,0 +1,20 @@
+{
+  "main": {
+    "header": {
+      "authorization": "Մուտք գործել",
+      "checkout": "Ստուգում",
+      "admin": "Ադմին",
+      "log_out": "Դուրս գալ"
+    }
+  },
+  "product": {
+    "price": "Price",
+    "add_to_cart": "Add to cart",
+    "description": "Description",
+    "your_rating": "Your rating",
+    "your_review": "Your review",
+    "submit": "Submit",
+    "are_you_sure": "Are you sure you want to remove this device?",
+    "remove": "Remove"
+  }
+}

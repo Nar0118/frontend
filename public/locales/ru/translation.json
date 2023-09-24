@@ -1,0 +1,14 @@
+{
+  "main": {
+    "header": {
+      "authorization": "Авторизация",
+      "checkout": "Проверить",
+      "admin": "Админ",
+      "log_out": "Выйти"
+    }
+  },
+  "product": {
+    "price": "Цена",
+    "add_to_cart": "Добавить в корзину"
+  }
+}
