@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { Nav, Navbar } from "react-bootstrap";
 import {
@@ -26,12 +26,14 @@ const languages: { [key: string]: string } = {
   en: "US",
   am: "AM",
   ru: "RU",
+  "en-US": "US",
 };
 
 export const Header = () => {
   const user = useSelector((state: any) => state.user);
   const dispatch = useDispatch();
   const { t, i18n } = useTranslation();
+  const history = useHistory();
   const [lang, setLang] = useState<string>(languages[i18n.language]);
 
   useEffect(() => {
@@ -39,9 +41,9 @@ export const Header = () => {
   }, [i18n]);
 
   const logout = () => {
+    history.push(LOGIN_ROUTE);
     localStorage.removeItem("token");
     dispatch({ type: LOG_OUT });
-    window.location.href = LOGIN_ROUTE;
   };
 
   const handleLanguage = (key: string): void => {
@@ -116,26 +118,6 @@ export const Header = () => {
       visible: user,
       route: ACCOUNT_ROUTE,
     },
-    {
-      id: 7,
-      title: (
-        <Dropdown
-          menu={{ items }}
-          placement="bottomLeft"
-          arrow={{ pointAtCenter: true }}
-        >
-          <Button>
-            <img
-              src={`https://purecatamphetamine.github.io/country-flag-icons/3x2/${lang}.svg`}
-              alt="Flag"
-              width="24"
-              height="16"
-            />
-          </Button>
-        </Dropdown>
-      ),
-      visible: user,
-    },
   ];
 
   return (
@@ -147,34 +129,44 @@ export const Header = () => {
       className={styles.navbar}
     >
       <Navbar.Brand>
-        <Nav.Link href={SHOP_ROUTE}>
+        <Link to={SHOP_ROUTE}>
           <img
             src="https://bebest.am/wp-content/uploads/2020/03/cropped-systems-1.jpg"
             alt="logo"
           />
-        </Nav.Link>
+        </Link>
       </Navbar.Brand>
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
       <Navbar.Collapse id="responsive-navbar-nav">
-        <Nav className={styles.nav}>
+        <Nav className={`${styles.nav} ${!user && styles.navLogin}`}>
           <div>
             {navBar.map((e) =>
-              !e.visible ? (
-                <></>
-              ) : e.route ? (
-                <Link key={e.id} to={e.route}>
-                  {typeof e.title === "string"
-                    ? t(`main.header.${e.title}`)
-                    : e.title}
-                </Link>
-              ) : (
-                <div key={e.id}>{e.title}</div>
-              )
+              e.visible && <Link key={e.id} to={e.route}>
+                {typeof e.title === "string"
+                  ? t(`header.${e.title}`)
+                  : e.title}
+              </Link>
             )}
+            <div>
+              <Dropdown
+                menu={{ items }}
+                placement="bottomLeft"
+                arrow={{ pointAtCenter: true }}
+              >
+                <Button>
+                  <img
+                    src={`https://purecatamphetamine.github.io/country-flag-icons/3x2/${lang}.svg`}
+                    alt="Flag"
+                    width="24"
+                    height="16"
+                  />
+                </Button>
+              </Dropdown>
+            </div>
           </div>
-          <Link to={LOGIN_ROUTE} onClick={logout}>
-            {t("main.header.log_out")} <LogoutOutlined />
-          </Link>
+          {user && <Link to={LOGIN_ROUTE} onClick={logout}>
+            {t("header.log_out")} <LogoutOutlined />
+          </Link>}
         </Nav>
       </Navbar.Collapse>
     </Navbar>

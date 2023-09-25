@@ -1,10 +1,11 @@
 import { useCallback, useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import { useTranslation } from 'react-i18next';
 import { Button, Table, Tabs } from 'antd';
 import TabPane from 'antd/es/tabs/TabPane';
 import { LOG_OUT } from '../../store/actionTypes';
-import { getAccountItems, LOGIN_ROUTE } from '../../utils/constants';
+import { LOGIN_ROUTE } from '../../utils/constants';
 import { getOrder } from '../../http/deviceApi';
 
 import styles from './account.module.scss';
@@ -13,6 +14,7 @@ const Account = () => {
   const user = useSelector((state: any) => state.user);
   const dispatch = useDispatch();
   const history = useHistory();
+  const { t, i18n } = useTranslation();
   const [data, setDate] = useState<any>();
   const [pagination, setPagination] = useState<any>({
     current: 1,
@@ -27,9 +29,9 @@ const Account = () => {
   }, [user, history])
 
   const logout = () => {
+    history.push(LOGIN_ROUTE);
     localStorage.removeItem("token");
     dispatch({ type: LOG_OUT });
-    window.location.href = LOGIN_ROUTE;
   };
 
   const getOneOrder = useCallback(async (defaultPagination?: any) => {
@@ -61,6 +63,11 @@ const Account = () => {
 
   const columns = [
     {
+      title: 'ID',
+      dataIndex: 'id',
+      key: 'id',
+    },
+    {
       title: 'Заказ',
       dataIndex: 'address',
       key: 'address',
@@ -82,10 +89,10 @@ const Account = () => {
     },
     {
       title: 'Действия',
-      dataIndex: 'action',
-      key: 'action',
-      render: (imageUrl: string) => (
-        <Button>Посмотреть</Button>
+      dataIndex: 'id',
+      key: 'id',
+      render: (id: string) => (
+        <Button onClick={() => alert(id)}>Посмотреть</Button>
       ),
     },
   ];
@@ -96,10 +103,10 @@ const Account = () => {
   };
   return (
     <Tabs defaultActiveKey="1" tabPosition="left" onChange={onChange}>
-      <TabPane tab="Консоль" key="1">
+      <TabPane tab={t("account.console")} key="1">
         Добро пожаловать, {user?.email}. Из главной страницы аккаунта вы можете посмотреть ваши недавние заказы, настроить платежный адрес и адрес доставки, а также изменить пароль и основную информацию.
       </TabPane>
-      <TabPane tab="Заказы" key="2">
+      <TabPane tab={t("account.orders")} key="2">
         <Table
           dataSource={data}
           columns={columns}
@@ -108,10 +115,10 @@ const Account = () => {
           onChange={handleTableChange}
         />
       </TabPane>
-      <TabPane tab="Детали учетной записи" key="3">
-        Детали учетной записи
+      <TabPane tab={t("account.account_details")} key="3">
+        {t("account.account_details")}
       </TabPane>
-      <TabPane tab="Выйти" key="4">
+      <TabPane tab={t("header.log_out")} key="4">
       </TabPane>
     </Tabs>
   )

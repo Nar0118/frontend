@@ -1,14 +1,23 @@
 {
-  "main": {
-    "header": {
-      "authorization": "Авторизация",
-      "checkout": "Проверить",
-      "admin": "Админ",
-      "log_out": "Выйти"
-    }
+  "header": {
+    "authorization": "Авторизация",
+    "checkout": "Проверить",
+    "admin": "Админ",
+    "log_out": "Выйти"
   },
   "product": {
     "price": "Цена",
-    "add_to_cart": "Добавить в корзину"
+    "add_to_cart": "Добавить в корзину",
+    "description": "Описание",
+    "your_rating": "Рейтинг",
+    "your_review": "Обзор",
+    "submit": "Добавить комментарий",
+    "are_you_sure": "Вы уверены, что хотите удалить этот продукт?",
+    "remove": "Удалять"
+  },
+  "account": {
+    "console": "Консоль",
+    "orders": "Заказы",
+    "account_details": "Детали учетной записи"
   }
 }

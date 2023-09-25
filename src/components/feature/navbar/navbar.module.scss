@@ -37,6 +37,11 @@
       border: none;
     }
   }
+
+  .navLogin {
+    display: flex;
+    justify-content: end;
+  }
 }
 
 @media only screen and (max-width: 991px) {

@@ -1,11 +1,9 @@
 {
-  "main": {
-    "header": {
-      "authorization": "Մուտք գործել",
-      "checkout": "Ստուգում",
-      "admin": "Ադմին",
-      "log_out": "Դուրս գալ"
-    }
+  "header": {
+    "authorization": "Մուտք գործել",
+    "checkout": "Ստուգում",
+    "admin": "Ադմին",
+    "log_out": "Դուրս գալ"
   },
   "product": {
     "price": "Գին",
@@ -16,5 +14,10 @@
     "submit": "Ավելացնել մեկնաբանություն",
     "are_you_sure": "Իսկապե՞ս ուզում եք հեռացնել այս ապրանքըը",
     "remove": "Ջնջել"
+  },
+  "account": {
+    "console": "Վահանակ",
+    "orders": "Պատվերներ",
+    "account_details": "Հաշվի մանրամասներ"
   }
 }

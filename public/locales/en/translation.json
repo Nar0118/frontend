@@ -1,20 +1,23 @@
 {
-  "main": {
-    "header": {
-      "authorization": "Մուտք գործել",
-      "checkout": "Ստուգում",
-      "admin": "Ադմին",
-      "log_out": "Դուրս գալ"
-    }
+  "header": {
+    "authorization": "Authorization",
+    "checkout": "Checkout",
+    "admin": "Admin",
+    "log_out": "Log out"
   },
   "product": {
     "price": "Price",
     "add_to_cart": "Add to cart",
     "description": "Description",
-    "your_rating": "Your rating",
-    "your_review": "Your review",
+    "your_rating": "Rating",
+    "your_review": "Review",
     "submit": "Submit",
     "are_you_sure": "Are you sure you want to remove this device?",
     "remove": "Remove"
+  },
+  "account": {
+    "console": "Console",
+    "orders": "Orders",
+    "account_details": "Account Details"
   }
 }
