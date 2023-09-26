@@ -68,31 +68,31 @@ const Account = () => {
       key: 'id',
     },
     {
-      title: 'Заказ',
+      title: t("account.order"),
       dataIndex: 'address',
       key: 'address',
     },
     {
-      title: 'Дата',
+      title: t("account.date"),
       dataIndex: 'createdAt',
       key: 'createdAt',
     },
     {
-      title: 'Статус',
+      title: t("account.status"),
       dataIndex: 'status',
       key: 'status',
     },
     {
-      title: 'Итого',
+      title: t("account.total"),
       dataIndex: 'price',
       key: 'price',
     },
     {
-      title: 'Действия',
+      title: t("account.action"),
       dataIndex: 'id',
       key: 'id',
       render: (id: string) => (
-        <Button onClick={() => alert(id)}>Посмотреть</Button>
+        <Button onClick={() => alert(id)}>{t("account.look")}</Button>
       ),
     },
   ];
@@ -104,7 +104,7 @@ const Account = () => {
   return (
     <Tabs defaultActiveKey="1" tabPosition="left" onChange={onChange}>
       <TabPane tab={t("account.console")} key="1">
-        Добро пожаловать, {user?.email}. Из главной страницы аккаунта вы можете посмотреть ваши недавние заказы, настроить платежный адрес и адрес доставки, а также изменить пароль и основную информацию.
+        {t("account.console_details", { email: user?.email })}
       </TabPane>
       <TabPane tab={t("account.orders")} key="2">
         <Table

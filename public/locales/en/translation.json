@@ -13,11 +13,39 @@
     "your_review": "Review",
     "submit": "Submit",
     "are_you_sure": "Are you sure you want to remove this device?",
-    "remove": "Remove"
+    "remove": "Remove",
+    "added": "Added",
+    "product_has_been_added_to_cart": "Product has been added to cart!",
+    "something_went_wrong": "Something went wrong!",
+    "error": "Error",
+    "warning": "Warning",
+    "please_fill_all_field": "Please fill all field!",
+    "success": "success",
+    "updated": "updated",
+    "created": "created",
+    "edit_this_product": "Edit this product",
+    "remove_this_product": "Remove this product",
+    "add_new_product": "Add new product",
+    "select_type": "Select a type",
+    "select_brand": "Select a brand"
   },
   "account": {
     "console": "Console",
     "orders": "Orders",
-    "account_details": "Account Details"
+    "account_details": "Account Details",
+    "console_details": "Welcome, {{email}}. From your account home page, you can view your recent orders, set up your billing and shipping addresses, and change your password and basic information.",
+    "order": "Order",
+    "date": "Date",
+    "status": "Status",
+    "total": "Total",
+    "action": "Action",
+    "look": "Look"
+  },
+  "form": {
+    "name": "Name",
+    "price": "Price",
+    "description": "Description",
+    "upload_image": "Upload image",
+    "close": "Close"
   }
 }

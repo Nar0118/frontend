@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import { useHistory } from "react-router-dom";
 import Modal from "react-bootstrap/Modal";
+import { useTranslation } from "react-i18next";
 import { Button, Space, Table as AntTable } from 'antd';
 import { fetchDevices, removeOneDevice } from '../../../http/deviceApi';
 import { DEVICE_ROUTE } from '../../../utils/constants';
@@ -9,6 +10,7 @@ import { CreateEditDevice } from '../../modals/CreateEditDevice';
 
 const Table = ({ deviceVisible }: any) => {
     const history = useHistory();
+    const { t } = useTranslation();
     const [data, setData] = useState<any[]>([]);
     const [show, setShow] = useState<boolean>(false);
     const [modal, setModal] = useState<any>();
@@ -150,14 +152,14 @@ const Table = ({ deviceVisible }: any) => {
             {modal?.type === 'delete' ? <Modal show={show} onHide={() => setShow(false)} backdrop="static" keyboard={false}>
                 <Modal.Header closeButton>
                     <Modal.Title>
-                        {modal === 'delete' ? 'Remove the product' : 'Edit the product'}
+                        {modal === 'delete' ? t("product.remove_this_product") : t("product.edit_this_product")}
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    Are you sure you wanna remove this product?
+                    {t("product.are_you_sure")}
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button onClick={remove}>Remove</Button>
+                    <Button onClick={remove}>{t("product.remove")}</Button>
                 </Modal.Footer>
             </Modal> :
                 <CreateEditDevice

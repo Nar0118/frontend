@@ -65,8 +65,8 @@ const DevicePage = () => {
       });
 
       openNotification({
-        descriptions: `Product has been added to cart!`,
-        messages: "Added",
+        descriptions: t("product.product_has_been_added_to_cart"),
+        messages: t("product.added"),
         redirect: BASKET_ROUTE,
       });
     } catch (error) {

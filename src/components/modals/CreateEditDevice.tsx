@@ -1,15 +1,17 @@
 import { useEffect, useState } from "react";
 import { Col, Dropdown } from "react-bootstrap";
 import Modal from "react-bootstrap/Modal";
+import { useTranslation } from "react-i18next";
 import Button from "antd/es/button";
+import { SHOP_ROUTE } from "../../utils/constants";
 import { PropsType } from "./type";
 import { createDevice, fetchBrands, fetchTypes, updateDevice } from "../../http/deviceApi";
 import openNotification from "../share/notice";
 
 import styles from './modal.module.scss';
-import { SHOP_ROUTE } from "../../utils/constants";
 
 export const CreateEditDevice = ({ show, onHide, selectedDevice }: PropsType) => {
+  const { t } = useTranslation();
   const [brand, setBrand] = useState<string>(selectedDevice?.brandId || '0');
   const [type, setType] = useState<string>(selectedDevice?.typeId || '0');
   const [brands, setBrands] = useState<any>([]);
@@ -54,7 +56,7 @@ export const CreateEditDevice = ({ show, onHide, selectedDevice }: PropsType) =>
       formData.append("description", description);
       formData.append("brandId", brand);
       formData.append("typeId", type);
-      formData.append("img", base64String);
+      formData.append("img", base64String || editDevice?.img);
 
       try {
         editDevice?.id ? await updateDevice(editDevice.id, formData) : await createDevice(formData);
@@ -62,22 +64,22 @@ export const CreateEditDevice = ({ show, onHide, selectedDevice }: PropsType) =>
         onHide();
 
         openNotification({
-          descriptions: `Product has been successfully ${editDevice ? 'updated' : 'created'}!`,
-          messages: `${editDevice?.id ? 'Updated' : 'Created'}`,
+          descriptions: `Product has been successfully ${editDevice ? t('product.updated') : t('product.created')}!`,
+          messages: `${editDevice?.id ? t('product.updated') : t('product.created')}`,
           redirect: SHOP_ROUTE,
-          status: 'success'
+          status: t('product.success')
         });
       } catch (error) {
         openNotification({
-          descriptions: "Something went wrong!",
-          messages: "Error",
+          descriptions: t("product.something_went_wrong"),
+          messages: t("product.error"),
         });
       }
     } else {
       openNotification({
-        descriptions: "Please fill all field!",
+        descriptions: t("product.please_fill_all_field"),
         redirect: SHOP_ROUTE,
-        messages: "Warning",
+        messages: t("product.warning"),
       });
     }
   };
@@ -107,12 +109,12 @@ export const CreateEditDevice = ({ show, onHide, selectedDevice }: PropsType) =>
   return (
     <Modal show={show} onHide={onHide} backdrop="static" keyboard={false} className={styles.container}>
       <Modal.Header closeButton>
-        <Modal.Title>{editDevice?.id ? 'Edit this product' : 'Add new product'}</Modal.Title>
+        <Modal.Title>{editDevice?.id ? t("product.edit_this_product") : t("product.add_new_product")}</Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <Col className="d-flex justify-content-between">
           <Dropdown onSelect={handleType}>
-            <Dropdown.Toggle>{(editDevice && types[Number(editDevice?.typeId) - 1]?.name) || (type && types[Number(type) - 1]?.name) || 'Select a type'}</Dropdown.Toggle>
+            <Dropdown.Toggle>{(editDevice && types[Number(editDevice?.typeId) - 1]?.name) || (type && types[Number(type) - 1]?.name) || t("product.select_type")}</Dropdown.Toggle>
             <Dropdown.Menu>
               {types.map((type: any) => (
                 <Dropdown.Item eventKey={type.id} key={type.id}>
@@ -122,7 +124,7 @@ export const CreateEditDevice = ({ show, onHide, selectedDevice }: PropsType) =>
             </Dropdown.Menu>
           </Dropdown>
           <Dropdown onSelect={handleBrand}>
-            <Dropdown.Toggle>{(editDevice && brands[Number(editDevice?.typeId) - 1]?.name) || (brand && brands[Number(brand) - 1]?.name) || 'Select a brand'}</Dropdown.Toggle>
+            <Dropdown.Toggle>{(editDevice && brands[Number(editDevice?.typeId) - 1]?.name) || (brand && brands[Number(brand) - 1]?.name) || t("product.select_brand")}</Dropdown.Toggle>
             <Dropdown.Menu>
               {brands.map((brand: any) => (
                 <Dropdown.Item eventKey={brand.id} key={brand.id}>
@@ -134,7 +136,7 @@ export const CreateEditDevice = ({ show, onHide, selectedDevice }: PropsType) =>
         </Col>
         <form onSubmit={handleSubmit} className="mt-2">
           <div className="form-group">
-            <label htmlFor="usr">Name:</label>
+            <label htmlFor="usr">{t("form.name")}:</label>
             <input required type="text" className="form-control" id="usr" value={editDevice?.name}
               onChange={(e) => {
                 if (editDevice) {
@@ -143,7 +145,7 @@ export const CreateEditDevice = ({ show, onHide, selectedDevice }: PropsType) =>
               }} />
           </div>
           <div className="form-group">
-            <label htmlFor="price">Price:</label>
+            <label htmlFor="price">{t("form.price")}:</label>
             <input required type="number" className="form-control" id="price" value={editDevice?.price}
               onChange={(e) => {
                 if (editDevice) {
@@ -152,7 +154,7 @@ export const CreateEditDevice = ({ show, onHide, selectedDevice }: PropsType) =>
               }} />
           </div>
           <div className="form-group">
-            <label htmlFor="description">Description:</label>
+            <label htmlFor="description">{t("form.description")}:</label>
             <textarea required className="form-control" id="description" value={editDevice?.description} onChange={(e) => {
               if (editDevice) {
                 onChangeEdit('description', e.target.value);
@@ -162,20 +164,18 @@ export const CreateEditDevice = ({ show, onHide, selectedDevice }: PropsType) =>
           <div className="form-group">
             <label htmlFor="files" className={styles.inputContainer}>
               <img src="https://ik.imagekit.io/2zlgs27bjo/public/icons/uploadFile.svg?updatedAt=1694518769111" alt="uploadFile" />
-              Upload image
+              {t("form.upload_image")}
             </label>
             <input
               id="files"
               className={styles.uploadFileInput}
               required={!editDevice || !!base64String}
-              // multiple
-              // disabled={!!base64String || !!editDevice?.id}
               onChange={handleFileSelection}
               name="file"
               type="file" />
           </div>
           <button className="btn btn-outline-success mt-2" type="submit">
-            Submit
+            {t("product.submit")}
           </button>
         </form>
         {(base64String && !editDevice) && (
@@ -190,7 +190,7 @@ export const CreateEditDevice = ({ show, onHide, selectedDevice }: PropsType) =>
         )}
       </Modal.Body>
       <Modal.Footer>
-        <Button onClick={onHide}>Close</Button>
+        <Button onClick={onHide}>{t("form.close")}</Button>
       </Modal.Footer>
     </Modal>
   );
