@@ -1,6 +1,7 @@
 import { useLayoutEffect, useState } from "react";
 import { Button, Container } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import { CreateBrand } from "../../components/modals/CreateBrand";
 import { CreateType } from "../../components/modals/CreateType";
@@ -8,9 +9,12 @@ import { CreateEditDevice } from "../../components/modals/CreateEditDevice";
 import Table from "../../components/share/table";
 import { SHOP_ROUTE } from "../../utils/constants";
 
+import styles from './admin.module.scss';
+
 function Admin() {
   const user = useSelector((state: any) => state.user);
   const history = useHistory();
+  const { t } = useTranslation();
   const [brandVisible, setBrandVisible] = useState(false);
   const [typeVisible, setTypeVisible] = useState(false);
   const [deviceVisible, setDeviceVisible] = useState(false);
@@ -23,27 +27,27 @@ function Admin() {
 
   return (
     <Container className="d-flex flex-column">
-      <div className="d-flex justify-content-between">
+      <div className="d-flex justify-content-between flex-wrap">
         <Button
           variant="outline-dark"
           className="mt-2"
           onClick={() => setTypeVisible(true)}
         >
-          Add type
+          {t("product.add_type")}
         </Button>
         <Button
           variant="outline-dark"
           className="mt-2"
           onClick={() => setDeviceVisible(true)}
         >
-          Add Product
+          {t("product.add_product")}
         </Button>
         <Button
           variant="outline-dark"
           className="mt-2"
           onClick={() => setBrandVisible(true)}
         >
-          Add brand
+          {t("product.add_brand")}
         </Button>
       </div>
       <CreateBrand show={brandVisible} onHide={() => setBrandVisible(false)} />
@@ -53,9 +57,7 @@ function Admin() {
         onHide={() => setDeviceVisible(false)}
       />
       <hr />
-      <div style={{
-        overflowX: 'auto',
-      }}>
+      <div className={styles.table}>
         <Table deviceVisible={deviceVisible} />
       </div>
     </Container>

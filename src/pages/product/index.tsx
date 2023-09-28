@@ -183,7 +183,7 @@ const DevicePage = () => {
       <Row className="d-flex flex-column m-3 max-width-100">
         {rating ? (
           <h6>
-            {t("product.your_rating")} (
+            {t("product.rating")} (
             <>
               {rating}
               <StarOutlined />
@@ -195,7 +195,7 @@ const DevicePage = () => {
         <Rate onChange={handleRate} />
         <form onSubmit={handleSubmit} className="mt-2">
           <div className="form-group mt-2">
-            <label htmlFor="review">{t("product.your_review")} *</label>
+            <label htmlFor="review">{t("product.review")} *</label>
             <textarea
               required
               cols={20}

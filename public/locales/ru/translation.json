@@ -9,8 +9,8 @@
     "price": "Цена",
     "add_to_cart": "Добавить в корзину",
     "description": "Описание",
-    "your_rating": "Рейтинг",
-    "your_review": "Обзор",
+    "rating": "Рейтинг",
+    "review": "Обзор",
     "submit": "Добавить",
     "are_you_sure": "Вы уверены, что хотите удалить этот продукт?",
     "remove": "Удалять",
@@ -27,7 +27,13 @@
     "remove_this_product": "Удалить этот продукт",
     "add_new_product": "Добавить новый продукт",
     "select_type": "Выберите тип",
-    "select_brand": "Выберите бренд"
+    "select_brand": "Выберите бренд",
+    "add_type": "Добавить тип",
+    "add_product": "Добавить продукт",
+    "add_brand": "Добавить бренд",
+    "add": "Добавить",
+    "enter_type_name": "Введите имя типа...",
+    "enter_brand_name": "Введите название бренда..."
   },
   "account": {
     "console": "Консоль",
@@ -46,6 +52,28 @@
     "price": "Цена",
     "description": "Описание",
     "upload_image": "Загрузить изображение",
-    "close": "Закрывать"
+    "close": "Закрывать",
+    "created_date": "Дата создания",
+    "updated_date": "Дата обновления",
+    "image": "Изображение",
+    "first_name": "Имя",
+    "last_name": "Фамилия",
+    "email": "Адрес электронной почты",
+    "phone": "Телефон",
+    "address": "Address",
+    "payment_method": "Способ оплаты",
+    "required_field": "Введите  {{field}}.",
+    "card_details": "Детали карты",
+    "subtotal": "Итог",
+    "shipping": "Перевозка",
+    "Total_incl_taxes": "Итого (включая налоги)",
+    "pay": "Купить",
+    "cash": "Наличные",
+    "online_payment": "Онлайн платеж"
+  },
+  "cart": {
+    "continue_shopping": "Продолжить покупки",
+    "shopping_cart": "Корзина",
+    "cart_count": "У вас в корзине {{count}} товаров."
   }
 }

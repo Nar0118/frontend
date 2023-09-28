@@ -9,8 +9,8 @@
     "price": "Price",
     "add_to_cart": "Add to cart",
     "description": "Description",
-    "your_rating": "Rating",
-    "your_review": "Review",
+    "rating": "Rating",
+    "review": "Review",
     "submit": "Submit",
     "are_you_sure": "Are you sure you want to remove this device?",
     "remove": "Remove",
@@ -27,7 +27,13 @@
     "remove_this_product": "Remove this product",
     "add_new_product": "Add new product",
     "select_type": "Select a type",
-    "select_brand": "Select a brand"
+    "select_brand": "Select a brand",
+    "add_type": "Add type",
+    "add_product": "Add product",
+    "add_brand": "Add brand",
+    "add": "Add",
+    "enter_type_name": "Enter a type name...",
+    "enter_brand_name": "Enter a brand name..."
   },
   "account": {
     "console": "Console",
@@ -46,6 +52,28 @@
     "price": "Price",
     "description": "Description",
     "upload_image": "Upload image",
-    "close": "Close"
+    "close": "Close",
+    "created_date": "Created date",
+    "updated_date": "Updated date",
+    "image": "Image",
+    "first_name": "First name",
+    "last_name": "Last name",
+    "email": "Email",
+    "phone": "Phone",
+    "address": "Address",
+    "payment_method": "Payment method",
+    "required_field": "Enter a  {{field}}.",
+    "card_details": "Card details",
+    "subtotal": "Subtotal",
+    "shipping": "Shipping",
+    "Total_incl_taxes": "Total(Incl. taxes)",
+    "pay": "Pay",
+    "cash": "Cash",
+    "online_payment": "Online payment"
+  },
+  "cart": {
+    "continue_shopping": "Continue shopping",
+    "shopping_cart": "Shopping cart",
+    "cart_count": "You have {{count}} items in your cart"
   }
 }

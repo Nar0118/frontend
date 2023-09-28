@@ -89,17 +89,17 @@ const Table = ({ deviceVisible }: any) => {
             key: 'id',
         },
         {
-            title: 'Name',
+            title: t('form.name'),
             dataIndex: 'name',
             key: 'name',
         },
         {
-            title: 'Price',
+            title: t('form.price'),
             dataIndex: 'price',
             key: 'price',
         },
         {
-            title: 'Image',
+            title: t('form.image'),
             dataIndex: 'img',
             key: 'image',
             render: (imageUrl: string) => (
@@ -111,18 +111,18 @@ const Table = ({ deviceVisible }: any) => {
             ),
         },
         {
-            title: 'Description',
+            title: t('form.description'),
             dataIndex: 'description',
             key: 'description',
         },
         {
-            title: 'Rating',
+            title: t('product.rating'),
             dataIndex: 'ratings',
             key: 'ratings',
             render: (value: string) => checkRating(value),
         },
         {
-            title: 'Action',
+            title: t('account.action'),
             key: 'action',
             render: (text: any, record: any) => (
                 <Space size="middle">
@@ -136,12 +136,12 @@ const Table = ({ deviceVisible }: any) => {
             ),
         },
         {
-            title: 'Created date',
+            title: t('form.created_date'),
             dataIndex: 'createdAt',
             key: 'createdAt',
         },
         {
-            title: 'UpdatedAt date',
+            title: t('form.updated_date'),
             dataIndex: 'updatedAt',
             key: 'updatedAt',
         },

@@ -14,7 +14,7 @@ const Account = () => {
   const user = useSelector((state: any) => state.user);
   const dispatch = useDispatch();
   const history = useHistory();
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const [data, setDate] = useState<any>();
   const [pagination, setPagination] = useState<any>({
     current: 1,
@@ -30,7 +30,6 @@ const Account = () => {
 
   const logout = () => {
     history.push(LOGIN_ROUTE);
-    localStorage.removeItem("token");
     dispatch({ type: LOG_OUT });
   };
 

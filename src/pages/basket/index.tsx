@@ -1,5 +1,6 @@
 import { useCallback, useLayoutEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import { Button } from "react-bootstrap";
 import { CloseCircleOutlined } from "@ant-design/icons";
@@ -21,6 +22,7 @@ import styles from './basket.module.scss';
 
 export default function Basket() {
   const user = useSelector((state: any) => state.user);
+  const { t } = useTranslation();
   const [basket, setBasket] = useState<any>([]);
   const [subtotal, setSubtotal] = useState<number>(0);
   const [count, setCount] = useState<number>(0);
@@ -92,7 +94,7 @@ export default function Basket() {
                   <MDBCol lg="7">
                     <MDBTypography tag="h5">
                       <a href={SHOP_ROUTE} className="text-body">
-                        <MDBIcon fas icon="long-arrow-alt-left me-2" /> Continue shopping
+                        <MDBIcon fas icon="long-arrow-alt-left me-2" />{t("cart.continue_shopping")}
                       </a>
                     </MDBTypography>
 
@@ -100,9 +102,9 @@ export default function Basket() {
 
                     <div className="d-flex justify-content-between align-items-center mb-4">
                       <div>
-                        <p className="mb-1">Shopping cart</p>
+                        <p className="mb-1">{t("cart.shopping_cart")}</p>
                         <p className="mb-0">
-                          You have {basket?.length} items in your cart
+                          {t("cart.cart_count", { count: basket?.length })}
                         </p>
                       </div>
                     </div>
@@ -142,7 +144,7 @@ export default function Basket() {
                               </div>
                               <div style={{ width: "80px" }}>
                                 <MDBTypography tag="h5" className="mb-0">
-                                  {+item?.device?.price * +item?.quantity}AMD
+                                  {+item?.device?.price * +item?.quantity} AMD
                                 </MDBTypography>
                               </div>
                               <a href="#!" style={{ color: "#cecece" }}>
@@ -188,7 +190,7 @@ export default function Basket() {
                       <MDBCardBody>
                         <div className="d-flex justify-content-between align-items-center mb-4">
                           <MDBTypography tag="h5" className="mb-0">
-                            Card details
+                            {t("form.card_details")}
                           </MDBTypography>
                           <MDBCardImage
                             src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-6.webp"
@@ -200,19 +202,19 @@ export default function Basket() {
                         </div>
                         <hr />
                         <div className="d-flex justify-content-between">
-                          <p className="mb-2">Subtotal</p>
-                          <p className="mb-2">{subtotal}AMD</p>
+                          <p className="mb-2">{t("form.subtotal")}</p>
+                          <p className="mb-2">{subtotal} AMD</p>
                         </div>
 
                         <div className="d-flex justify-content-between">
-                          <p className="mb-2">Shipping</p>
-                          <p className="mb-2">{subtotal ? 2000 : 0}AMD</p>
+                          <p className="mb-2">{t("form.shipping")}</p>
+                          <p className="mb-2">{subtotal ? 2000 : 0} AMD</p>
                         </div>
 
                         <div className="d-flex justify-content-between">
-                          <p className="mb-2">Total(Incl. taxes)</p>
+                          <p className="mb-2">{t("form.Total_incl_taxes")}</p>
                           <p className="mb-2">
-                            {subtotal ? subtotal + 2000 : 0}AMD
+                            {subtotal ? subtotal + 2000 : 0} AMD
                           </p>
                         </div>
                         <Button
@@ -220,7 +222,7 @@ export default function Basket() {
                           onClick={() => history.push(CHECKOUT_ROUTE)}
                           disabled={!subtotal}
                         >
-                          Checkout
+                          {t("header.checkout")}
                           <i className="fas fa-long-arrow-alt-right ms-2"></i>
                         </Button>
                       </MDBCardBody>

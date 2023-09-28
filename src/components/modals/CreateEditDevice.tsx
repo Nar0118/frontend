@@ -163,7 +163,7 @@ export const CreateEditDevice = ({ show, onHide, selectedDevice }: PropsType) =>
           </div>
           <div className="form-group">
             <label htmlFor="files" className={styles.inputContainer}>
-              <img src="https://ik.imagekit.io/2zlgs27bjo/public/icons/uploadFile.svg?updatedAt=1694518769111" alt="uploadFile" />
+              <img src="https://ik.imagekit.io/2zlgs27bjo/public/icons/uploadFile.svg" alt="uploadFile" />
               {t("form.upload_image")}
             </label>
             <input
@@ -181,11 +181,13 @@ export const CreateEditDevice = ({ show, onHide, selectedDevice }: PropsType) =>
         {(base64String && !editDevice) && (
           <img src={base64String} style={{
             maxWidth: '466px',
+            marginTop: '20px',
           }} alt={base64String} />
         )}
         {editDevice && (
           <img src={editDevice.img} style={{
             maxWidth: '466px',
+            marginTop: '20px',
           }} alt={editDevice.img} />
         )}
       </Modal.Body>

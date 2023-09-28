@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import { Form, Input, Button, Radio } from "antd";
 import { createOrder, fetchOneBasket, payment } from "../../http/deviceApi";
@@ -15,13 +16,14 @@ import openNotification from "../../components/share/notice";
 
 export default function Checkout() {
   const user = useSelector((state: any) => state.user);
+  const { t } = useTranslation();
   const [subtotal, setSubtotal] = useState<number>(0);
   const [deviceIds, setDeviceIds] = useState<number[]>([]);
   const history = useHistory();
   const [form] = Form.useForm();
   const paymentMethod = [
-    { label: "Cash", value: "cash" },
-    { label: "Online payment", value: "card" },
+    { label: t("form.cash"), value: "cash" },
+    { label: t("form.online_payment"), value: "card" },
   ];
 
   const fetchData = useCallback(async () => {
@@ -114,40 +116,42 @@ export default function Checkout() {
       onFinishFailed={onFinishFailed}
       style={{ maxWidth: "700px", margin: "0 auto", textAlign: "end" }}
     >
-      <Form.Item name="firstName" label="First name" required={true}>
+      <Form.Item name="firstName" label={t("form.first_name")} required={true}>
         <Input
           name="firstName"
-          placeholder="Enter a first name"
+          placeholder={t("form.required_field", { field: t("form.first_name") })}
           required={true}
         />
       </Form.Item>
-      <Form.Item name="lastName" label="Last name" required={true}>
+      <Form.Item name="lastName" label={t("form.last_name")} required={true}>
         <Input
           name="lastName"
-          placeholder="Enter a last name"
+          placeholder={t("form.required_field", { field: t("form.last_name") })}
           required={true}
         />
       </Form.Item>
-      <Form.Item name="email" label="Email" required={true}>
+      <Form.Item name="email" label={t("form.email")} required={true}>
         <Input
           name="email"
-          placeholder="Enter a email"
+          placeholder={t("form.required_field", { field: t("form.email") })}
           required={true}
           type={"email"}
         />
       </Form.Item>
-      <Form.Item name="phone" label="Phone" required={true}>
+      <Form.Item name="phone" label={t("form.phone")} required={true}>
         <Input
           name="phone"
-          placeholder="Enter a phone"
+          placeholder={t("form.required_field", { field: t("form.phone") })}
           required={true}
           type={"number"}
         />
       </Form.Item>
-      <Form.Item name="address" label="Address" required={true}>
-        <Input name="address" placeholder="Enter a address" required={true} />
+      <Form.Item name="address" label={t("form.address")} required={true}>
+        <Input name="address"
+          placeholder={t("form.required_field", { field: t("form.address") })}
+          required={true} />
       </Form.Item>
-      <Form.Item name="paymentMethod" label="Payment method">
+      <Form.Item name="paymentMethod" label={t("form.payment_method")}>
         <Radio.Group options={paymentMethod} />
       </Form.Item>
       <MDBCol>
@@ -155,7 +159,7 @@ export default function Checkout() {
           <MDBCardBody>
             <div className="d-flex justify-content-between align-items-center mb-4">
               <MDBTypography tag="h5" className="mb-0">
-                Card details
+                {t("form.card_details")}
               </MDBTypography>
               <MDBCardImage
                 src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-6.webp"
@@ -167,22 +171,22 @@ export default function Checkout() {
             </div>
             <hr />
             <div className="d-flex justify-content-between">
-              <p className="mb-2">Subtotal</p>
-              <p className="mb-2">{subtotal}AMD</p>
+              <p className="mb-2">{t("form.subtotal")}</p>
+              <p className="mb-2">{subtotal} AMD</p>
             </div>
 
             <div className="d-flex justify-content-between">
-              <p className="mb-2">Shipping</p>
-              <p className="mb-2">{subtotal ? 2000 : 0}AMD</p>
+              <p className="mb-2">{t("form.shipping")}</p>
+              <p className="mb-2">{subtotal ? 2000 : 0} AMD</p>
             </div>
 
             <div className="d-flex justify-content-between">
-              <p className="mb-2">Total(Incl. taxes)</p>
-              <p className="mb-2">{subtotal ? subtotal + 2000 : 0}AMD</p>
+              <p className="mb-2">{t("form.Total_incl_taxes")}</p>
+              <p className="mb-2">{subtotal ? subtotal + 2000 : 0} AMD</p>
             </div>
             <Form.Item>
               <Button type="default" htmlType="submit" disabled={!subtotal}>
-                Pay
+                {t("form.pay")}
               </Button>
             </Form.Item>
           </MDBCardBody>
