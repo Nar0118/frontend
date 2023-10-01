@@ -25,3 +25,21 @@
   border: none;
   padding: 10px 31px;
 }
+
+.image {
+  text-align: center;
+}
+
+.priceBlock {
+  margin-top: 20px;
+}
+
+.comment {
+  resize: unset;
+}
+
+@media only screen and (max-width: 768px) {
+  .comment {
+    height: 130px;
+  }
+}

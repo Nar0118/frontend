@@ -1,4 +1,5 @@
 import jwtDecode from "jwt-decode";
+import moment from "moment";
 import { LOGIN_ROUTE } from "./constants";
 
 export const getToken = () => {
@@ -13,4 +14,8 @@ export const checkAuth = (status: number): void => {
     localStorage.removeItem("token");
     window.location.href = LOGIN_ROUTE;
   }
+};
+
+export const dateFormat = (originalDateString: string): string => {
+  return moment(originalDateString).format("D MMMM, YYYY");
 };

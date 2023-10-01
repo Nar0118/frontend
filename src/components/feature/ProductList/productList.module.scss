@@ -1,0 +1,43 @@
+.container {
+  ul {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: start;
+    column-gap: 20px;
+    row-gap: 20px;
+    max-width: 1300px;
+    justify-content: flex-start;
+
+    li {
+      cursor: pointer;
+
+      & > div {
+        max-width: 300px;
+        min-width: 300px;
+
+        img {
+          max-height: 187px;
+          object-fit: contain;
+          width: -webkit-fill-available;
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .container {
+    ul {
+      justify-content: center;
+
+      li {
+        & > div {
+          :global(.ant-card-body) {
+            display: flex;
+            flex-direction: column;
+          }
+        }
+      }
+    }
+  }
+}

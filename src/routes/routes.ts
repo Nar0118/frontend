@@ -16,7 +16,9 @@ import {
   REGISTRATION_ROUTE,
   SHOP_ROUTE,
   ACCOUNT_ROUTE,
+  VIEW_ORDER_ROUTE,
 } from "../utils/constants";
+import ViewOrderPage from "../pages/view-order";
 
 export const authRoutes = [
   {
@@ -39,6 +41,10 @@ export const authRoutes = [
     path: ACCOUNT_ROUTE,
     Component: Account,
   },
+  {
+    path: `${VIEW_ORDER_ROUTE}/:id`,
+    Component: ViewOrderPage,
+  },
 ];
 
 export const publicRoutes = [
@@ -55,7 +61,7 @@ export const publicRoutes = [
     Component: Auth,
   },
   {
-    path: DEVICE_ROUTE + "/:id",
+    path: `${DEVICE_ROUTE}/:id`,
     Component: DevicePage,
   },
 ];

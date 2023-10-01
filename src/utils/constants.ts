@@ -7,3 +7,4 @@ export const DEVICE_ROUTE = "/device";
 export const CHECKOUT_ROUTE = "/checkout";
 export const CHECKOUT_SUCCESS_ROUTE = "/checkout-success";
 export const ACCOUNT_ROUTE = "/account";
+export const VIEW_ORDER_ROUTE = "/view-order";

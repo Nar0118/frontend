@@ -4,8 +4,11 @@ import { Form } from "antd";
 import Input from "antd/es/input";
 import Button from "antd/es/button";
 import { createBrand } from "../../http/deviceApi";
+import { PropsType } from "./type";
 
-export const CreateBrand = ({ show, onHide }: any) => {
+import styles from "./modal.module.scss";
+
+export const CreateBrand = ({ show, onHide }: PropsType) => {
   const { t } = useTranslation();
 
   const onFinish = async (values: any) => {
@@ -23,7 +26,13 @@ export const CreateBrand = ({ show, onHide }: any) => {
 
   return (
     <>
-      <Modal show={show} onHide={onHide} backdrop="static" keyboard={false}>
+      <Modal
+        show={show}
+        onHide={onHide}
+        backdrop="static"
+        keyboard={false}
+        className={styles.container}
+      >
         <Modal.Header closeButton>
           <Modal.Title>{t("product.add_brand")}</Modal.Title>
         </Modal.Header>

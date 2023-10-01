@@ -1,5 +1,5 @@
 import { useCallback, useLayoutEffect, useState } from "react";
-import { useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import { Button } from "react-bootstrap";
@@ -14,18 +14,25 @@ import {
   MDBRow,
   MDBTypography,
 } from "mdb-react-ui-kit";
-import { CHECKOUT_ROUTE, DEVICE_ROUTE, SHOP_ROUTE } from "../../utils/constants";
+import {
+  CHECKOUT_ROUTE,
+  DEVICE_ROUTE,
+  SHOP_ROUTE,
+} from "../../utils/constants";
 import openNotification from "../../components/share/notice";
-import { fetchOneBasket, removeFromBasket } from "../../http/deviceApi";
+import {
+  fetchOneBasket,
+  removeFromBasket,
+  updateBasket,
+} from "../../http/deviceApi";
 
-import styles from './basket.module.scss';
+import styles from "./basket.module.scss";
 
 export default function Basket() {
   const user = useSelector((state: any) => state.user);
   const { t } = useTranslation();
   const [basket, setBasket] = useState<any>([]);
   const [subtotal, setSubtotal] = useState<number>(0);
-  const [count, setCount] = useState<number>(0);
   const history = useHistory();
 
   const fetchData = useCallback(async () => {
@@ -34,8 +41,9 @@ export default function Basket() {
       if (data?.length === 0) {
       } else {
         setBasket(data);
-        let total = 0;
+
         if (data?.length) {
+          let total = 0;
           data.forEach((datum: any) => {
             total += datum.quantity * datum.device.price;
           });
@@ -45,20 +53,39 @@ export default function Basket() {
     } catch (error) {
       console.error("Error fetching data:", error);
     }
-  }, [user, history]);
+  }, [user]);
 
   useLayoutEffect(() => {
     fetchData();
   }, [fetchData]);
 
-
-  const handleCount = (type: string) => {
+  const handleCount = async (type: string, item: any) => {
+    const { quantity, id } = item;
     switch (type) {
       case "minus":
-        count > 1 && setCount(count - 1);
+        if (quantity === 1) {
+          return await removeFromCart(id);
+        }
+        await updateBasket(id, { quantity: quantity - 1 });
+        setBasket((prev: any) =>
+          prev.map((e: any) => {
+            if (e.id === id) {
+              e.quantity = e.quantity - 1;
+            }
+            return e;
+          })
+        );
         break;
       case "plus":
-        setCount(count + 1);
+        await updateBasket(id, { quantity: quantity + 1 });
+        setBasket((prev: any) =>
+          prev.map((e: any) => {
+            if (e.id === id) {
+              e.quantity = e.quantity + 1;
+            }
+            return e;
+          })
+        );
         break;
       default:
         break;
@@ -68,20 +95,20 @@ export default function Basket() {
   const removeFromCart = async (id: number) => {
     try {
       await removeFromBasket(id);
-      const filteredBasket = basket.filter((e: any) => e.id !== id);
+      const filteredBasket = basket?.filter((e: any) => e.id !== id);
       setBasket(filteredBasket);
-      if (!filteredBasket.length) {
-      }
 
       openNotification({
-        descriptions: filteredBasket.length ? 'Product has been successfully removed!' : 'Your cart is empty!',
-        messages: 'Removed',
-        status: 'success'
+        descriptions: filteredBasket.length
+          ? "Product has been successfully removed!"
+          : "Your cart is empty!",
+        messages: "Removed",
+        status: "success",
       });
     } catch (e) {
       console.error(e);
     }
-  }
+  };
 
   return (
     <section className="h-100 h-custom" style={{ backgroundColor: "#eee" }}>
@@ -93,13 +120,12 @@ export default function Basket() {
                 <MDBRow>
                   <MDBCol lg="7">
                     <MDBTypography tag="h5">
-                      <a href={SHOP_ROUTE} className="text-body">
-                        <MDBIcon fas icon="long-arrow-alt-left me-2" />{t("cart.continue_shopping")}
-                      </a>
+                      <Link to={SHOP_ROUTE} className="text-body">
+                        <MDBIcon fas icon="long-arrow-alt-left me-2" />
+                        {t("cart.continue_shopping")}
+                      </Link>
                     </MDBTypography>
-
                     <hr />
-
                     <div className="d-flex justify-content-between align-items-center mb-4">
                       <div>
                         <p className="mb-1">{t("cart.shopping_cart")}</p>
@@ -109,7 +135,10 @@ export default function Basket() {
                       </div>
                     </div>
                     {basket?.map((item: any) => (
-                      <MDBCard className={`mb-3 ${styles.basketItems}`} key={item.id}>
+                      <MDBCard
+                        className={`mb-3 ${styles.basketItems}`}
+                        key={item.id}
+                      >
                         <MDBCardBody>
                           <div className="d-flex justify-content-between">
                             <div className="d-flex flex-row align-items-center">
@@ -122,7 +151,7 @@ export default function Basket() {
                                   alt="Shopping item"
                                   onClick={() =>
                                     history.push(
-                                      DEVICE_ROUTE + "/" + item?.device?.id
+                                      `${DEVICE_ROUTE}/${item?.device?.id}`
                                     )
                                   }
                                 />
@@ -153,12 +182,12 @@ export default function Basket() {
                             </div>
                           </div>
                         </MDBCardBody>
-                        <div className="d-flex  align-items-center justify-content-center column gap-2 mb-2">
+                        <div className="d-flex align-items-center justify-content-center column gap-2 mb-2">
                           <Button
                             variant="outline-dark"
-                            onClick={() => handleCount("minus")}
+                            onClick={() => handleCount("minus", item)}
                             style={{
-                              padding: '0px 7px'
+                              padding: "0px 7px",
                             }}
                           >
                             -
@@ -166,9 +195,9 @@ export default function Basket() {
                           <h5 className="mb-0">{item?.quantity}</h5>
                           <Button
                             variant="outline-dark"
-                            onClick={() => handleCount("plus")}
+                            onClick={() => handleCount("plus", item)}
                             style={{
-                              padding: '0px 7px'
+                              padding: "0px 7px",
                             }}
                           >
                             +

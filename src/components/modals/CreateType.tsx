@@ -7,6 +7,8 @@ import Input from "antd/es/input";
 import Button from "antd/es/button";
 import { createType } from "../../http/deviceApi";
 
+import styles from "./modal.module.scss";
+
 export const CreateType = ({ show, onHide }: PropsType) => {
   const { t } = useTranslation();
   // const [types, setTypes] = useState<any>([]);
@@ -35,7 +37,13 @@ export const CreateType = ({ show, onHide }: PropsType) => {
   }, [show]);
 
   return (
-    <Modal show={show} onHide={onHide} backdrop="static" keyboard={false}>
+    <Modal 
+    show={show} 
+    onHide={onHide} 
+    backdrop="static" 
+    keyboard={false}
+    className={styles.container}
+    >
       <Modal.Header closeButton>
         <Modal.Title>{t("product.add_type")}</Modal.Title>
       </Modal.Header>

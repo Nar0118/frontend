@@ -15,32 +15,32 @@ import {
 import { StarOutlined } from "@ant-design/icons";
 import { BASKET_ROUTE, LOGIN_ROUTE, SHOP_ROUTE } from "../../utils/constants";
 import openNotification from "../../components/share/notice";
+import { IDevice } from "../../components/deviceItem/types";
 
 import styles from "./product.module.scss";
 
 const DevicePage = () => {
   const user = useSelector((state: any) => state.user);
-  const [device, setDevice] = useState<any>();
+  const history = useHistory();
+  const { t } = useTranslation();
+  const [device, setDevice] = useState<IDevice>();
   const [count, setCount] = useState<number>(1);
   const [rate, setRate] = useState<number>();
   const [rating, setRating] = useState<number>(0);
   const [show, setShow] = useState<boolean>(false);
   const params = useParams() as any;
-  const history = useHistory();
-  const { t, i18n } = useTranslation();
 
   const getDevice = useCallback(async () => {
     try {
       const data = await fetchOneDevice(params["id"]);
       setDevice(data);
 
-      let sum = 0;
       if (data?.ratings?.length > 0) {
-        data?.ratings?.forEach((rating: any) => {
-          sum += rating.rate;
-        });
-      }
-      if (data.ratings.length > 0) {
+        const sum: number = (data.ratings || []).reduce(
+          (acc: number, rating: any) => acc + (rating?.rate || 0),
+          0
+        );
+
         setRating(Math.round(sum / data.ratings.length));
       }
     } catch (error) {
@@ -102,7 +102,6 @@ const DevicePage = () => {
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
-
     try {
       await createRate({
         userId: user.id,
@@ -119,8 +118,8 @@ const DevicePage = () => {
 
   return (
     <Container className="mt-3">
-      <Row className="d-flex m-3`">
-        <Col md={4}>
+      <Row className={`d-flex m-3 ${styles.container}`}>
+        <Col md={4} className={styles.image}>
           <Image
             width={300}
             // src={process.env.REACT_APP_API_URL + "/uploads/" + device?.img}
@@ -128,8 +127,7 @@ const DevicePage = () => {
             alt={device?.img}
           />
         </Col>
-
-        <Col md={4}>
+        <Col md={4} className={styles.priceBlock}>
           <Card
             className="d-flex flex-column  justify-content-around p-2"
             style={{ border: "5px FOR" }}
@@ -187,7 +185,8 @@ const DevicePage = () => {
             <>
               {rating}
               <StarOutlined />
-            </>)
+            </>
+            )
           </h6>
         ) : (
           <></>
@@ -200,7 +199,7 @@ const DevicePage = () => {
               required
               cols={20}
               rows={10}
-              className="form-control"
+              className={`form-control ${styles.comment}`}
               id="review"
             />
           </div>

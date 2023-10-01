@@ -1,0 +1,49 @@
+.form {
+  max-width: 600px;
+  padding: 0 20px;
+
+  :global(.ant-form-item-row) {
+    display: block;
+  }
+
+  :global(.ant-form-item-label) {
+    width: 100%;
+    max-width: 100%;
+    text-align: inherit;
+  }
+
+  :global(.ant-form-item) {
+    margin-bottom: 15px;
+  }
+
+  .upload {
+    margin-top: 8px;
+  }
+
+  :global(.ant-form-item-control-input-content) {
+    display: flex;
+    justify-content: end;
+
+    button {
+      margin-top: 20px;
+    }
+  }
+}
+
+.authForm {
+  margin: 0 auto;
+
+  .haveAccount {
+    width: fit-content;
+    margin: 0 auto;
+  }
+
+  :global(.ant-form-item-control) {
+    margin: 0 auto !important;
+  }
+
+  :global(.ant-form-item-label) {
+    margin: 0 auto;
+    max-width: 325px;
+  }
+}

@@ -27,7 +27,7 @@ function Admin() {
 
   return (
     <Container className="d-flex flex-column">
-      <div className="d-flex justify-content-between flex-wrap">
+      <div className={`d-flex justify-content-between flex-wrap ${styles.container}`}>
         <Button
           variant="outline-dark"
           className="mt-2"

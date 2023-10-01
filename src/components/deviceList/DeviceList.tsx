@@ -1,16 +1,12 @@
-import { useContext } from "react";
-import { observer } from "mobx-react-lite";
-// import { Context } from "../..";
-import { Row, Card } from "react-bootstrap";
+import { Row } from "react-bootstrap";
 import { DeviceItem } from "../deviceItem/DeviceItem";
+import { IDevice } from "../deviceItem/types";
+import { DeviceListType } from "./types";
 
-export const DeviceList = ({devices}: any) => {
-  return (
-    <Row className="d-flex">
-      {devices?.length ?
-        devices.map((device: any) => (
-          <DeviceItem device={device} key={device.id} />
-        )) : <>There is no product...</>}
-    </Row>
-  );
-};
+export const DeviceList = ({ devices }: DeviceListType) => (
+  <Row className="d-flex">
+    {devices?.map((device: IDevice) => (
+      <DeviceItem device={device} key={device.id} />
+    ))}
+  </Row>
+);

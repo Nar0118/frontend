@@ -60,6 +60,7 @@ export const Header = () => {
           onClick={() => {
             handleLanguage("am");
           }}
+          alt="lang"
         />
       ),
     },
@@ -71,6 +72,7 @@ export const Header = () => {
           onClick={() => {
             handleLanguage("ru");
           }}
+          alt="lang"
         />
       ),
     },
@@ -82,6 +84,7 @@ export const Header = () => {
           onClick={() => {
             handleLanguage("en");
           }}
+          alt="lang"
         />
       ),
     },
@@ -140,12 +143,15 @@ export const Header = () => {
       <Navbar.Collapse id="responsive-navbar-nav">
         <Nav className={`${styles.nav} ${!user && styles.navLogin}`}>
           <div>
-            {navBar.map((e) =>
-              e.visible && <Link key={e.id} to={e.route}>
-                {typeof e.title === "string"
-                  ? t(`header.${e.title}`)
-                  : e.title}
-              </Link>
+            {navBar.map(
+              (e) =>
+                e.visible && (
+                  <Link key={e.id} to={e.route}>
+                    {typeof e.title === "string"
+                      ? t(`header.${e.title}`)
+                      : e.title}
+                  </Link>
+                )
             )}
             <div>
               <Dropdown
@@ -164,9 +170,11 @@ export const Header = () => {
               </Dropdown>
             </div>
           </div>
-          {user && <Link to={LOGIN_ROUTE} onClick={logout}>
-            {t("header.log_out")} <LogoutOutlined />
-          </Link>}
+          {user && (
+            <Link to={LOGIN_ROUTE} onClick={logout}>
+              {t("header.log_out")} <LogoutOutlined />
+            </Link>
+          )}
         </Nav>
       </Navbar.Collapse>
     </Navbar>

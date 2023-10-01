@@ -14,11 +14,13 @@ import {
 import { ACCOUNT_ROUTE, SHOP_ROUTE } from "../../utils/constants";
 import openNotification from "../../components/share/notice";
 
+import styles from "./checkout.module.scss";
+
 export default function Checkout() {
   const user = useSelector((state: any) => state.user);
   const { t } = useTranslation();
   const [subtotal, setSubtotal] = useState<number>(0);
-  const [deviceIds, setDeviceIds] = useState<number[]>([]);
+  const [deviceIds, setDeviceIds] = useState<any>();
   const history = useHistory();
   const [form] = Form.useForm();
   const paymentMethod = [
@@ -32,18 +34,19 @@ export default function Checkout() {
 
       let total = 0;
       const deviceIds: number[] = [];
-
+      const obj: any = {};
       data?.forEach((datum: any) => {
         total += datum.quantity * datum?.device?.price;
         deviceIds.push(datum.deviceId);
+        obj[datum.deviceId] = datum.quantity;
       });
 
-      setDeviceIds(deviceIds);
+      setDeviceIds(obj);
       setSubtotal(total);
     } catch (error) {
       console.error(error);
     }
-  }, [user, history]);
+  }, [user]);
 
   useEffect(() => {
     if (user?.id) {
@@ -71,10 +74,15 @@ export default function Checkout() {
           userId: user.id,
           deviceIds: deviceIds,
         });
-
       } else if (subtotal && values.paymentMethod === "card") {
         const res = await payment({
-          cartItems: { ...values, price: subtotal + 2000, userId: user.id, subtotal, deviceIds },
+          cartItems: {
+            ...values,
+            price: subtotal + 2000,
+            userId: user.id,
+            subtotal,
+            deviceIds,
+          },
           userId: user.id,
         });
 
@@ -88,15 +96,15 @@ export default function Checkout() {
       }
 
       openNotification({
-        descriptions: 'Success!',
-        messages: 'Order has been successfully created!',
+        descriptions: "Success!",
+        messages: "Order has been successfully created!",
         redirect: ACCOUNT_ROUTE,
       });
       history.push(SHOP_ROUTE);
-    } catch (error) {
+    } catch {
       openNotification({
-        descriptions: 'Error!',
-        messages: 'Something went wrong!',
+        descriptions: "Error!",
+        messages: "Something went wrong!",
       });
     }
   };
@@ -115,11 +123,14 @@ export default function Checkout() {
       onFinish={onFinish}
       onFinishFailed={onFinishFailed}
       style={{ maxWidth: "700px", margin: "0 auto", textAlign: "end" }}
+      className={styles.container}
     >
       <Form.Item name="firstName" label={t("form.first_name")} required={true}>
         <Input
           name="firstName"
-          placeholder={t("form.required_field", { field: t("form.first_name") })}
+          placeholder={t("form.required_field", {
+            field: t("form.first_name"),
+          })}
           required={true}
         />
       </Form.Item>
@@ -147,9 +158,11 @@ export default function Checkout() {
         />
       </Form.Item>
       <Form.Item name="address" label={t("form.address")} required={true}>
-        <Input name="address"
+        <Input
+          name="address"
           placeholder={t("form.required_field", { field: t("form.address") })}
-          required={true} />
+          required={true}
+        />
       </Form.Item>
       <Form.Item name="paymentMethod" label={t("form.payment_method")}>
         <Radio.Group options={paymentMethod} />

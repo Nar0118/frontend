@@ -73,6 +73,12 @@ export const removeFromBasket = async (id: number) => {
   return data;
 };
 
+export const updateBasket = async (id: number, basket: any) => {
+  const { data } = await $authHost.put(`api/basket/${id}`, basket);
+  checkAuth(data?.status);
+  return data;
+};
+
 export const createRate = async (rate: any) => {
   const { data } = await $authHost.post("api/rate", rate);
   checkAuth(data?.status);
@@ -91,6 +97,12 @@ export const getOrder = async (pagination?: any) => {
         `/api/order?page=${pagination?.current}&limit=${pagination?.pageSize}`
       )
     : await $authHost.get(`/api/order`);
+  checkAuth(data?.status);
+  return data;
+};
+
+export const getOneOrder = async (id: number) => {
+  const { data } = await $authHost.get(`api/order/${id}`);
   checkAuth(data?.status);
   return data;
 };
