@@ -8,6 +8,7 @@ import { DEVICE_ROUTE } from "../../../utils/constants";
 import openNotification from "../notice";
 import { CreateEditDevice } from "../../modals/CreateEditDevice";
 import { IDevice } from "../../deviceItem/types";
+import { dateFormat } from "../../../utils/functions";
 
 const Table = ({ deviceVisible }: any) => {
   const history = useHistory();
@@ -144,13 +145,13 @@ const Table = ({ deviceVisible }: any) => {
       render: (text: any, record: any) => (
         <Space size="middle">
           <Button type="primary" onClick={() => handleModal(record, "edit")}>
-            Edit
+            {t("account.edit")}
           </Button>
           <Button
             type="dashed"
             onClick={() => handleModal(record.id, "delete")}
           >
-            Delete
+            {t("product.remove")}
           </Button>
         </Space>
       ),
@@ -159,11 +160,13 @@ const Table = ({ deviceVisible }: any) => {
       title: t("form.created_date"),
       dataIndex: "createdAt",
       key: "createdAt",
+      render: (date: string) => <>{dateFormat(date)}</>,
     },
     {
       title: t("form.updated_date"),
       dataIndex: "updatedAt",
       key: "updatedAt",
+      render: (date: string) => <>{dateFormat(date)}</>,
     },
   ];
 
@@ -174,7 +177,7 @@ const Table = ({ deviceVisible }: any) => {
         onClick={() => handleModal(1, "delete")}
         disabled={!selectedRowProducts?.length}
       >
-        Remove selected products
+        {t("admin.remove_selected_products")}
       </Button>
       {modal?.type === "delete" ? (
         <Modal

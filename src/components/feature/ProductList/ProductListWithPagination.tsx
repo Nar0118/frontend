@@ -78,7 +78,7 @@ export const ProductList = () => {
                 onClick={() => history.push(`${DEVICE_ROUTE}/${item.id}`)}
               />
               <p>
-                {t("product.price")}: {item.price} AMD
+                {t("product.price")}: {`${item.price}${t("product.amd")}`}
               </p>
               <Button
                 variant="outline-dark"

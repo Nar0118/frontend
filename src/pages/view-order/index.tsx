@@ -43,23 +43,23 @@ const ViewOrderPage = () => {
       ),
     },
     {
-      title: "Product",
+      title: t("form.product"),
       dataIndex: "name",
       key: "name",
     },
     {
-      title: "Count",
+      title: t("form.count"),
       dataIndex: "order_device",
       key: "order_device",
       render: (e: any) => `x${e.count}`,
     },
     {
-      title: "price",
+      title: t("form.price"),
       dataIndex: "price",
       key: "price",
     },
     {
-      title: "total",
+      title: t("account.total"),
       dataIndex: "total",
       key: "total",
       render: () => <>{order?.price}</>,
@@ -68,42 +68,42 @@ const ViewOrderPage = () => {
 
   const columnsPayment = [
     {
-      title: "Address",
+      title: t("form.address"),
       dataIndex: "address",
       key: "address",
     },
     {
-      title: "Email",
+      title: t("form.email"),
       dataIndex: "email",
       key: "email",
     },
     {
-      title: "First name",
+      title: t("form.first_name"),
       dataIndex: "first_name",
       key: "first_name",
     },
     {
-      title: "last_name",
+      title: t("form.last_name"),
       dataIndex: "last_name",
       key: "last_name",
     },
     {
-      title: "Payment method",
+      title: t("form.payment_method"),
       dataIndex: "payment_method",
       key: "payment_method",
     },
     {
-      title: "Phone",
+      title: t("form.phone"),
       dataIndex: "phone",
       key: "phone",
     },
     {
-      title: "Price",
+      title: t("form.price"),
       dataIndex: "price",
       key: "price",
     },
     {
-      title: "Status",
+      title: t("account.status"),
       dataIndex: "status",
       key: "status",
     },
@@ -122,7 +122,7 @@ const ViewOrderPage = () => {
       </Button>
       <div className={styles.table}>
         <p>
-          Заказ <a href={`${DEVICE_ROUTE}/${params["id"]}`}>#{params["id"]}</a>{" "}
+          Заказ <a href="#">#{params["id"]}</a>{" "}
           &nbsp; был оформлен {dateFormat(order?.createdAt)} и сейчас{" "}
           {order?.status}. Информация о заказе
         </p>
@@ -134,7 +134,7 @@ const ViewOrderPage = () => {
       </div>
       {order && (
         <div className={styles.table}>
-          <p>Платёжный адрес</p>
+          <p>{t("account.billing_address")}</p>
           <Table
             dataSource={[order]}
             columns={columnsPayment}

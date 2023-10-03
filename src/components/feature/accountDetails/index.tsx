@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { DeleteOutlined, PlusOutlined } from "@ant-design/icons";
-import { Button, Checkbox, Form, Input, Upload } from "antd";
+import { useTranslation } from "react-i18next";
+import { DeleteOutlined } from "@ant-design/icons";
+import { Button, Checkbox, Form, Input } from "antd";
 
 import styles from "./accountDetails.module.scss";
 import uploadStyles from "../../modals/modal.module.scss";
 import authStyles from "../../../pages/auth/auth.module.scss";
+import { update } from "../../../http/userApi";
 
 const normFile = (e: any) => {
   if (Array.isArray(e)) {
@@ -16,6 +18,7 @@ const normFile = (e: any) => {
 
 export const AccountDetails = () => {
   const user = useSelector((state: any) => state.user);
+  const { t } = useTranslation();
   const [componentDisabled, setComponentDisabled] = useState<boolean>(true);
   const [base64String, setBase64String] = useState<string>(user?.avatar || "");
 
@@ -37,8 +40,8 @@ export const AccountDetails = () => {
     setBase64String(user?.avatar || "");
   }, [user]);
 
-  const submit = (values: any) => {
-    // here should be written details after click
+  const onSubmit = async (values: any) => {
+    const res = await update({ ...values, avatar: base64String });
   };
 
   return (
@@ -55,10 +58,10 @@ export const AccountDetails = () => {
         layout="horizontal"
         disabled={componentDisabled}
         className={`${styles.form} ${uploadStyles.container} ${authStyles.container}`}
-        onFinish={submit}
+        onFinish={onSubmit}
       >
         <Form.Item
-          label="First name"
+          label={t("form.first_name")}
           required
           rules={[{ required: true, message: "First name is required!" }]}
           name="firstName"
@@ -67,7 +70,7 @@ export const AccountDetails = () => {
           <Input />
         </Form.Item>
         <Form.Item
-          label="Last name"
+          label={t("form.last_name")}
           required
           rules={[{ required: true, message: "Last name is required!" }]}
           name="lastNname"
@@ -76,7 +79,7 @@ export const AccountDetails = () => {
           <Input />
         </Form.Item>
         <Form.Item
-          label="Email"
+          label={t("form.email")}
           required
           rules={[{ required: true, message: "Email is required!" }]}
           name="email"
@@ -85,7 +88,7 @@ export const AccountDetails = () => {
           <Input type="email" />
         </Form.Item>
         <Form.Item
-          label="Phone"
+          label={t("form.phone")}
           required
           rules={[{ required: true, message: "Phone is required!" }]}
           name="phone"
@@ -94,7 +97,7 @@ export const AccountDetails = () => {
           <Input type="number" />
         </Form.Item>
         <Form.Item
-          label="Address"
+          label={t("form.address")}
           required
           rules={[{ required: true, message: "Address is required!" }]}
           name="address"
@@ -103,7 +106,7 @@ export const AccountDetails = () => {
           <Input />
         </Form.Item>
         <Form.Item
-          label="Avatar"
+          label={t("form.avatar")}
           valuePropName="fileList"
           getValueFromEvent={normFile}
           required
@@ -120,7 +123,7 @@ export const AccountDetails = () => {
                 src="https://ik.imagekit.io/2zlgs27bjo/public/icons/uploadFile.svg"
                 alt="uploadFile"
               />
-              Upload
+              {t("form.upload_image")}
             </label>
             <input
               id="files"
@@ -147,16 +150,16 @@ export const AccountDetails = () => {
           <></>
         )}
         <hr />
-        <h5>Смена пароля</h5>
+        <h5>{t("account.change_password")}</h5>
         <hr />
         <Form.Item
-          label="Действующий пароль (не заполняйте, чтобы оставить прежний)"
+          label={t("account.current_password")}
           name="oldPassword"
         >
           <Input.Password />
         </Form.Item>
         <Form.Item
-          label="Новый пароль (не заполняйте, чтобы оставить прежний)"
+          label={t("account.new_password")}
           name="newPassword"
         >
           <Input.Password />
@@ -165,7 +168,7 @@ export const AccountDetails = () => {
           <Input.Password />
         </Form.Item>
         <Form.Item>
-          <Button htmlType="submit">Save</Button>
+          <Button htmlType="submit">{t("account.save")}</Button>
         </Form.Item>
       </Form>
     </>

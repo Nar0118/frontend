@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
 import { NavLink, useLocation, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import { useTranslation } from "react-i18next";
+import { Button, Form, Input } from "antd";
+import { DeleteOutlined } from "@ant-design/icons";
 import { registration, login } from "../../http/userApi";
 import {
   LOGIN_ROUTE,
@@ -8,8 +11,6 @@ import {
   SHOP_ROUTE,
 } from "../../utils/constants";
 import { LOG_IN } from "../../store/actionTypes";
-import { Button, Form, Input } from "antd";
-import { DeleteOutlined } from "@ant-design/icons";
 
 import styles from "../../components/feature/accountDetails/accountDetails.module.scss";
 import authStyles from "./auth.module.scss";
@@ -25,6 +26,7 @@ const normFile = (e: any) => {
 const Auth = () => {
   const state = useSelector((state: any) => state);
   const dispatch = useDispatch();
+  const { t } = useTranslation();
   const location = useLocation();
   const history = useHistory();
   const [isLogin, setIsLogin] = useState<boolean>(false);
@@ -53,7 +55,7 @@ const Auth = () => {
     }
   };
 
-  const click = async (values: any) => {
+  const onSubmit = async (values: any) => {
     try {
       if (isLogin) {
         const { email, password } = values;
@@ -74,25 +76,29 @@ const Auth = () => {
 
   return (
     <div className={`${authStyles.container} ${uploadStyles.container}`}>
-      <h1 className="m-auto">{isLogin ? "Login" : "Register"}</h1>
+      <h1 className="m-auto">{isLogin ? t("header.authorization") : t("auth.register")}</h1>
       <Form
         labelCol={{ span: 4 }}
         wrapperCol={{ span: 14 }}
         layout="horizontal"
         className={`${styles.authForm} ${styles.form}`}
-        onFinish={click}
+        onFinish={onSubmit}
       >
         {isLogin ? (
           <>
             <Form.Item
-              label="Email"
+              label={t("form.email")}
               required
               rules={[{ required: true, message: "Email is required!" }]}
               name="email"
             >
               <Input type="email" />
             </Form.Item>
-            <Form.Item label="Password" name="password">
+            <Form.Item
+              label={t("form.password")}
+              name="password"
+              rules={[{ required: true, message: "Password is required!" }]}
+            >
               <Input.Password />
             </Form.Item>
           </>
@@ -115,11 +121,10 @@ const Auth = () => {
               <Input />
             </Form.Item>
             <Form.Item
-              label="Email"
+              label={t("form.email")}
               required
               rules={[{ required: true, message: "Email is required!" }]}
               name="email"
-              // initialValue={user?.email}
             >
               <Input type="email" />
             </Form.Item>
@@ -157,7 +162,7 @@ const Auth = () => {
                     src="https://ik.imagekit.io/2zlgs27bjo/public/icons/uploadFile.svg"
                     alt="uploadFile"
                   />
-                  Upload
+                  {t("form.upload_image")}
                 </label>
                 <input
                   id="files"
@@ -201,18 +206,19 @@ const Auth = () => {
         )}
 
         <div className={`d-f ${styles.haveAccount}`}>
-          {`${
-            isLogin
-              ? "Don't you have an account?"
-              : "Do you have already an account?"
-          }`}
+          {`${isLogin
+            ? t("auth.dont_have_account")
+            : t("auth.do_have_account")
+            }`}
           &nbsp;
           <NavLink
             to={isLogin ? REGISTRATION_ROUTE : LOGIN_ROUTE}
-          >{`Click here to ${isLogin ? "register" : "login"}...`}</NavLink>
+          >
+            {t("auth.click_here_to", { auth: isLogin ? "register" : "login" })}
+          </NavLink>
         </div>
         <Form.Item>
-          <Button htmlType="submit">{isLogin ? "Login" : "Register"}</Button>
+          <Button htmlType="submit">{isLogin ? t("header.authorization") : t("auth.register")}</Button>
         </Form.Item>
       </Form>
     </div>

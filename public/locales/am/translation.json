@@ -33,7 +33,8 @@
     "add_brand": "Ավելացնել ապրանքանիշ",
     "add": "Ավելացնել",
     "enter_type_name": "Գրել ապրանքանիշի անունը...",
-    "enter_brand_name": "Գրել տեսակի անունը..."
+    "enter_brand_name": "Գրել տեսակի անունը...",
+    "amd": "դրամ"
   },
   "account": {
     "console": "Վահանակ",
@@ -45,7 +46,14 @@
     "status": "Կարգավիճակ",
     "total": "Ընդամենը",
     "action": "Գործողություն",
-    "look": "Նայել"
+    "look": "Նայել",
+    "edit": "Խմբագրել",
+    "change_password": "Փոխել գաղտնաբառը",
+    "current_password": "Ընթացիկ գաղտնաբառը (թողեք այն դատարկ՝ նույնը պահելու համար)",
+    "new_password": "Նոր գաղտնաբառ (թողեք այն դատարկ՝ հինը պահելու համար)",
+    "confirm_new_password": "Հաստատեք ձեր նոր գաղտնաբառը",
+    "save": "Պահպանել",
+    "billing_address": "Վճարման հասցե"
   },
   "form": {
     "name": "Անուն",
@@ -60,6 +68,7 @@
     "last_name": "Ազգանուն",
     "email": "էլեկտրոնային հասցե",
     "phone": "Հեռախոս",
+    "avatar": "Նկար",
     "address": "Հասցե",
     "payment_method": "Վճարման եղանակ",
     "required_field": "Մուտքագրեք {{field}}.",
@@ -69,11 +78,23 @@
     "Total_incl_taxes": "Ընդամենը (ներառյալ հարկերը)",
     "pay": "Գնել",
     "cash": "Կանխիկ",
-    "online_payment": "Առցանց վճարում"
+    "online_payment": "Առցանց վճարում",
+    "password": "Գաղտնաբառ",
+    "count": "Քանակ",
+    "product": "Ապրանք"
   },
   "cart": {
     "continue_shopping": "Շարունակել գնումներ կատարել",
     "shopping_cart": "Գնումների զամբյուղ",
     "cart_count": "Ձեր զամբյուղում ունեք {{count}} ապրանք"
+  },
+  "admin": {
+    "remove_selected_products": "Ջնջել ընտրված ապրանքները"
+  },
+  "auth": {
+    "login": "Login",
+    "register": "Register",
+    "dont_have_account": "Դեռ գրանցված չե՞ք",
+    "do_have_account": "Դուք արդեն հաշիվ ունե՞ք"
   }
 }

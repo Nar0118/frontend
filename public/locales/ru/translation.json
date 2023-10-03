@@ -33,7 +33,8 @@
     "add_brand": "Добавить бренд",
     "add": "Добавить",
     "enter_type_name": "Введите имя типа...",
-    "enter_brand_name": "Введите название бренда..."
+    "enter_brand_name": "Введите название бренда...",
+    "amd": "АМД"
   },
   "account": {
     "console": "Консоль",
@@ -45,7 +46,14 @@
     "status": "Статус",
     "total": "Итого",
     "action": "Действия",
-    "look": "Посмотреть"
+    "look": "Посмотреть",
+    "edit": "Редактировать",
+    "change_password": "Смена пароля",
+    "current_password": "Действующий пароль (не заполняйте, чтобы оставить прежний)",
+    "new_password": "Новый пароль (не заполняйте, чтобы оставить прежний)",
+    "confirm_new_password": "Подтвердите новый пароль",
+    "save": "Сохранять",
+    "billing_address": "Платёжный адрес"
   },
   "form": {
     "name": "Имя",
@@ -60,6 +68,7 @@
     "last_name": "Фамилия",
     "email": "Адрес электронной почты",
     "phone": "Телефон",
+    "avatar": "Аватар",
     "address": "Address",
     "payment_method": "Способ оплаты",
     "required_field": "Введите  {{field}}.",
@@ -69,11 +78,23 @@
     "Total_incl_taxes": "Итого (включая налоги)",
     "pay": "Купить",
     "cash": "Наличные",
-    "online_payment": "Онлайн платеж"
+    "online_payment": "Онлайн платеж",
+    "password": "Пароль",
+    "count": "Количество",
+    "product": "Продукт"
   },
   "cart": {
     "continue_shopping": "Продолжить покупки",
     "shopping_cart": "Корзина",
     "cart_count": "У вас в корзине {{count}} товаров."
+  },
+  "admin": {
+    "remove_selected_products": "Удалить выбранные продукты"
+  },
+  "auth": {
+    "login": "Login",
+    "register": "Register",
+    "dont_have_account": "У вас нет учетной записи?",
+    "do_have_account": "У вас уже есть аккаунт?"
   }
 }

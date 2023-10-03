@@ -33,7 +33,8 @@
     "add_brand": "Add brand",
     "add": "Add",
     "enter_type_name": "Enter a type name...",
-    "enter_brand_name": "Enter a brand name..."
+    "enter_brand_name": "Enter a brand name...",
+    "amd": "AMD"
   },
   "account": {
     "console": "Console",
@@ -45,7 +46,15 @@
     "status": "Status",
     "total": "Total",
     "action": "Action",
-    "look": "Look"
+    "look": "Look",
+    "edit": "Edit",
+    "delete": "delete",
+    "change_password": "Change Password",
+    "current_password": "Current password (leave it blank to keep the same)",
+    "new_password": "Նոր գաղտնաբառ (թողեք այն դատարկ՝ հինը պահելու համար)",
+    "confirm_new_password": "Confirm your new password",
+    "save": "Save",
+    "billing_address": "Billing address"
   },
   "form": {
     "name": "Name",
@@ -60,6 +69,7 @@
     "last_name": "Last name",
     "email": "Email",
     "phone": "Phone",
+    "avatar": "Avatar",
     "address": "Address",
     "payment_method": "Payment method",
     "required_field": "Enter a  {{field}}.",
@@ -69,11 +79,24 @@
     "Total_incl_taxes": "Total(Incl. taxes)",
     "pay": "Pay",
     "cash": "Cash",
-    "online_payment": "Online payment"
+    "online_payment": "Online payment",
+    "password": "Password",
+    "count": "count",
+    "product": "Product"
   },
   "cart": {
     "continue_shopping": "Continue shopping",
     "shopping_cart": "Shopping cart",
     "cart_count": "You have {{count}} items in your cart"
+  },
+  "admin": {
+    "remove_selected_products": "Remove selected products"
+  },
+  "auth": {
+    "login": "Login",
+    "register": "Register",
+    "dont_have_account": "Don't you have an account?",
+    "do_have_account": "Do you have already an account?",
+    "click_here_to": "Click here to {{auth}}..."
   }
 }

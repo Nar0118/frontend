@@ -173,7 +173,7 @@ export default function Basket() {
                               </div>
                               <div style={{ width: "80px" }}>
                                 <MDBTypography tag="h5" className="mb-0">
-                                  {+item?.device?.price * +item?.quantity} AMD
+                                  {`${Number(item?.device?.price) * Number(item?.quantity)} ${t("product.amd")}`}
                                 </MDBTypography>
                               </div>
                               <a href="#!" style={{ color: "#cecece" }}>
@@ -232,18 +232,18 @@ export default function Basket() {
                         <hr />
                         <div className="d-flex justify-content-between">
                           <p className="mb-2">{t("form.subtotal")}</p>
-                          <p className="mb-2">{subtotal} AMD</p>
+                          <p className="mb-2">{`${subtotal} ${t("product.amd")}`}</p>
                         </div>
 
                         <div className="d-flex justify-content-between">
                           <p className="mb-2">{t("form.shipping")}</p>
-                          <p className="mb-2">{subtotal ? 2000 : 0} AMD</p>
+                          <p className="mb-2">{`${subtotal ? 2000 : 0} ${t("product.amd")}`}</p>
                         </div>
 
                         <div className="d-flex justify-content-between">
                           <p className="mb-2">{t("form.Total_incl_taxes")}</p>
                           <p className="mb-2">
-                            {subtotal ? subtotal + 2000 : 0} AMD
+                            {`${subtotal ? subtotal + 2000 : 0} ${t("product.amd")}`}
                           </p>
                         </div>
                         <Button

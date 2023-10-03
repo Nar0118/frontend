@@ -185,17 +185,17 @@ export default function Checkout() {
             <hr />
             <div className="d-flex justify-content-between">
               <p className="mb-2">{t("form.subtotal")}</p>
-              <p className="mb-2">{subtotal} AMD</p>
+              <p className="mb-2">{`${subtotal} ${t("product.amd")}`}</p>
             </div>
 
             <div className="d-flex justify-content-between">
               <p className="mb-2">{t("form.shipping")}</p>
-              <p className="mb-2">{subtotal ? 2000 : 0} AMD</p>
+              <p className="mb-2">{`${subtotal ? 2000 : 0} ${t("product.amd")}`}</p>
             </div>
 
             <div className="d-flex justify-content-between">
               <p className="mb-2">{t("form.Total_incl_taxes")}</p>
-              <p className="mb-2">{subtotal ? subtotal + 2000 : 0} AMD</p>
+              <p className="mb-2">{`${subtotal ? subtotal + 2000 : 0} ${t("product.amd")}`}</p>
             </div>
             <Form.Item>
               <Button type="default" htmlType="submit" disabled={!subtotal}>

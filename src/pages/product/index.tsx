@@ -133,7 +133,7 @@ const DevicePage = () => {
             style={{ border: "5px FOR" }}
           >
             <h3>{device?.name}</h3>
-            <h6>{device?.price} AMD</h6>
+            <h6>{`${device?.price} ${t("product.amd")}`}</h6>
             <div
               className="d-flex align-items-center column gap-2"
               style={{ flexWrap: "wrap" }}
