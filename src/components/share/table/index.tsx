@@ -162,12 +162,6 @@ const Table = ({ deviceVisible }: any) => {
       key: "createdAt",
       render: (date: string) => <>{dateFormat(date)}</>,
     },
-    {
-      title: t("form.updated_date"),
-      dataIndex: "updatedAt",
-      key: "updatedAt",
-      render: (date: string) => <>{dateFormat(date)}</>,
-    },
   ];
 
   return (

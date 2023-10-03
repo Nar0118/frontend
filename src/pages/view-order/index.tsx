@@ -5,7 +5,7 @@ import { ArrowLeftOutlined } from "@ant-design/icons";
 import { useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { getOneOrder } from "../../http/deviceApi";
-import { ACCOUNT_ROUTE, DEVICE_ROUTE } from "../../utils/constants";
+import { DEVICE_ROUTE } from "../../utils/constants";
 import { dateFormat } from "../../utils/functions";
 
 import styles from "./viewOrder.module.scss";
@@ -112,9 +112,7 @@ const ViewOrderPage = () => {
   return (
     <div className={styles.container}>
       <Button
-        onClick={() => {
-          history.push(ACCOUNT_ROUTE);
-        }}
+        onClick={() => history.goBack()}
         className={styles.back}
       >
         <ArrowLeftOutlined />

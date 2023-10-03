@@ -105,7 +105,7 @@ const Auth = () => {
         ) : (
           <>
             <Form.Item
-              label="First name"
+              label={t("form.first_name")}
               required
               rules={[{ required: true, message: "First name is required!" }]}
               name="first_name"
@@ -113,7 +113,7 @@ const Auth = () => {
               <Input />
             </Form.Item>
             <Form.Item
-              label="Last name"
+              label={t("form.last_name")}
               required
               rules={[{ required: true, message: "Last name is required!" }]}
               name="last_name"
@@ -129,7 +129,7 @@ const Auth = () => {
               <Input type="email" />
             </Form.Item>
             <Form.Item
-              label="Phone"
+              label={t("form.phone")}
               required
               rules={[{ required: true, message: "Phone is required!" }]}
               name="phone_number"
@@ -137,7 +137,7 @@ const Auth = () => {
               <Input type="number" />
             </Form.Item>
             <Form.Item
-              label="Address"
+              label={t("form.address")}
               required
               rules={[{ required: true, message: "Address is required!" }]}
               name="address"
@@ -145,7 +145,7 @@ const Auth = () => {
               <Input />
             </Form.Item>
             <Form.Item
-              label="Avatar"
+              label={t("form.avatar")}
               valuePropName="fileList"
               getValueFromEvent={normFile}
               required
@@ -187,14 +187,14 @@ const Auth = () => {
               <></>
             )}
             <Form.Item
-              label="Password"
+              label={t("form.password")}
               name="password"
               rules={[{ required: true, message: "Password is required!" }]}
             >
               <Input.Password />
             </Form.Item>
             <Form.Item
-              label="Confirm the password"
+              label={t("form.confirm_password")}
               name="confirmPassword"
               rules={[
                 { required: true, message: "Confirm password is required!" },

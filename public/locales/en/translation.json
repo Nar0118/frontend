@@ -82,7 +82,8 @@
     "online_payment": "Online payment",
     "password": "Password",
     "count": "count",
-    "product": "Product"
+    "product": "Product",
+    "confirm_password": "Confirm the password"
   },
   "cart": {
     "continue_shopping": "Continue shopping",
@@ -90,7 +91,8 @@
     "cart_count": "You have {{count}} items in your cart"
   },
   "admin": {
-    "remove_selected_products": "Remove selected products"
+    "remove_selected_products": "Remove selected products",
+    "products": "Products"
   },
   "auth": {
     "login": "Login",

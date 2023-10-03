@@ -1,13 +1,18 @@
-import { useLayoutEffect, useState } from "react";
+import { useCallback, useLayoutEffect, useState } from "react";
 import { Button, Container } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
+import { TablePaginationConfig, Tabs, Table as AntTable } from "antd";
+import TabPane from "antd/es/tabs/TabPane";
 import { CreateBrand } from "../../components/modals/CreateBrand";
 import { CreateType } from "../../components/modals/CreateType";
 import { CreateEditDevice } from "../../components/modals/CreateEditDevice";
 import Table from "../../components/share/table";
-import { SHOP_ROUTE } from "../../utils/constants";
+import { AccountDetails } from "../../components/feature/accountDetails";
+import { SHOP_ROUTE, VIEW_ORDER_ROUTE } from "../../utils/constants";
+import { dateFormat } from "../../utils/functions";
+import { getOrder } from "../../http/deviceApi";
 
 import styles from './admin.module.scss';
 
@@ -18,12 +23,93 @@ function Admin() {
   const [brandVisible, setBrandVisible] = useState(false);
   const [typeVisible, setTypeVisible] = useState(false);
   const [deviceVisible, setDeviceVisible] = useState(false);
+  const [data, setData] = useState<any>();
+  const [pagination, setPagination] = useState<TablePaginationConfig>({
+    current: 1,
+    pageSize: 10,
+    total: 0,
+  });
 
   useLayoutEffect(() => {
     if (user.role !== "ADMIN") {
       history.push(SHOP_ROUTE);
     }
   }, [history, user]);
+
+  const handleTableChange = (pagination: TablePaginationConfig) => {
+    setPagination(pagination);
+    getOneOrder(pagination);
+  };
+
+  const getOneOrder = useCallback(
+    async (defaultPagination?: TablePaginationConfig) => {
+      try {
+        const paginationState = defaultPagination || pagination;
+        const res = await getOrder(paginationState);
+        setData(res);
+        setPagination({
+          ...paginationState,
+          total: res.count,
+        });
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    },
+    [pagination]
+  );
+
+  const onChange = (key: string) => {
+    switch (key) {
+      case "2":
+        getOneOrder();
+        break;
+      default:
+        break;
+    }
+  };
+
+  const columns = [
+    {
+      title: "ID",
+      dataIndex: "id",
+      key: "id",
+    },
+    {
+      title: t("account.order"),
+      dataIndex: "address",
+      key: "address",
+    },
+    {
+      title: t("account.date"),
+      dataIndex: "createdAt",
+      key: "createdAt",
+      render: (date: string) => <>{dateFormat(date)}</>,
+    },
+    {
+      title: t("account.status"),
+      dataIndex: "status",
+      key: "status",
+    },
+    {
+      title: t("account.total"),
+      dataIndex: "price",
+      key: "price",
+    },
+    {
+      title: t("account.action"),
+      dataIndex: "id",
+      key: "id",
+      render: (id: string) => (
+        <Button
+          onClick={() => {
+            history.push(`${VIEW_ORDER_ROUTE}/${id}`);
+          }}
+        >
+          {t("account.look")}
+        </Button>
+      ),
+    },
+  ];
 
   return (
     <Container className="d-flex flex-column">
@@ -57,9 +143,32 @@ function Admin() {
         onHide={() => setDeviceVisible(false)}
       />
       <hr />
-      <div className={styles.table}>
-        <Table deviceVisible={deviceVisible} />
-      </div>
+      <Tabs
+        defaultActiveKey="1"
+        tabPosition="left"
+        onChange={onChange}
+        className={styles.tabs}
+      >
+        <TabPane tab={t("admin.products")} key="1">
+          <div className={styles.table}>
+            <Table deviceVisible={deviceVisible} />
+          </div>
+        </TabPane>
+        <TabPane tab={t("account.orders")} key="2">
+          <div className={styles.table}>
+            <AntTable
+              dataSource={data}
+              columns={columns}
+              pagination={pagination}
+              rowKey="id"
+              onChange={handleTableChange}
+            />
+          </div>
+        </TabPane>
+        <TabPane tab={t("account.account_details")} key="3">
+          <AccountDetails />
+        </TabPane>
+      </Tabs>
     </Container>
   );
 }

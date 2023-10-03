@@ -81,7 +81,8 @@
     "online_payment": "Онлайн платеж",
     "password": "Пароль",
     "count": "Количество",
-    "product": "Продукт"
+    "product": "Продукт",
+    "confirm_password": "Подтвердите пароль"
   },
   "cart": {
     "continue_shopping": "Продолжить покупки",
@@ -89,11 +90,12 @@
     "cart_count": "У вас в корзине {{count}} товаров."
   },
   "admin": {
-    "remove_selected_products": "Удалить выбранные продукты"
+    "remove_selected_products": "Удалить выбранные продукты",
+    "products": "ПродуктЫ"
   },
   "auth": {
-    "login": "Login",
-    "register": "Register",
+    "login": "Авторизоваться",
+    "register": "Регистр",
     "dont_have_account": "У вас нет учетной записи?",
     "do_have_account": "У вас уже есть аккаунт?"
   }

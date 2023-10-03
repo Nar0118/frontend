@@ -125,7 +125,11 @@ export default function Checkout() {
       style={{ maxWidth: "700px", margin: "0 auto", textAlign: "end" }}
       className={styles.container}
     >
-      <Form.Item name="firstName" label={t("form.first_name")} required={true}>
+      <Form.Item
+        name="firstName"
+        label={t("form.first_name")}
+        initialValue={user?.first_name}
+        required={true}>
         <Input
           name="firstName"
           placeholder={t("form.required_field", {
@@ -134,14 +138,24 @@ export default function Checkout() {
           required={true}
         />
       </Form.Item>
-      <Form.Item name="lastName" label={t("form.last_name")} required={true}>
+      <Form.Item
+        name="lastName"
+        label={t("form.last_name")}
+        required={true}
+        initialValue={user?.last_name}
+      >
         <Input
           name="lastName"
           placeholder={t("form.required_field", { field: t("form.last_name") })}
           required={true}
         />
       </Form.Item>
-      <Form.Item name="email" label={t("form.email")} required={true}>
+      <Form.Item
+        name="email"
+        label={t("form.email")}
+        required={true}
+        initialValue={user?.email}
+      >
         <Input
           name="email"
           placeholder={t("form.required_field", { field: t("form.email") })}
@@ -149,7 +163,11 @@ export default function Checkout() {
           type={"email"}
         />
       </Form.Item>
-      <Form.Item name="phone" label={t("form.phone")} required={true}>
+      <Form.Item
+        name="phone"
+        label={t("form.phone")}
+        required={true}
+        initialValue={user?.phone_number}>
         <Input
           name="phone"
           placeholder={t("form.required_field", { field: t("form.phone") })}
@@ -157,7 +175,11 @@ export default function Checkout() {
           type={"number"}
         />
       </Form.Item>
-      <Form.Item name="address" label={t("form.address")} required={true}>
+      <Form.Item
+        name="address"
+        label={t("form.address")}
+        required={true}
+        initialValue={user?.address}>
         <Input
           name="address"
           placeholder={t("form.required_field", { field: t("form.address") })}

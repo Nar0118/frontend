@@ -81,7 +81,8 @@
     "online_payment": "Առցանց վճարում",
     "password": "Գաղտնաբառ",
     "count": "Քանակ",
-    "product": "Ապրանք"
+    "product": "Ապրանք",
+    "confirm_password": "Հաստատեք գաղտնաբառը"
   },
   "cart": {
     "continue_shopping": "Շարունակել գնումներ կատարել",
@@ -89,11 +90,12 @@
     "cart_count": "Ձեր զամբյուղում ունեք {{count}} ապրանք"
   },
   "admin": {
-    "remove_selected_products": "Ջնջել ընտրված ապրանքները"
+    "remove_selected_products": "Ջնջել ընտրված ապրանքները",
+    "products": "Ապրանքներ"
   },
   "auth": {
-    "login": "Login",
-    "register": "Register",
+    "login": "Մուտք գործել",
+    "register": "Գրանցվել",
     "dont_have_account": "Դեռ գրանցված չե՞ք",
     "do_have_account": "Դուք արդեն հաշիվ ունե՞ք"
   }
