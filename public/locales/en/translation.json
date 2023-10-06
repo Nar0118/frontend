@@ -1,6 +1,6 @@
 {
   "header": {
-    "authorization": "Authorization",
+    "authorization": "Login",
     "checkout": "Checkout",
     "admin": "Admin",
     "log_out": "Log out"
@@ -51,7 +51,7 @@
     "delete": "delete",
     "change_password": "Change Password",
     "current_password": "Current password (leave it blank to keep the same)",
-    "new_password": "Նոր գաղտնաբառ (թողեք այն դատարկ՝ հինը պահելու համար)",
+    "new_password": "New password",
     "confirm_new_password": "Confirm your new password",
     "save": "Save",
     "billing_address": "Billing address"

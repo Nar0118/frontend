@@ -1,13 +1,15 @@
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
 import { DeleteOutlined } from "@ant-design/icons";
 import { Button, Checkbox, Form, Input } from "antd";
+import { update } from "../../../http/userApi";
+import { LOG_IN } from "../../../store/actionTypes";
+import openNotification from "../../share/notice";
 
 import styles from "./accountDetails.module.scss";
 import uploadStyles from "../../modals/modal.module.scss";
 import authStyles from "../../../pages/auth/auth.module.scss";
-import { update } from "../../../http/userApi";
 
 const normFile = (e: any) => {
   if (Array.isArray(e)) {
@@ -17,6 +19,7 @@ const normFile = (e: any) => {
 };
 
 export const AccountDetails = () => {
+  const dispatch = useDispatch();
   const user = useSelector((state: any) => state.user);
   const { t } = useTranslation();
   const [componentDisabled, setComponentDisabled] = useState<boolean>(true);
@@ -41,9 +44,22 @@ export const AccountDetails = () => {
   }, [user]);
 
   const onSubmit = async (values: any) => {
-    const res = await update({ ...values, avatar: base64String });
-  };
+    try {
+      await update({ ...values, avatar: base64String });
+      dispatch({ type: LOG_IN });
 
+      openNotification({
+        descriptions: "Account details has been successfully updated!",
+        messages: t("product.success"),
+      });
+
+    } catch (err: any) {
+      openNotification({
+        descriptions: err.response?.data?.message,
+        messages: t("product.error"),
+      });
+    }
+  }
   return (
     <>
       <Checkbox
@@ -64,7 +80,7 @@ export const AccountDetails = () => {
           label={t("form.first_name")}
           required
           rules={[{ required: true, message: "First name is required!" }]}
-          name="firstName"
+          name="first_name"
           initialValue={user?.first_name}
         >
           <Input />
@@ -73,7 +89,7 @@ export const AccountDetails = () => {
           label={t("form.last_name")}
           required
           rules={[{ required: true, message: "Last name is required!" }]}
-          name="lastNname"
+          name="last_name"
           initialValue={user?.last_name}
         >
           <Input />
@@ -91,7 +107,7 @@ export const AccountDetails = () => {
           label={t("form.phone")}
           required
           rules={[{ required: true, message: "Phone is required!" }]}
-          name="phone"
+          name="phone_number"
           initialValue={user?.phone_number}
         >
           <Input type="number" />
@@ -151,7 +167,6 @@ export const AccountDetails = () => {
         )}
         <hr />
         <h5>{t("account.change_password")}</h5>
-        <hr />
         <Form.Item
           label={t("account.current_password")}
           name="oldPassword"
@@ -164,7 +179,7 @@ export const AccountDetails = () => {
         >
           <Input.Password />
         </Form.Item>
-        <Form.Item label="Подтвердите новый пароль" name="confirmPassword">
+        <Form.Item label={t("account.confirm_new_password")} name="confirmPassword">
           <Input.Password />
         </Form.Item>
         <Form.Item>

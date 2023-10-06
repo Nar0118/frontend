@@ -15,6 +15,7 @@ import { LOG_IN } from "../../store/actionTypes";
 import styles from "../../components/feature/accountDetails/accountDetails.module.scss";
 import authStyles from "./auth.module.scss";
 import uploadStyles from "../../components/modals/modal.module.scss";
+import openNotification from "../../components/share/notice";
 
 const normFile = (e: any) => {
   if (Array.isArray(e)) {
@@ -69,8 +70,12 @@ const Auth = () => {
       }
       dispatch({ type: LOG_IN });
       history.push(SHOP_ROUTE);
-    } catch (e: any) {
-      console.log(e);
+    } catch (error: any) {
+      openNotification({
+        descriptions: error?.response?.data?.message,
+        redirect: SHOP_ROUTE,
+        messages: t("product.error"),
+      });
     }
   };
 
