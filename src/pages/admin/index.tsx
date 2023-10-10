@@ -9,7 +9,6 @@ import { CreateBrand } from "../../components/modals/CreateBrand";
 import { CreateType } from "../../components/modals/CreateType";
 import { CreateEditDevice } from "../../components/modals/CreateEditDevice";
 import Table from "../../components/share/table";
-import { AccountDetails } from "../../components/feature/accountDetails";
 import { SHOP_ROUTE, VIEW_ORDER_ROUTE } from "../../utils/constants";
 import { dateFormat } from "../../utils/functions";
 import { getOrder } from "../../http/deviceApi";
@@ -164,9 +163,6 @@ function Admin() {
               onChange={handleTableChange}
             />
           </div>
-        </TabPane>
-        <TabPane tab={t("account.account_details")} key="3">
-          <AccountDetails />
         </TabPane>
       </Tabs>
     </Container>

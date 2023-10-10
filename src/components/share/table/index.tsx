@@ -62,8 +62,8 @@ const Table = ({ deviceVisible }: any) => {
   };
 
   const checkRating = (device: any): string => {
-    let sum = 0;
     if (device?.length) {
+      let sum: number = 0;
       device.forEach((i: any) => {
         sum += i.rate;
       });
