@@ -15,6 +15,7 @@ import {
   ADMIN_ROUTE,
   BASKET_ROUTE,
   CHECKOUT_ROUTE,
+  CONTACT_ROUTE,
   LOGIN_ROUTE,
   SHOP_ROUTE,
 } from "../../../utils/constants";
@@ -92,10 +93,10 @@ export const Header = () => {
 
   const navBar = [
     {
-      id: 2,
-      title: "authorization",
-      visible: !user,
-      route: LOGIN_ROUTE,
+      id: 1,
+      title: "shop",
+      visible: true,
+      route: SHOP_ROUTE,
     },
     {
       id: 3,
@@ -120,6 +121,18 @@ export const Header = () => {
       title: <UserOutlined />,
       visible: user,
       route: ACCOUNT_ROUTE,
+    },
+    {
+      id: 7,
+      title: 'contact',
+      visible: true,
+      route: CONTACT_ROUTE,
+    },
+    {
+      id: 2,
+      title: "authorization",
+      visible: !user,
+      route: LOGIN_ROUTE,
     },
   ];
 

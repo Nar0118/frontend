@@ -1,9 +1,9 @@
-import { useEffect, useState } from "react";
+import { useEffect, useLayoutEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
 import { DeleteOutlined } from "@ant-design/icons";
 import { Button, Checkbox, Form, Input } from "antd";
-import { update } from "../../../http/userApi";
+import { check, update } from "../../../http/userApi";
 import { LOG_IN } from "../../../store/actionTypes";
 import openNotification from "../../share/notice";
 
@@ -11,19 +11,14 @@ import styles from "./accountDetails.module.scss";
 import uploadStyles from "../../modals/modal.module.scss";
 import authStyles from "../../../pages/auth/auth.module.scss";
 
-const normFile = (e: any) => {
-  if (Array.isArray(e)) {
-    return e;
-  }
-  return e?.fileList;
-};
+const normFile = (e: any) => Array.isArray(e) ? e : e?.fileList;
 
 export const AccountDetails = () => {
   const dispatch = useDispatch();
   const user = useSelector((state: any) => state.user);
   const { t } = useTranslation();
   const [componentDisabled, setComponentDisabled] = useState<boolean>(true);
-  const [base64String, setBase64String] = useState<string>(user?.avatar || "");
+  const [base64String, setBase64String] = useState<string>("https://joesch.moe/api/v1/random");
 
   const handleFileSelection = (event: any) => {
     const file = event.target.files[0];
@@ -39,9 +34,19 @@ export const AccountDetails = () => {
     }
   };
 
-  useEffect(() => {
-    setBase64String(user?.avatar || "");
-  }, [user]);
+  const getUser = async () => {
+    try {
+      const data: any = await check();
+
+      setBase64String(data?.avatar);
+    } catch {
+
+    }
+  }
+
+  useLayoutEffect(() => {
+    getUser();
+  }, []);
 
   const onSubmit = async (values: any) => {
     try {

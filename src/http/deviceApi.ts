@@ -35,12 +35,12 @@ export const updateDevice = async (id: number, device: any) => {
   return data;
 };
 
-export const fetchDevices = async (pagination?: any) => {
-  const { data } = pagination?.current
-    ? await $host.get(
-        `/api/device?page=${pagination?.current}&limit=${pagination?.pageSize}`
-      )
-    : await $host.get(`/api/device`);
+export const fetchDevices = async (queries?: any, signal: any = null) => {
+  const { data } = await $host.get(
+    `/api/device?page=${queries?.current}&limit=${queries?.pageSize}&search=${queries?.search}&typeId=${queries?.typeId}&brandId=${queries?.brandId}`,
+    { signal }
+  );
+
   return data;
 };
 
@@ -103,7 +103,13 @@ export const getOrder = async (pagination?: any) => {
 
 export const getOneOrder = async (id: number) => {
   const { data } = await $authHost.get(`api/order/${id}`);
-  checkAuth(data?.status);
+
+  return data;
+};
+
+export const changeStatusOrder = async (id: number, status: string) => {
+  const { data } = await $authHost.patch(`api/order/${id}`, { status });
+
   return data;
 };
 

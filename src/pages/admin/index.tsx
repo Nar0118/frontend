@@ -1,5 +1,5 @@
 import { useCallback, useLayoutEffect, useState } from "react";
-import { Button, Container } from "react-bootstrap";
+import { Button, Container, Dropdown, Modal } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
@@ -9,9 +9,11 @@ import { CreateBrand } from "../../components/modals/CreateBrand";
 import { CreateType } from "../../components/modals/CreateType";
 import { CreateEditDevice } from "../../components/modals/CreateEditDevice";
 import Table from "../../components/share/table";
+import openNotification from "../../components/share/notice";
 import { SHOP_ROUTE, VIEW_ORDER_ROUTE } from "../../utils/constants";
 import { dateFormat } from "../../utils/functions";
-import { getOrder } from "../../http/deviceApi";
+import { StatusEnum } from "../../utils/enum";
+import { changeStatusOrder, getOrder } from "../../http/deviceApi";
 
 import styles from './admin.module.scss';
 
@@ -23,6 +25,8 @@ function Admin() {
   const [typeVisible, setTypeVisible] = useState(false);
   const [deviceVisible, setDeviceVisible] = useState(false);
   const [data, setData] = useState<any>();
+  const [show, setShow] = useState<any>();
+  const [status, setStatus] = useState<StatusEnum>();
   const [pagination, setPagination] = useState<TablePaginationConfig>({
     current: 1,
     pageSize: 10,
@@ -108,7 +112,42 @@ function Admin() {
         </Button>
       ),
     },
+    {
+      title: t("account.edit"),
+      dataIndex: "id",
+      key: "id",
+      render: (id: string) => (
+        <Button onClick={() => setShow(data?.find((e: any) => e.id === id))}>
+          {t("account.edit")}
+        </Button>
+      ),
+    },
   ];
+
+  const handleStatus = (e: string | null) => e && setStatus(e as StatusEnum);
+
+  const onSubmit = async () => {
+    try {
+      if (show?.id && status) {
+        await changeStatusOrder(show.id, status);
+
+        const updatedData = data.map((e: any) => {
+          if (e.id === show.id) {
+            e.status = status;
+          }
+
+          return e;
+        });
+
+        setData(updatedData);
+        openNotification({
+          descriptions: "Updated",
+          messages: t("status.status_updated"),
+        });
+      }
+      setShow(null);
+    } catch { }
+  }
 
   return (
     <Container className="d-flex flex-column">
@@ -165,6 +204,36 @@ function Admin() {
           </div>
         </TabPane>
       </Tabs>
+      <Modal
+        show={!!show}
+        onHide={() => setShow(null)}
+        backdrop="static"
+        keyboard={false}
+        className={styles.container}
+      >
+        <Modal.Header closeButton>
+          <Modal.Title>{t("account.status")}</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <Dropdown onSelect={handleStatus}>
+            <Dropdown.Toggle>
+              {status || t(`status.${(show?.status || StatusEnum.PENDING).replace(" ", "_")}`)}
+            </Dropdown.Toggle>
+            <Dropdown.Menu>
+              {
+                Object.values(StatusEnum).map((e) =>
+                  <Dropdown.Item eventKey={e} key={e}>
+                    {t(`status.${e.replace(" ", "_")}`)}
+                  </Dropdown.Item>
+                )
+              }
+            </Dropdown.Menu>
+          </Dropdown>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button onClick={onSubmit}>{t("account.save")}</Button>
+        </Modal.Footer>
+      </Modal>
     </Container>
   );
 }

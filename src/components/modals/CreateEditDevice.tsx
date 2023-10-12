@@ -92,7 +92,7 @@ export const CreateEditDevice = ({
 
       editDevice?.id
         ? await updateDevice(editDevice.id, { ...values, img: base64String, typeID: type, brandID: brand })
-        : await createDevice({ ...values, img: base64String, typeID: type, brandID: brand });
+        : await createDevice({ ...values, img: base64String, typeId: type, brandId: brand });
 
       openNotification({
         descriptions: `Product has been successfully ${editDevice ? t("product.updated") : t("product.created")

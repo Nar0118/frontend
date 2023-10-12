@@ -1,0 +1,42 @@
+.table {
+  overflow-x: auto;
+
+  table {
+    td,
+    th {
+      text-align: center !important;
+    }
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .container {
+    justify-content: center !important;
+    column-gap: 10px;
+  }
+
+  .tabs {
+    display: block !important;
+
+    :global(.ant-tabs-nav-list) {
+      display: block !important;
+    }
+
+    :global(.ant-tabs-nav-wrap) {
+      overflow-x: auto !important;
+    }
+
+    :global(.ant-tabs-ink-bar-animated) {
+      display: none;
+    }
+
+    :global(.ant-tabs-tab-active) {
+      border-bottom: 1px solid #1677ff;
+    }
+
+    :global(.ant-tabs-tab) {
+      padding: 3px !important;
+      margin-left: 40px !important;
+    }
+  }
+}

@@ -51,6 +51,15 @@
 
     a {
       text-align: center;
+      border: 1px solid #148ac0;
+      padding: 10px 20px;
+      width: 100%;
+      margin-top: 5px;
+
+      &:hover {
+        color: #fff !important;
+        background: #148ac0;
+      }
     }
 
     & > div {

@@ -3,7 +3,9 @@
     "authorization": "Авторизация",
     "checkout": "Проверить",
     "admin": "Админ",
-    "log_out": "Выйти"
+    "log_out": "Выйти",
+    "contact": "Контакт",
+    "shop": "Магазин"
   },
   "product": {
     "price": "Цена",
@@ -34,7 +36,9 @@
     "add": "Добавить",
     "enter_type_name": "Введите имя типа...",
     "enter_brand_name": "Введите название бренда...",
-    "amd": "АМД"
+    "amd": "АМД",
+    "categories": "Категории",
+    "models": "Модели"
   },
   "account": {
     "console": "Консоль",
@@ -98,5 +102,14 @@
     "register": "Регистр",
     "dont_have_account": "У вас нет учетной записи?",
     "do_have_account": "У вас уже есть аккаунт?"
+  },
+  "status": {
+    "pending": "в ожидании",
+    "in_progress": "в ходе выполнения",
+    "canceled": "отменен",
+    "done": "сделанный"
+  },
+  "order": {
+    "order_details": "Заказ #{{id}} был оформлен 12 October, 2023 и сейчас. Информация о заказе"
   }
 }

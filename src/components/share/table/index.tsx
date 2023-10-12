@@ -40,7 +40,8 @@ const Table = ({ deviceVisible }: any) => {
       try {
         const paginationState = defaultPagination || pagination;
         const response = await fetchDevices(paginationState);
-        setData(response.rows);
+
+        setData(response);
         setPagination({
           ...paginationState,
           total: response.count,

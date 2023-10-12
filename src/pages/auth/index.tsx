@@ -17,12 +17,7 @@ import authStyles from "./auth.module.scss";
 import uploadStyles from "../../components/modals/modal.module.scss";
 import openNotification from "../../components/share/notice";
 
-const normFile = (e: any) => {
-  if (Array.isArray(e)) {
-    return e;
-  }
-  return e?.fileList;
-};
+const normFile = (e: any) => Array.isArray(e) ? e : e?.fileList;
 
 const Auth = () => {
   const state = useSelector((state: any) => state);

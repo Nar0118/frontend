@@ -3,7 +3,9 @@
     "authorization": "Login",
     "checkout": "Checkout",
     "admin": "Admin",
-    "log_out": "Log out"
+    "log_out": "Log out",
+    "contact": "Contact",
+    "shop": "Shop"
   },
   "product": {
     "price": "Price",
@@ -34,7 +36,9 @@
     "add": "Add",
     "enter_type_name": "Enter a type name...",
     "enter_brand_name": "Enter a brand name...",
-    "amd": "AMD"
+    "amd": "AMD",
+    "categories": "Categories",
+    "models": "Models"
   },
   "account": {
     "console": "Console",
@@ -100,5 +104,15 @@
     "dont_have_account": "Don't you have an account?",
     "do_have_account": "Do you have already an account?",
     "click_here_to": "Click here to {{auth}}..."
+  },
+  "status": {
+    "pending": "pending",
+    "in_progress": "in progress",
+    "canceled": "canceled",
+    "done": "done",
+    "status_updated": "Status has been successfully updated!"
+  },
+  "order": {
+    "order_details": "Order #{{id}} was placed on October 12, 2023 and now. information about order"
   }
 }

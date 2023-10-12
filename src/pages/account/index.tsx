@@ -122,7 +122,7 @@ const Account = () => {
       className={styles.tabs}
     >
       <TabPane tab={t("account.console")} key="1">
-        {t("account.console_details", { email: user?.email })}
+        {t("account.console_details", { email: (`${user?.first_name} ${user?.last_name}`) || user?.email })}
       </TabPane>
       <TabPane tab={t("account.orders")} key="2">
         <div className={styles.table}>

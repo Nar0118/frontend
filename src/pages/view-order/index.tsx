@@ -19,6 +19,7 @@ const ViewOrderPage = () => {
   const getDevice = useCallback(async () => {
     try {
       const data = await getOneOrder(params["id"]);
+
       setOrder(data);
     } catch (error) {
       console.error("Error fetching data:", error);
@@ -38,9 +39,7 @@ const ViewOrderPage = () => {
       title: "ID",
       dataIndex: "id",
       key: "id",
-      render: (id: number) => (
-        <Button onClick={() => lookProduct(id)}>See the product</Button>
-      ),
+      render: (id: number) => <Button onClick={() => lookProduct(id)}>See the product</Button>,
     },
     {
       title: t("form.product"),
@@ -57,12 +56,6 @@ const ViewOrderPage = () => {
       title: t("form.price"),
       dataIndex: "price",
       key: "price",
-    },
-    {
-      title: t("account.total"),
-      dataIndex: "total",
-      key: "total",
-      render: () => <>{order?.price}</>,
     },
   ];
 
@@ -125,22 +118,20 @@ const ViewOrderPage = () => {
           {order?.status}. Информация о заказе
         </p>
         <Table
-          dataSource={order?.devices}
+          dataSource={(order || [])[0]?.devices}
           columns={columnsProduct}
           rowKey="id"
         />
       </div>
-      {order && (
-        <div className={styles.table}>
-          <p>{t("account.billing_address")}</p>
-          <Table
-            dataSource={[order]}
-            columns={columnsPayment}
-            rowKey="id"
-            pagination={false}
-          />
-        </div>
-      )}
+      <div className={styles.table}>
+        <p>{t("account.billing_address")}</p>
+        <Table
+          dataSource={order}
+          columns={columnsPayment}
+          rowKey="id"
+          pagination={false}
+        />
+      </div>
     </div>
   );
 };

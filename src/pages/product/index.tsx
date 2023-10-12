@@ -122,7 +122,6 @@ const DevicePage = () => {
         <Col md={4} className={styles.image}>
           <Image
             width={300}
-            // src={process.env.REACT_APP_API_URL + "/uploads/" + device?.img}
             src={device?.img}
             alt={device?.img}
           />
@@ -134,6 +133,9 @@ const DevicePage = () => {
           >
             <h3>{device?.name}</h3>
             <h6>{`${device?.price} ${t("product.amd")}`}</h6>
+            <br />
+            <h6>{t("product.categories")}: {device?.type?.name}</h6>
+            <h6>{t("product.models")}: {device?.brand?.name}</h6>
             <div
               className="d-flex align-items-center column gap-2"
               style={{ flexWrap: "wrap" }}
@@ -217,7 +219,7 @@ const DevicePage = () => {
               <List.Item.Meta
                 avatar={
                   <Avatar
-                    src={`https://joesch.moe/api/v1/random?key=${index}`}
+                    src={item.user?.avatar || `https://joesch.moe/api/v1/random?key=${index}`}
                   />
                 }
                 title={
