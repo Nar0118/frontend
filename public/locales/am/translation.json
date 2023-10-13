@@ -5,7 +5,8 @@
     "admin": "Ադմին",
     "log_out": "Դուրս գալ",
     "contact": "Կապ",
-    "shop": "Խանութ"
+    "shop": "Խանութ",
+    "about": "Մեր մասին"
   },
   "product": {
     "price": "Գին",
@@ -86,7 +87,8 @@
     "password": "Գաղտնաբառ",
     "count": "Քանակ",
     "product": "Ապրանք",
-    "confirm_password": "Հաստատեք գաղտնաբառը"
+    "confirm_password": "Հաստատեք գաղտնաբառը",
+    "message": "Հաղորդագրություն"
   },
   "cart": {
     "continue_shopping": "Շարունակել գնումներ կատարել",

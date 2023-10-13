@@ -11,6 +11,7 @@ import type { MenuProps } from "antd";
 import { Button, Dropdown } from "antd";
 import { useTranslation } from "react-i18next";
 import {
+  ABOUT_ROUTE,
   ACCOUNT_ROUTE,
   ADMIN_ROUTE,
   BASKET_ROUTE,
@@ -99,6 +100,12 @@ export const Header = () => {
       route: SHOP_ROUTE,
     },
     {
+      id: 2,
+      title: "about",
+      visible: true,
+      route: ABOUT_ROUTE,
+    },
+    {
       id: 3,
       title: "checkout",
       visible: user,
@@ -129,7 +136,7 @@ export const Header = () => {
       route: CONTACT_ROUTE,
     },
     {
-      id: 2,
+      id: 8,
       title: "authorization",
       visible: !user,
       route: LOGIN_ROUTE,

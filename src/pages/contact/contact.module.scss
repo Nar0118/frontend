@@ -1,42 +1,83 @@
-.table {
-  overflow-x: auto;
+.form {
+  max-width: 470px;
+  padding: 0 20px;
 
-  table {
-    td,
-    th {
-      text-align: center !important;
+  textarea {
+    resize: none;
+    height: 110px;
+  }
+
+  :global(.ant-form-item-label) {
+    min-width: 180px;
+    text-align: start;
+  }
+
+  :global(.ant-form-item-row) {
+    display: block;
+  }
+
+  input,
+  textarea {
+    border-radius: 3px;
+  }
+
+  :global(.ant-form-item-control) {
+    max-width: inherit;
+  }
+
+  :global(.ant-form-item) {
+    margin-bottom: 10px;
+  }
+
+  .btn {
+    text-align: end;
+  }
+
+  & > h2 {
+    text-align: center;
+  }
+}
+
+.message {
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
+
+  img {
+    max-width: 450px;
+  }
+
+  p {
+    column-gap: 5px;
+    display: flex;
+    align-items: center;
+
+    span:first-child {
+      padding: 10px;
+      border: 1px solid;
+      width: fit-content;
+      border-radius: 40px;
+      margin-bottom: 10px;
     }
   }
 }
 
-@media only screen and (max-width: 768px) {
-  .container {
-    justify-content: center !important;
-    column-gap: 10px;
-  }
+:global(.ant-popover-title) {
+  display: none !important;
+}
 
-  .tabs {
-    display: block !important;
+@media only screen and (max-width: 578px) {
+  .message {
+    flex-direction: row;
 
-    :global(.ant-tabs-nav-list) {
-      display: block !important;
-    }
-
-    :global(.ant-tabs-nav-wrap) {
-      overflow-x: auto !important;
-    }
-
-    :global(.ant-tabs-ink-bar-animated) {
+    img {
       display: none;
     }
+  }
 
-    :global(.ant-tabs-tab-active) {
-      border-bottom: 1px solid #1677ff;
-    }
-
-    :global(.ant-tabs-tab) {
-      padding: 3px !important;
-      margin-left: 40px !important;
+  .form {
+    .btn {
+      margin-top: 10px;
     }
   }
 }

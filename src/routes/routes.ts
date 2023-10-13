@@ -18,9 +18,11 @@ import {
   ACCOUNT_ROUTE,
   VIEW_ORDER_ROUTE,
   CONTACT_ROUTE,
+  ABOUT_ROUTE,
 } from "../utils/constants";
 import ViewOrderPage from "../pages/view-order";
 import Contact from "../pages/contact";
+import About from "../pages/about";
 
 export const authRoutes = [
   {
@@ -69,5 +71,9 @@ export const publicRoutes = [
   {
     path: CONTACT_ROUTE,
     Component: Contact,
+  },
+  {
+    path: ABOUT_ROUTE,
+    Component: About,
   },
 ];

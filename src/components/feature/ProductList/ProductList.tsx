@@ -32,9 +32,11 @@ export const ProductList = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const brandsData = await fetchBrands();
+      try {
+        const brandsData = await fetchBrands();
 
-      setBrands(brandsData);
+        setBrands(brandsData);
+      } catch { }
     };
 
     fetchData();
@@ -42,20 +44,22 @@ export const ProductList = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const typesData = await fetchTypes();
+      try {
+        const typesData = await fetchTypes();
 
-      setTypes(typesData);
+        setTypes(typesData);
+      } catch { }
     };
 
     fetchData();
   }, []);
 
   const handleType = (id: number) => {
-    setSelectedType(id === selectedType ? Infinity : id);
+    setSelectedType(id === selectedType ? undefined : id);
   }
 
   const handleBrand = (id: number) => {
-    setSelectedBrand(id === selectedBrand ? Infinity : id);
+    setSelectedBrand(id === selectedBrand ? undefined : id);
   }
 
   const getDevices = useCallback(async (signal?: any) => {

@@ -5,7 +5,8 @@
     "admin": "Admin",
     "log_out": "Log out",
     "contact": "Contact",
-    "shop": "Shop"
+    "shop": "Shop",
+    "about": "About us"
   },
   "product": {
     "price": "Price",
@@ -87,7 +88,8 @@
     "password": "Password",
     "count": "count",
     "product": "Product",
-    "confirm_password": "Confirm the password"
+    "confirm_password": "Confirm the password",
+    "message": "Message"
   },
   "cart": {
     "continue_shopping": "Continue shopping",

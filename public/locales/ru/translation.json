@@ -5,7 +5,8 @@
     "admin": "Админ",
     "log_out": "Выйти",
     "contact": "Контакт",
-    "shop": "Магазин"
+    "shop": "Магазин",
+    "about": "О нас"
   },
   "product": {
     "price": "Цена",
@@ -86,7 +87,8 @@
     "password": "Пароль",
     "count": "Количество",
     "product": "Продукт",
-    "confirm_password": "Подтвердите пароль"
+    "confirm_password": "Подтвердите пароль",
+    "message": "Сообщение"
   },
   "cart": {
     "continue_shopping": "Продолжить покупки",
