@@ -30,28 +30,17 @@ export const ProductList = () => {
   const [brands, setBrands] = useState<any>();
   const [selectedBrand, setSelectedBrand] = useState<number>();
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const brandsData = await fetchBrands();
-
-        setBrands(brandsData);
-      } catch { }
-    };
-
-    fetchData();
-  }, []);
+  const fetchFilters = async () => {
+    try {
+      const brandsData = await fetchBrands();
+      const typesData = await fetchTypes();
+      setTypes(typesData);
+      setBrands(brandsData);
+    } catch { }
+  };
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const typesData = await fetchTypes();
-
-        setTypes(typesData);
-      } catch { }
-    };
-
-    fetchData();
+    fetchFilters();
   }, []);
 
   const handleType = (id: number) => {
@@ -147,6 +136,7 @@ export const ProductList = () => {
                   src={item.img}
                   alt={item.name}
                   onClick={() => history.push(`${DEVICE_ROUTE}/${item.id}`)}
+                  className={styles.productImage}
                 />
                 <p>
                   {t("product.price")}: {`${item.price}${t("product.amd")}`}
