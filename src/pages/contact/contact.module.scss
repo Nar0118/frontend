@@ -50,10 +50,10 @@
   p {
     column-gap: 5px;
     display: flex;
-    align-items: center;
+    align-items: baseline;
 
     span:first-child {
-      padding: 10px;
+      padding: 5px;
       border: 1px solid;
       width: fit-content;
       border-radius: 40px;

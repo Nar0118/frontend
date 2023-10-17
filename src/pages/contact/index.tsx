@@ -1,19 +1,34 @@
 import { useTranslation } from "react-i18next";
+import { useSelector } from "react-redux";
 import { Button, Form, Input, Popover } from "antd";
 import TextArea from "antd/es/input/TextArea";
 import { CopyOutlined, MailOutlined, PhoneOutlined } from "@ant-design/icons";
 import Map from "../../components/feature/map";
+import openNotification from "../../components/share/notice";
+import { contact } from "../../http/userApi";
 
 import styles from './contact.module.scss';
 
 function Contact() {
+  const user = useSelector((state: any) => state.user);
   const { t } = useTranslation();
 
-  const onSubmit = () => {
-
+  const onSubmit = async (values: any) => {
+    try {
+      const res = await contact(values);
+      openNotification({
+        descriptions: "",
+        messages: res?.message,
+      });
+    } catch (err) {
+      openNotification({
+        descriptions: t("product.error"),
+        messages: t("product.something_went_wrong"),
+      });
+    }
   }
 
-  const handleCopy = (text: string) => {
+  const handleCopy = (text: string): void => {
     navigator.clipboard.writeText(text);
   }
 
@@ -41,6 +56,7 @@ function Contact() {
               required
               rules={[{ required: true, message: "First name is required!" }]}
               name="first_name"
+              initialValue={user?.first_name}
             >
               <Input type="" placeholder={t("form.first_name")} />
             </Form.Item>
@@ -49,6 +65,7 @@ function Contact() {
               required
               rules={[{ required: true, message: "Last name name is required!" }]}
               name="last_name"
+              initialValue={user?.last_name}
             >
               <Input type="" placeholder={t("form.last_name")} />
             </Form.Item>
@@ -58,6 +75,7 @@ function Contact() {
             required
             rules={[{ required: true, message: "Email is required!" }]}
             name="email"
+            initialValue={user?.email}
           >
             <Input type="email" placeholder={t("form.email")} />
           </Form.Item>
@@ -65,7 +83,7 @@ function Contact() {
             label={t("form.message")}
             required
             rules={[{ required: true, message: "Email is required!" }]}
-            name="Message"
+            name="message"
           >
             <TextArea placeholder={t("form.message")} />
           </Form.Item>

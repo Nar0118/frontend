@@ -10,25 +10,20 @@ const location: any = {
 const apiKey: string | undefined = process.env.REACT_APP_GOOGLE_API_KEY;
 const address: string | undefined = process.env.REACT_APP_ADDRESS;
 
-const Map = () => {
-
-    return (
-        <div style={{ height: '400px', width: '100%' }}>
-            {apiKey && <GoogleMapReact
-                bootstrapURLKeys={{ key: apiKey }}
-                defaultCenter={location}
-                defaultZoom={15}
-            >
-                <AnyReactComponent
-                    lat={location.lat}
-                    lng={location.lng}
-                    text={address}
-                />
-            </GoogleMapReact>}
-        </div>
-    );
-
-};
+const Map = () =>
+    <div style={{ height: '400px', width: '100%' }}>
+        {apiKey && <GoogleMapReact
+            bootstrapURLKeys={{ key: apiKey }}
+            defaultCenter={location}
+            defaultZoom={15}
+        >
+            <AnyReactComponent
+                lat={location.lat}
+                lng={location.lng}
+                text={address}
+            />
+        </GoogleMapReact>}
+    </div>
 
 const AnyReactComponent = ({ text }: any) => (
     <div style={{ fontSize: '16px', color: 'red' }}>

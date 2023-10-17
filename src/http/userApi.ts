@@ -29,3 +29,9 @@ export const check = async () => {
 
   return data;
 };
+
+export const contact = async (values: any) => {
+  const { data } = await $host.post("/contact", values);
+
+  return data;
+};

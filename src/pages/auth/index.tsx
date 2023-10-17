@@ -148,7 +148,7 @@ const Auth = () => {
               label={t("form.avatar")}
               valuePropName="fileList"
               getValueFromEvent={normFile}
-              required
+              required={false}
               name="avatar"
             >
               <div

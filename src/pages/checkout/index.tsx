@@ -103,8 +103,8 @@ export default function Checkout() {
       history.push(SHOP_ROUTE);
     } catch {
       openNotification({
-        descriptions: "Error!",
-        messages: "Something went wrong!",
+        descriptions: t("product.error"),
+        messages: t("product.something_went_wrong"),
       });
     }
   };
@@ -186,7 +186,10 @@ export default function Checkout() {
           required={true}
         />
       </Form.Item>
-      <Form.Item name="paymentMethod" label={t("form.payment_method")}>
+      <Form.Item
+        name="paymentMethod"
+        label={t("form.payment_method")}
+        initialValue={paymentMethod[0].value}>
         <Radio.Group options={paymentMethod} />
       </Form.Item>
       <MDBCol>
