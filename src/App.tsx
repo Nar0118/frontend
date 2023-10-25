@@ -3,6 +3,7 @@ import { Provider } from "react-redux";
 import store from "./store/store";
 import AppRouter from "./components/AppRouter";
 import { Header } from "./components/feature/navbar/Navbar";
+import Contact from "./pages/contact";
 
 const App = () => {
   return (
@@ -10,6 +11,7 @@ const App = () => {
       <BrowserRouter>
         <Header />
         <AppRouter />
+        <Contact />
       </BrowserRouter>
     </Provider>
   );

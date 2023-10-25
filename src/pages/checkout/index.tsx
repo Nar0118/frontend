@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import { Form, Input, Button, Radio } from "antd";
-import { createOrder, fetchOneBasket, payment } from "../../http/deviceApi";
+import { createOrder, fetchOneBasket } from "../../http/deviceApi";
 import {
   MDBCard,
   MDBCardBody,
@@ -75,24 +75,34 @@ export default function Checkout() {
           deviceIds: deviceIds,
         });
       } else if (subtotal && values.paymentMethod === "card") {
-        const res = await payment({
-          cartItems: {
-            ...values,
-            price: subtotal + 2000,
-            userId: user.id,
-            subtotal,
-            deviceIds,
-          },
+        await createOrder({
+          ...values,
+          price: subtotal + 2000,
           userId: user.id,
+          deviceIds: deviceIds,
+          backURL: process.env.REACT_APP_API_URL
         });
 
-        if (res) {
-          // createOrder({ userId: user.id, subtotal, deviceIds });
-        }
+        //  ----------------- This was written for stripe payment----------------
 
-        if (res?.url) {
-          window.location.href = res.url;
-        }
+        // const res = await payment({
+        //   cartItems: {
+        //     ...values,
+        //     price: subtotal + 2000,
+        //     userId: user.id,
+        //     subtotal,
+        //     deviceIds,
+        //   },
+        //   userId: user.id,
+        // });
+
+        // if (res) {
+        // createOrder({ userId: user.id, subtotal, deviceIds });
+        // }
+
+        // if (res?.url) {
+        //   window.location.href = res.url;
+        // }
       }
 
       openNotification({
@@ -188,8 +198,7 @@ export default function Checkout() {
       </Form.Item>
       <Form.Item
         name="paymentMethod"
-        label={t("form.payment_method")}
-        initialValue={paymentMethod[0].value}>
+        label={t("form.payment_method")}>
         <Radio.Group options={paymentMethod} />
       </Form.Item>
       <MDBCol>
