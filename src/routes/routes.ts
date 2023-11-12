@@ -21,7 +21,7 @@ import {
   ABOUT_ROUTE,
 } from "../utils/constants";
 import ViewOrderPage from "../pages/view-order";
-import Contact from "../pages/contact";
+import { ContactPage } from "../pages/contact";
 import About from "../pages/about";
 
 export const authRoutes = [
@@ -70,7 +70,7 @@ export const publicRoutes = [
   },
   {
     path: CONTACT_ROUTE,
-    Component: Contact,
+    Component: ContactPage,
   },
   {
     path: ABOUT_ROUTE,

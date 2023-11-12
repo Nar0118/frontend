@@ -154,7 +154,8 @@ export const Header = () => {
       <Navbar.Brand>
         <Link to={SHOP_ROUTE}>
           <img
-            src="https://bebest.am/wp-content/uploads/2020/03/cropped-systems-1.jpg"
+            className={styles.logo}
+            src="/images/logo.jpg"
             alt="logo"
           />
         </Link>

@@ -5,6 +5,10 @@
   margin-bottom: 20px;
   padding: 0 10px;
 
+  .logo {
+    max-width: 160px;
+  }
+
   .nav {
     display: flex;
     column-gap: 20px;
