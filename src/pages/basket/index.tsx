@@ -111,7 +111,7 @@ export default function Basket() {
   };
 
   return (
-    <section className="h-100 h-custom" style={{ backgroundColor: "#eee", minHeight: '90vh' }}>
+    <section className={`${styles.container} h-100 h-custom`}>
       <MDBContainer className="py-5 h-100">
         <MDBRow className="justify-content-center align-items-center h-100">
           <MDBCol>
@@ -142,12 +142,11 @@ export default function Basket() {
                         <MDBCardBody>
                           <div className="d-flex justify-content-between">
                             <div className="d-flex flex-row align-items-center">
-                              <div style={{ cursor: "pointer" }}>
+                              <div className={styles.MDBCardImageBlock}>
                                 <MDBCardImage
                                   src={item?.device?.img}
                                   fluid
-                                  className="rounded-3"
-                                  style={{ width: "65px" }}
+                                  className={` ${styles.MDBCardImage} rounded-3`}
                                   alt="Shopping item"
                                   onClick={() =>
                                     history.push(
@@ -163,7 +162,7 @@ export default function Basket() {
                               </div>
                             </div>
                             <div className="d-flex flex-row align-items-center">
-                              <div style={{ width: "50px" }}>
+                              <div className={styles.quantity}>
                                 <MDBTypography
                                   tag="h5"
                                   className="fw-normal mb-0"
@@ -171,12 +170,12 @@ export default function Basket() {
                                   {item?.quantity}
                                 </MDBTypography>
                               </div>
-                              <div style={{ width: "80px" }}>
+                              <div className={styles.totalQuantity}>
                                 <MDBTypography tag="h5" className="mb-0">
                                   {`${Number(item?.device?.price) * Number(item?.quantity)} ${t("product.amd")}`}
                                 </MDBTypography>
                               </div>
-                              <a href="#!" style={{ color: "#cecece" }}>
+                              <a href="#">
                                 <MDBIcon fas icon="trash-alt" />
                               </a>
                             </div>
@@ -186,9 +185,7 @@ export default function Basket() {
                           <Button
                             variant="outline-dark"
                             onClick={() => handleCount("minus", item)}
-                            style={{
-                              padding: "0px 7px",
-                            }}
+                            className={styles.plusMinus}
                           >
                             -
                           </Button>
@@ -196,9 +193,7 @@ export default function Basket() {
                           <Button
                             variant="outline-dark"
                             onClick={() => handleCount("plus", item)}
-                            style={{
-                              padding: "0px 7px",
-                            }}
+                            className={styles.plusMinus}
                           >
                             +
                           </Button>
@@ -224,8 +219,7 @@ export default function Basket() {
                           <MDBCardImage
                             src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-6.webp"
                             fluid
-                            className="rounded-3"
-                            style={{ width: "45px" }}
+                            className={`${styles.MDBCardBody} rounded-3`}
                             alt="Avatar"
                           />
                         </div>

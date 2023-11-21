@@ -4,7 +4,7 @@ import jwtDecode from "jwt-decode";
 export const registration = async (values: any) => {
   const { data } = await $host.post("api/user/register", {
     ...values,
-    role: "ADMIN",
+    role: "USER",
   });
   localStorage.setItem("token", data);
   return jwtDecode(data);

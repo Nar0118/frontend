@@ -1,4 +1,4 @@
-import { useEffect, useLayoutEffect, useState } from "react";
+import { useLayoutEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
 import { DeleteOutlined } from "@ant-design/icons";
@@ -134,11 +134,7 @@ export const AccountDetails = () => {
           name="avatar"
         >
           <div
-            className="form-group"
-            style={{
-              width: "100%",
-            }}
-          >
+            className={`${styles.formGroup} form-group`}>
             <label htmlFor="files" className={uploadStyles.inputContainer}>
               <img
                 src="https://ik.imagekit.io/2zlgs27bjo/public/icons/uploadFile.svg"
@@ -148,14 +144,11 @@ export const AccountDetails = () => {
             </label>
             <input
               id="files"
-              className={uploadStyles.uploadFileInput}
+              className={`${uploadStyles.uploadFileInput} ${styles.uploadFileInput}`}
               disabled={!!base64String || componentDisabled}
               onChange={handleFileSelection}
               name="file"
               type="file"
-              style={{
-                display: "none",
-              }}
             />
           </div>
         </Form.Item>

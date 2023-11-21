@@ -32,6 +32,14 @@
 
 .priceBlock {
   margin-top: 20px;
+
+  .card {
+    border: 5px FOR;
+  }
+
+  .minusPlusBlock {
+    flex-wrap: wrap;
+  }
 }
 
 .comment {

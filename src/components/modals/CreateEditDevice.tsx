@@ -25,20 +25,30 @@ export const CreateEditDevice = ({
   selectedDevice,
 }: PropsType) => {
   const { t } = useTranslation();
-  const [brand, setBrand] = useState<string>("0");
-  const [type, setType] = useState<string>("0");
+  const [brand, setBrand] = useState<string>((selectedDevice?.brandId as string) || "0");
+  const [type, setType] = useState<string>((selectedDevice?.typeId as string) || "0");
   const [brands, setBrands] = useState<any>([]);
   const [types, setTypes] = useState<any>([]);
+  const [loader, setLoader] = useState<boolean>(false);
   const [base64String, setBase64String] = useState<string>("");
-  const [editDevice, setEditDevice] = useState<any>();
+  const [editDevice, setEditDevice] = useState<any>(selectedDevice || {});
+  console.log('selectedDevice', selectedDevice);
+  console.log('editDevice', editDevice);
 
   useEffect(() => {
-    if (selectedDevice) {
-      setEditDevice(selectedDevice);
-      setBrand((selectedDevice?.brandId as string) || "0");
-      setType((selectedDevice?.typeId as string) || "0");
-    }
-  }, [selectedDevice]);
+    setLoader(false);
+    setTimeout(() => {
+      setLoader(true);
+    }, 1000);
+  }, [selectedDevice])
+
+  // useEffect(() => {
+  //   if (!!selectedDevice) {
+  //     setEditDevice(selectedDevice);
+  //     setBrand((selectedDevice?.brandId as string) || "0");
+  //     setType((selectedDevice?.typeId as string) || "0");
+  //   }
+  // }, [selectedDevice]);
 
   useEffect(() => {
     if (!show) {
@@ -112,7 +122,7 @@ export const CreateEditDevice = ({
 
   return (
     <Modal
-      show={show}
+      show={show && loader}
       onHide={onHide}
       backdrop="static"
       keyboard={false}
@@ -160,11 +170,8 @@ export const CreateEditDevice = ({
           labelCol={{ span: 4 }}
           wrapperCol={{ span: 14 }}
           layout="horizontal"
-          className={`${styles.form} ${styles.container} ${authStyles.container} ${styles.createProduct}`}
+          className={`${styles.createEditDeviceForm} ${styles.form} ${styles.container} ${authStyles.container} ${styles.createProduct}`}
           onFinish={onSubmit}
-          style={{
-            marginTop: "30px"
-          }}
         >
           <Form.Item
             label={t("form.name")}
@@ -200,12 +207,7 @@ export const CreateEditDevice = ({
             required
             name="avatar"
           >
-            <div
-              className="form-group"
-              style={{
-                width: "100%",
-              }}
-            >
+            <div className={`${styles.formGroup} form-group`}>
               <label htmlFor="files" className={styles.inputContainer}>
                 <img
                   src="https://ik.imagekit.io/2zlgs27bjo/public/icons/uploadFile.svg"
@@ -219,9 +221,6 @@ export const CreateEditDevice = ({
                 onChange={handleFileSelection}
                 name="file"
                 type="file"
-                style={{
-                  display: "none",
-                }}
               />
             </div>
           </Form.Item>

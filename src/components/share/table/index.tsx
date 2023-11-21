@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import Modal from "react-bootstrap/Modal";
 import { useTranslation } from "react-i18next";
@@ -9,6 +9,8 @@ import openNotification from "../notice";
 import { CreateEditDevice } from "../../modals/CreateEditDevice";
 import { IDevice } from "../../deviceItem/types";
 import { dateFormat } from "../../../utils/functions";
+
+import styles from './table.module.scss';
 
 const Table = ({ deviceVisible }: any) => {
   const history = useHistory();
@@ -35,8 +37,9 @@ const Table = ({ deviceVisible }: any) => {
     }),
   };
 
-  const fetchData = useCallback(
-    async (defaultPagination?: any) => {
+
+  useEffect(() => {
+    const fetchData = async (defaultPagination?: any) => {
       try {
         const paginationState = defaultPagination || pagination;
         const response = await fetchDevices(paginationState);
@@ -49,17 +52,25 @@ const Table = ({ deviceVisible }: any) => {
       } catch (error) {
         console.error("Error fetching data:", error);
       }
-    },
-    [pagination]
-  );
+    }
 
-  useEffect(() => {
     fetchData();
-  }, [deviceVisible]);
+  }, [deviceVisible, pagination]);
 
-  const handleTableChange = (pagination: any) => {
-    setPagination(pagination);
-    fetchData(pagination);
+  const handleTableChange = async (pagination: any) => {
+    try {
+      setPagination(pagination);
+      const paginationState = pagination;
+      const response = await fetchDevices(paginationState);
+
+      setData(response);
+      setPagination({
+        ...paginationState,
+        total: response.count,
+      });
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
   };
 
   const checkRating = (device: any): string => {
@@ -126,7 +137,7 @@ const Table = ({ deviceVisible }: any) => {
       dataIndex: "img",
       key: "image",
       render: (imageUrl: string) => (
-        <img src={imageUrl} alt="User Avatar" style={{ maxWidth: "120px" }} />
+        <img src={imageUrl} alt="User Avatar" className={styles.avatar} />
       ),
     },
     {

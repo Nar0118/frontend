@@ -1,16 +1,49 @@
-.basketItems {
-  position: relative;
+.container {
+  background-color: #eee;
+  min-height: 90vh;
 
-  .remove {
-    width: fit-content;
-    padding: 0;
-    border: none;
-    height: 16px;
-    border-radius: 50px;
-    display: flex;
-    align-items: center;
-    position: absolute;
-    right: 4px;
-    top: 5px;
+  .basketItems {
+    position: relative;
+
+    .remove {
+      width: fit-content;
+      padding: 0;
+      border: none;
+      height: 16px;
+      border-radius: 50px;
+      display: flex;
+      align-items: center;
+      position: absolute;
+      right: 4px;
+      top: 5px;
+    }
+  }
+
+  .MDBCardImageBlock {
+    cursor: pointer;
+
+    .MDBCardImage {
+      width: 65px;
+    }
+  }
+
+  .quantity {
+    width: 50px;
+  }
+
+  .totalQuantity {
+    width: 80px;
+  }
+
+  .trashIcon {
+    color: #cecece;
+  }
+
+  .plusMinus {
+    padding: 0px 7px;
+  }
+
+  .MDBCardBody {
+    width: 45px;
   }
 }

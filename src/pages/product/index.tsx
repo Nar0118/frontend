@@ -128,8 +128,7 @@ const DevicePage = () => {
         </Col>
         <Col md={4} className={styles.priceBlock}>
           <Card
-            className="d-flex flex-column  justify-content-around p-2"
-            style={{ border: "5px FOR" }}
+            className={`${styles.card} d-flex flex-column justify-content-around p-2`}
           >
             <h3>{device?.name}</h3>
             <h6>{`${device?.price} ${t("product.amd")}`}</h6>
@@ -137,8 +136,7 @@ const DevicePage = () => {
             <h6>{t("product.categories")}: {device?.type?.name}</h6>
             <h6>{t("product.models")}: {device?.brand?.name}</h6>
             <div
-              className="d-flex align-items-center column gap-2"
-              style={{ flexWrap: "wrap" }}
+              className={`${styles.minusPlusBlock} d-flex align-items-center column gap-2`}
             >
               <Button onClick={() => handleCount("minus")}>-</Button>
               <h5>{count}</h5>

@@ -3,6 +3,14 @@
     text-align: center;
   }
 
+  .formGroup {
+    width: 100%;
+  }
+
+  .uploadFileInput {
+    display: none;
+  }
+
   .imageReview {
     position: relative;
     cursor: pointer;

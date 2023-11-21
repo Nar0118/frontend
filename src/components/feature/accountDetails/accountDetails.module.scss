@@ -2,6 +2,14 @@
   max-width: 600px;
   padding: 0 20px;
 
+  .formGroup {
+    width: 100%;
+  }
+
+  .uploadFileInput {
+    display: none;
+  }
+
   :global(.ant-form-item-row) {
     display: block;
   }
@@ -22,7 +30,7 @@
 
   :global(.ant-form-item-control-input-content) {
     display: flex;
-    justify-content: end;
+    justify-content: flex-end;
 
     button {
       margin-top: 20px;

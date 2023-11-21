@@ -1,11 +1,12 @@
-import Container from "react-bootstrap/esm/Container";
 import { ProductList } from "../../components/feature/ProductList/ProductList";
+
+import styles from './shop.module.scss';
 
 const Shop = () => {
   return (
-    <Container>
+    <div className={styles.container}>
       <ProductList />
-    </Container>
+    </div>
   );
 };
 

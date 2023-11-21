@@ -132,7 +132,6 @@ export default function Checkout() {
       }}
       onFinish={onFinish}
       onFinishFailed={onFinishFailed}
-      style={{ maxWidth: "700px", margin: "0 auto", textAlign: "end" }}
       className={styles.container}
     >
       <Form.Item
@@ -211,8 +210,7 @@ export default function Checkout() {
               <MDBCardImage
                 src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-6.webp"
                 fluid
-                className="rounded-3"
-                style={{ width: "45px" }}
+                className={`${styles.MDBCardImage} rounded-3`}
                 alt="Avatar"
               />
             </div>

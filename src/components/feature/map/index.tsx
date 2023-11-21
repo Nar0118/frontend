@@ -1,6 +1,8 @@
 import GoogleMapReact from 'google-map-react';
 import { Tooltip } from 'antd';
 
+import styles from './map.module.scss';
+
 // this is details for 28 Vardanants St, Yerevan 0070 address
 const location: any = {
     lat: 40.170313,
@@ -11,7 +13,7 @@ const apiKey: string | undefined = process.env.REACT_APP_GOOGLE_API_KEY;
 const address: string | undefined = process.env.REACT_APP_ADDRESS;
 
 const Map = () =>
-    <div style={{ height: '400px', width: '100%' }}>
+    <div className={styles.map}>
         {apiKey && <GoogleMapReact
             bootstrapURLKeys={{ key: apiKey }}
             defaultCenter={location}
@@ -26,11 +28,9 @@ const Map = () =>
     </div>
 
 const AnyReactComponent = ({ text }: any) => (
-    <div style={{ fontSize: '16px', color: 'red' }}>
+    <div className={styles.anyReactComponent}>
         <Tooltip placement="top" title={text}>
-            <img src="/gif/location.gif" alt="" style={{
-                width: "40px"
-            }} />
+            <img src="/gif/location.gif" alt="location" className={styles.location} />
         </Tooltip>
     </div>
 );

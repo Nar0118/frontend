@@ -113,7 +113,7 @@ const ViewOrderPage = () => {
       </Button>
       <div className={styles.table}>
         <p>
-          Заказ <a href="#">#{params["id"]}</a>{" "}
+          Заказ <a href={window.location.href}>#{params["id"]}</a>{" "}
           &nbsp; был оформлен {dateFormat(order?.createdAt)} и сейчас{" "}
           {order?.status}. Информация о заказе
         </p>

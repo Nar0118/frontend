@@ -152,10 +152,7 @@ const Auth = () => {
               name="avatar"
             >
               <div
-                className="form-group"
-                style={{
-                  width: "100%",
-                }}
+                className={`${authStyles.formGroup} form-group`}
               >
                 <label htmlFor="files" className={uploadStyles.inputContainer}>
                   <img
@@ -166,14 +163,11 @@ const Auth = () => {
                 </label>
                 <input
                   id="files"
-                  className={uploadStyles.uploadFileInput}
+                  className={`${uploadStyles.uploadFileInput} ${authStyles.uploadFileInput}`}
                   disabled={!!base64String}
                   onChange={handleFileSelection}
                   name="file"
                   type="file"
-                  style={{
-                    display: "none",
-                  }}
                 />
               </div>
             </Form.Item>

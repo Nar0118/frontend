@@ -5,6 +5,8 @@ import { useHistory } from "react-router-dom";
 import { DEVICE_ROUTE } from "../../utils/constants";
 import { IDevice } from "./types";
 
+import styles from './deviceItem.module.scss'
+
 export const DeviceItem = ({ device }: { device: IDevice }) => {
   const history = useHistory();
   const [rating, setRating] = useState<number>(0);
@@ -22,7 +24,7 @@ export const DeviceItem = ({ device }: { device: IDevice }) => {
 
   return (
     <Col md={3} onClick={() => history.push(`${DEVICE_ROUTE}/${device.id}`)}>
-      <Card style={{ width: 150, cursor: "pointer" }} border={"light"}>
+      <Card className={styles.card} border="light">
         <Image width={150} height={150} src={device?.img} alt={device?.img} />
         <div className="d-flex justify-content-between align-items-center">
           <div>{device.name}</div>
