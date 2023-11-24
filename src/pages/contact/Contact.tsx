@@ -39,7 +39,7 @@ function Contact() {
   );
 
   return (
-    <>
+    <div className={styles.container}>
       <Map />
       <div className="d-flex justify-content-center gap-5 flex-wrap align-items-center mt-3 pl-3">
         <Form
@@ -108,7 +108,7 @@ function Contact() {
           </div>
         </div>
       </div>
-    </>
+    </div>
 
   );
 }
