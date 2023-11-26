@@ -41,7 +41,7 @@ function Contact() {
   return (
     <div className={styles.container}>
       <Map />
-      <div className="d-flex justify-content-center gap-5 flex-wrap align-items-center mt-3 pl-3">
+      <div className={styles.content}>
         <Form
           labelCol={{ span: 4 }}
           wrapperCol={{ span: 14 }}
@@ -50,7 +50,7 @@ function Contact() {
           className={styles.form}
         >
           <h2>{t("header.contact")}</h2>
-          <div className="d-flex gap-3">
+          <div className={styles.fullName}>
             <Form.Item
               label={t("form.first_name")}
               required
@@ -63,7 +63,7 @@ function Contact() {
             <Form.Item
               label={t("form.last_name")}
               required
-              rules={[{ required: true, message: "Last name name is required!" }]}
+              rules={[{ required: true, message: "Last name is required!" }]}
               name="last_name"
               initialValue={user?.last_name}
             >
@@ -82,7 +82,7 @@ function Contact() {
           <Form.Item
             label={t("form.message")}
             required
-            rules={[{ required: true, message: "Email is required!" }]}
+            rules={[{ required: true, message: "Message is required!" }]}
             name="message"
           >
             <TextArea placeholder={t("form.message")} />

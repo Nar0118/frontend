@@ -1,11 +1,24 @@
 .container {
   max-width: 1320px;
   margin: 0px auto;
+
+  .content {
+    display: flex;
+    justify-content: space-evenly;
+    column-gap: 20px;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-top: 10px;
+  }
 }
 
 .form {
   max-width: 470px;
-  padding: 0 20px;
+
+  .fullName {
+    display: flex;
+    column-gap: 10px;
+  }
 
   textarea {
     resize: none;
@@ -83,6 +96,17 @@
   .form {
     .btn {
       margin-top: 10px;
+    }
+
+    .fullName {
+      display: block;
+    }
+  }
+
+  .container {
+    .content {
+      display: block;
+      padding: 0 20px;
     }
   }
 }

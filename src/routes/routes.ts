@@ -19,10 +19,12 @@ import {
   VIEW_ORDER_ROUTE,
   CONTACT_ROUTE,
   ABOUT_ROUTE,
+  HOME_ROUTE,
 } from "../utils/constants";
 import ViewOrderPage from "../pages/view-order";
 import { ContactPage } from "../pages/contact";
 import About from "../pages/about";
+import Home from "../pages/home";
 
 export const authRoutes = [
   {
@@ -52,6 +54,10 @@ export const authRoutes = [
 ];
 
 export const publicRoutes = [
+  {
+    path: HOME_ROUTE,
+    Component: Home,
+  },
   {
     path: SHOP_ROUTE,
     Component: Shop,
