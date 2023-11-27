@@ -1,0 +1,9 @@
+.container {
+  max-width: 1330px;
+}
+
+@media only screen and (min-width: 1000px) {
+  .container {
+    margin-top: 90px;
+  }
+}

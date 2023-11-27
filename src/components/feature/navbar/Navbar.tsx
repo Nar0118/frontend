@@ -17,6 +17,7 @@ import {
   BASKET_ROUTE,
   CHECKOUT_ROUTE,
   CONTACT_ROUTE,
+  HOME_ROUTE,
   LOGIN_ROUTE,
   SHOP_ROUTE,
 } from "../../../utils/constants";
@@ -94,6 +95,12 @@ export const Header = () => {
 
   const navBar = [
     {
+      id: 0,
+      title: "home",
+      visible: true,
+      route: HOME_ROUTE,
+    },
+    {
       id: 1,
       title: "shop",
       visible: true,
@@ -152,10 +159,10 @@ export const Header = () => {
       className={styles.navbar}
     >
       <Navbar.Brand>
-        <Link to={SHOP_ROUTE}>
+        <Link to={HOME_ROUTE}>
           <img
             className={styles.logo}
-            src="/images/logo.jpg"
+            src="/images/logo.jfif"
             alt="logo"
           />
         </Link>

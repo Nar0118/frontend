@@ -1,0 +1,31 @@
+.contentStyle {
+  height: 160px;
+  color: #fff;
+  line-height: 160px;
+  text-align: center;
+    background: #364d79;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  img {
+    width: 20%;
+    max-height: 160px;
+  }
+}
+
+.container {
+  button {
+    border-radius: 160% !important;
+    height: 20px !important;
+    width: 20px !important;
+  }
+
+  button:not(:global(.slick-active)) {
+    background: #3f8be7 !important;
+  }
+
+  :global(.slick-dots-bottom) {
+    bottom: 32px;
+  }
+}

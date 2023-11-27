@@ -13,7 +13,7 @@ import openNotification from "../../components/share/notice";
 import { SHOP_ROUTE, VIEW_ORDER_ROUTE } from "../../utils/constants";
 import { dateFormat } from "../../utils/functions";
 import { StatusEnum } from "../../utils/enum";
-import { changeStatusOrder, getOrder } from "../../http/deviceApi";
+import { changeStatusOrder, getOrder, removeOneBrand, removeOneOrder, removeOneType } from "../../http/deviceApi";
 
 import styles from './admin.module.scss';
 
@@ -37,6 +37,13 @@ function Admin() {
     if (user.role !== "ADMIN") {
       history.push(SHOP_ROUTE);
     }
+
+    // removeOneOrder(1).then((res: any) => {
+    //   console.log(33333333333, res);
+    // })
+    // removeOneOrder(2).then((res: any) => {
+    //   console.log(33333333333, res);
+    // })
   }, [history, user]);
 
   const handleTableChange = (pagination: TablePaginationConfig) => {

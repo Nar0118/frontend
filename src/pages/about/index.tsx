@@ -1,11 +1,13 @@
 import { Container } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
 
+import styles from './about.module.scss';
+
 function About() {
   const { t } = useTranslation();
 
   return (
-    <Container className="d-flex flex-column">
+    <Container className={`${styles.container} d-flex flex-column`}>
       {/* <div>
         <h1>
           «ԲԵՍԹ ՍԻՍԹԵՄՍ»
@@ -68,7 +70,7 @@ function About() {
         </h5>
         2016
       </div> */}
-      <i>{t("about")}</i><br />
+      <i>{t("about")}</i>
     </Container>
   );
 }

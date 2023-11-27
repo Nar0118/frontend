@@ -12,6 +12,11 @@ export const fetchTypes = async () => {
   return data;
 };
 
+export const removeOneType = async (id: number) => {
+  const { data } = await $authHost.delete(`api/type/${id}`);
+  return data;
+};
+
 export const createBrand = async (brand: string) => {
   const { data } = await $authHost.post("api/brand", brand);
   checkAuth(data?.status);
@@ -20,6 +25,11 @@ export const createBrand = async (brand: string) => {
 
 export const fetchBrands = async () => {
   const { data } = await $host.get("api/brand");
+  return data;
+};
+
+export const removeOneBrand = async (id: number) => {
+  const { data } = await $authHost.delete(`api/brand/${id}`);
   return data;
 };
 
@@ -110,6 +120,11 @@ export const getOneOrder = async (id: number) => {
 export const changeStatusOrder = async (id: number, status: string) => {
   const { data } = await $authHost.patch(`api/order/${id}`, { status });
 
+  return data;
+};
+
+export const removeOneOrder = async (id: number) => {
+  const { data } = await $authHost.delete(`api/order/${id}`);
   return data;
 };
 

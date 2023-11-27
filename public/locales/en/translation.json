@@ -6,7 +6,8 @@
     "log_out": "Log out",
     "contact": "Contact",
     "shop": "Shop",
-    "about": "About us"
+    "about": "About us",
+    "home": "Home"
   },
   "product": {
     "price": "Price",
@@ -117,5 +118,18 @@
   "order": {
     "order_details": "Order #{{id}} was placed on October 12, 2023 and now. information about order"
   },
-  "about": "Welcome to the 'Best Systems' company! We are a team of professionals in the field of security systems and electrical installation. Our experience and expertise in this field allow us to provide high-quality services and solutions for our customers. Our values: quality and reliability. We strive to ensure maximum safety and comfort for our customers by offering proven and reliable solutions. Professionalism: our team consists of highly qualified specialists who are constantly improving their skills and knowledge. Individual approach: we understand that each client is unique, and we develop solutions that perfectly meet their needs. We provide a wide range of solutions to ensure the security of your facilities, including video surveillance, access control and burglar alarm. Electrical installation: we carry out professional electrical installation, installing modern equipment and ensuring the efficient operation of electrical systems. We are proud of our work and strive for long-term relationships with our customers. If you need reliable and professional services in the field of security systems and electrical installation, please contact us. We are always ready to help! Contact us today to discuss your needs and find the optimal solution."
+  "about": "Welcome to the 'Best Systems' company! We are a team of professionals in the field of security systems and electrical installation. Our experience and expertise in this field allow us to provide high-quality services and solutions for our customers. Our values: quality and reliability. We strive to ensure maximum safety and comfort for our customers by offering proven and reliable solutions. Professionalism: our team consists of highly qualified specialists who are constantly improving their skills and knowledge. Individual approach: we understand that each client is unique, and we develop solutions that perfectly meet their needs. We provide a wide range of solutions to ensure the security of your facilities, including video surveillance, access control and burglar alarm. Electrical installation: we carry out professional electrical installation, installing modern equipment and ensuring the efficient operation of electrical systems. We are proud of our work and strive for long-term relationships with our customers. If you need reliable and professional services in the field of security systems and electrical installation, please contact us. We are always ready to help! Contact us today to discuss your needs and find the optimal solution.",
+  "home": {
+    "title": "The best systems - a reliable partner",
+    "our_partners": "Our partners",
+    "our_services": "Our services",
+    "service": {
+      "install_electricity": "INSTALLATION AND REPLACEMENT OF ELECTRICITY METERING DEVICES",
+      "techological_connection": "TECHNOLOGICAL CONNECTION “TURNKEY”",
+      "techological_individual": "TECHNOLOGICAL CONNECTION UP TO 15 kW FOR INDIVIDUALS",
+      "production_automation": "PRODUCTION AUTOMATION",
+      "design": "DESIGN",
+      "electric_network": "CONSTRUCTION OF ELECTRIC SUPPLY NETWORKS"
+    }
+  }
 }

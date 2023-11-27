@@ -102,17 +102,25 @@ const DevicePage = () => {
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
-    try {
-      await createRate({
-        userId: user.id,
-        deviceId: params["id"],
-        rate,
-        comment: e.target[0].value,
-      });
+    if (user?.id) {
+      try {
+        await createRate({
+          userId: user?.id,
+          deviceId: params["id"],
+          rate,
+          comment: e.target[0].value,
+        });
 
-      getDevice();
-    } catch (error) {
-      console.error(error);
+        getDevice();
+        e.target[0].value = "";
+      } catch (error) {
+        console.error(error);
+      }
+    } else {
+      openNotification({
+        descriptions: "Please login to add a comment.",
+        messages: t("product.error"),
+      });
     }
   };
 
@@ -133,8 +141,12 @@ const DevicePage = () => {
             <h3>{device?.name}</h3>
             <h6>{`${device?.price} ${t("product.amd")}`}</h6>
             <br />
-            <h6>{t("product.categories")}: {device?.type?.name}</h6>
-            <h6>{t("product.models")}: {device?.brand?.name}</h6>
+            <h6>
+              {t("product.categories")}: {device?.type?.name}
+            </h6>
+            <h6>
+              {t("product.models")}: {device?.brand?.name}
+            </h6>
             <div
               className={`${styles.minusPlusBlock} d-flex align-items-center column gap-2`}
             >
@@ -212,25 +224,34 @@ const DevicePage = () => {
         <List
           itemLayout="horizontal"
           dataSource={device?.ratings}
-          renderItem={(item: any, index: any) => (
-            <List.Item>
-              <List.Item.Meta
-                avatar={
-                  <Avatar
-                    src={item.user?.avatar || `https://joesch.moe/api/v1/random?key=${index}`}
-                  />
-                }
-                title={
-                  <>
-                    <a href="https://ant.design">{item.user.email}</a>
-                    <br />
-                    <Rate defaultValue={item.rate} disabled={true} />
-                  </>
-                }
-                description={item.comment}
-              />
-            </List.Item>
-          )}
+          renderItem={(item: any, index: any) => {
+            const username: string = item.user.first_name
+              ? `${item.user.first_name} ${item.user.last_name}`
+              : item.user.email;
+
+            return (
+              <List.Item>
+                <List.Item.Meta
+                  avatar={
+                    <Avatar
+                      src={
+                        item.user?.avatar ||
+                        `https://joesch.moe/api/v1/random?key=${index}`
+                      }
+                    />
+                  }
+                  title={
+                    <>
+                      <a href="https://ant.design">{username}</a>
+                      <br />
+                      <Rate defaultValue={item.rate} disabled={true} />
+                    </>
+                  }
+                  description={item.comment}
+                />
+              </List.Item>
+            );
+          }}
         />
       ) : (
         ""
