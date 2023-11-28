@@ -15,7 +15,7 @@ import {
   BASKET_ROUTE,
   DEVICE_ROUTE,
   LOGIN_ROUTE,
-} from "../../../utils/constants";
+} from "../../../utils/constants/constants";
 import openNotification from "../../share/notice";
 import { IDevice } from "../../deviceItem/types";
 

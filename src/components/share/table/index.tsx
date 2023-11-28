@@ -4,7 +4,7 @@ import Modal from "react-bootstrap/Modal";
 import { useTranslation } from "react-i18next";
 import { Button, Space, Table as AntTable } from "antd";
 import { fetchDevices, removeOneDevice } from "../../../http/deviceApi";
-import { DEVICE_ROUTE } from "../../../utils/constants";
+import { DEVICE_ROUTE } from "../../../utils/constants/constants";
 import openNotification from "../notice";
 import { CreateEditDevice } from "../../modals/CreateEditDevice";
 import { IDevice } from "../../deviceItem/types";

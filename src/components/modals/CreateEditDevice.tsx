@@ -4,7 +4,7 @@ import Modal from "react-bootstrap/Modal";
 import { useTranslation } from "react-i18next";
 import Button from "antd/es/button";
 import { Form, Input } from "antd";
-import { SHOP_ROUTE } from "../../utils/constants";
+import { SHOP_ROUTE } from "../../utils/constants/constants";
 import { ActionType, PropsType } from "./type";
 import {
   createDevice,

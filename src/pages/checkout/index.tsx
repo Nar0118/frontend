@@ -11,7 +11,7 @@ import {
   MDBCol,
   MDBTypography,
 } from "mdb-react-ui-kit";
-import { ACCOUNT_ROUTE, SHOP_ROUTE } from "../../utils/constants";
+import { ACCOUNT_ROUTE, SHOP_ROUTE } from "../../utils/constants/constants";
 import openNotification from "../../components/share/notice";
 
 import styles from "./checkout.module.scss";

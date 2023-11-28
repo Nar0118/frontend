@@ -5,7 +5,7 @@ import { useTranslation } from "react-i18next";
 import { Button, Table, TablePaginationConfig, Tabs } from "antd";
 import TabPane from "antd/es/tabs/TabPane";
 import { LOG_OUT } from "../../store/actionTypes";
-import { LOGIN_ROUTE, VIEW_ORDER_ROUTE } from "../../utils/constants";
+import { LOGIN_ROUTE, VIEW_ORDER_ROUTE } from "../../utils/constants/constants";
 import { getOrder } from "../../http/deviceApi";
 
 import styles from "./account.module.scss";

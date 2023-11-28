@@ -1,5 +1,5 @@
 import { Button, Result } from "antd";
-import { SHOP_ROUTE } from "../../utils/constants";
+import { SHOP_ROUTE } from "../../utils/constants/constants";
 
 export default function NotFound() {
   return (

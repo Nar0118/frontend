@@ -20,7 +20,7 @@ import {
   CONTACT_ROUTE,
   ABOUT_ROUTE,
   HOME_ROUTE,
-} from "../utils/constants";
+} from "../utils/constants/constants";
 import ViewOrderPage from "../pages/view-order";
 import { ContactPage } from "../pages/contact";
 import About from "../pages/about";

@@ -20,17 +20,11 @@ import {
   HOME_ROUTE,
   LOGIN_ROUTE,
   SHOP_ROUTE,
-} from "../../../utils/constants";
+  languages,
+} from "../../../utils/constants/constants";
 import { LOG_OUT } from "../../../store/actionTypes";
 
 import styles from "./navbar.module.scss";
-
-const languages: { [key: string]: string } = {
-  en: "US",
-  am: "AM",
-  ru: "RU",
-  "en-US": "US",
-};
 
 export const Header = () => {
   const user = useSelector((state: any) => state.user);
@@ -59,7 +53,8 @@ export const Header = () => {
       key: "1",
       label: (
         <img
-          src="https://purecatamphetamine.github.io/country-flag-icons/3x2/AM.svg"
+          src="/gif/flags/AM.gif"
+          className={styles.flagImage}
           onClick={() => {
             handleLanguage("am");
           }}
@@ -71,7 +66,8 @@ export const Header = () => {
       key: "2",
       label: (
         <img
-          src="https://purecatamphetamine.github.io/country-flag-icons/3x2/RU.svg"
+          src="/gif/flags/RU.gif"
+          className={styles.flagImage}
           onClick={() => {
             handleLanguage("ru");
           }}
@@ -83,7 +79,8 @@ export const Header = () => {
       key: "3",
       label: (
         <img
-          src="https://purecatamphetamine.github.io/country-flag-icons/3x2/US.svg"
+          src="/gif/flags/US.gif"
+          className={styles.flagImage}
           onClick={() => {
             handleLanguage("en");
           }}
@@ -189,7 +186,7 @@ export const Header = () => {
               >
                 <Button>
                   <img
-                    src={`https://purecatamphetamine.github.io/country-flag-icons/3x2/${lang}.svg`}
+                    src={`/gif/flags/${lang}.gif`}
                     alt="Flag"
                     width="24"
                     height="16"

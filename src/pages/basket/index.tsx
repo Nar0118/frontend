@@ -18,7 +18,7 @@ import {
   CHECKOUT_ROUTE,
   DEVICE_ROUTE,
   SHOP_ROUTE,
-} from "../../utils/constants";
+} from "../../utils/constants/constants";
 import openNotification from "../../components/share/notice";
 import {
   fetchOneBasket,

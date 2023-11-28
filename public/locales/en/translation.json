@@ -129,7 +129,12 @@
       "techological_individual": "TECHNOLOGICAL CONNECTION UP TO 15 kW FOR INDIVIDUALS",
       "production_automation": "PRODUCTION AUTOMATION",
       "design": "DESIGN",
-      "electric_network": "CONSTRUCTION OF ELECTRIC SUPPLY NETWORKS"
+      "electric_network": "CONSTRUCTION OF ELECTRIC SUPPLY NETWORKS",
+      "security_systems": "Security systems",
+      "fire_security": "Fire safety",
+      "heating": "Heating and water supply",
+      "electricity": "Electricity",
+      "building": "Construction"
     }
   }
 }

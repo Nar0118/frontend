@@ -9,7 +9,7 @@ import {
   LOGIN_ROUTE,
   REGISTRATION_ROUTE,
   SHOP_ROUTE,
-} from "../../utils/constants";
+} from "../../utils/constants/constants";
 import { LOG_IN } from "../../store/actionTypes";
 
 import styles from "../../components/feature/accountDetails/accountDetails.module.scss";

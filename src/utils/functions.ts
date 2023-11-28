@@ -1,6 +1,6 @@
 import jwtDecode from "jwt-decode";
 import moment from "moment";
-import { LOGIN_ROUTE } from "./constants";
+import { LOGIN_ROUTE } from "./constants/constants";
 
 export const getToken = () => {
   const token = window.localStorage.getItem("token");

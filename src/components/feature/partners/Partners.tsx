@@ -1,5 +1,5 @@
 import { Carousel } from "antd";
-import { partners } from "../../../utils/constants";
+import { partners } from "../../../utils/constants/partners";
 
 import styles from './partners.module.scss';
 
@@ -9,7 +9,12 @@ const Partners = () => (
       partners.map((partner: string, i: number) => (
         <div key={i}>
           <h3 className={styles.contentStyle}>
-            <img src={`/images/partners/${partner}`} alt={partner} />
+            <img
+              src={`/images/partners/${partner}`}
+              alt={partner}
+              style={i === 0 ? {
+                width: 'fit-content'
+              } : {}} />
           </h3>
         </div>
       ))

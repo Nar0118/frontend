@@ -3,14 +3,12 @@
   color: #fff;
   line-height: 160px;
   text-align: center;
-    // background: #364d79;
   display: flex;
   justify-content: center;
   align-items: center;
 
   img {
     width: 20%;
-    max-height: 160px;
   }
 }
 
@@ -26,6 +24,6 @@
   }
 
   :global(.slick-dots-bottom) {
-    bottom: 32px;
+    bottom: -5px;
   }
 }

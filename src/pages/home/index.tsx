@@ -1,6 +1,6 @@
 import Container from "react-bootstrap/esm/Container";
 import { useTranslation } from "react-i18next";
-import { services } from "../../utils/constants";
+import { services } from "../../utils/constants/service";
 import Partners from "../../components/feature/partners/Partners";
 import Services from "../../components/feature/services/Services";
 import { IService } from "./types";

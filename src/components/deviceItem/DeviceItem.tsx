@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Card, Col } from "react-bootstrap";
 import Image from "react-bootstrap/Image";
 import { useHistory } from "react-router-dom";
-import { DEVICE_ROUTE } from "../../utils/constants";
+import { DEVICE_ROUTE } from "../../utils/constants/constants";
 import { IDevice } from "./types";
 
 import styles from './deviceItem.module.scss'

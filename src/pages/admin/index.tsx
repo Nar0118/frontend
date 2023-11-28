@@ -10,10 +10,10 @@ import { CreateType } from "../../components/modals/CreateType";
 import { CreateEditDevice } from "../../components/modals/CreateEditDevice";
 import Table from "../../components/share/table";
 import openNotification from "../../components/share/notice";
-import { SHOP_ROUTE, VIEW_ORDER_ROUTE } from "../../utils/constants";
+import { SHOP_ROUTE, VIEW_ORDER_ROUTE } from "../../utils/constants/constants";
 import { dateFormat } from "../../utils/functions";
 import { StatusEnum } from "../../utils/enum";
-import { changeStatusOrder, getOrder, removeOneBrand, removeOneOrder, removeOneType } from "../../http/deviceApi";
+import { changeStatusOrder, getOrder } from "../../http/deviceApi";
 
 import styles from './admin.module.scss';
 

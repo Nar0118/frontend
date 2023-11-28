@@ -5,7 +5,7 @@ import { ArrowLeftOutlined } from "@ant-design/icons";
 import { useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { getOneOrder } from "../../http/deviceApi";
-import { DEVICE_ROUTE } from "../../utils/constants";
+import { DEVICE_ROUTE } from "../../utils/constants/constants";
 import { dateFormat } from "../../utils/functions";
 
 import styles from "./viewOrder.module.scss";

@@ -13,7 +13,7 @@ import {
   removeOneDevice,
 } from "../../http/deviceApi";
 import { StarOutlined } from "@ant-design/icons";
-import { BASKET_ROUTE, LOGIN_ROUTE, SHOP_ROUTE } from "../../utils/constants";
+import { BASKET_ROUTE, LOGIN_ROUTE, SHOP_ROUTE } from "../../utils/constants/constants";
 import openNotification from "../../components/share/notice";
 import { IDevice } from "../../components/deviceItem/types";
 
