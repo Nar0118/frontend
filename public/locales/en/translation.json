@@ -132,9 +132,7 @@
       "electric_network": "CONSTRUCTION OF ELECTRIC SUPPLY NETWORKS",
       "security_systems": "Security systems",
       "fire_security": "Fire safety",
-      "heating": "Heating and water supply",
-      "electricity": "Electricity",
-      "building": "Construction"
+      "electricity": "Electricity"
     }
   }
 }

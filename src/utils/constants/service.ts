@@ -10,16 +10,8 @@ export const services: IService[] = [
     src: "fire-security.jpg",
   },
   {
-    title: "heating",
-    src: "heating.jpg",
-  },
-  {
     title: "electricity",
     src: "electricity.jpg",
-  },
-  {
-    title: "building",
-    src: "building.png",
   },
   {
     title: "install_electricity",
