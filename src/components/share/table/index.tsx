@@ -55,7 +55,7 @@ const Table = ({ deviceVisible }: any) => {
     }
 
     fetchData();
-  }, [deviceVisible, pagination]);
+  }, [deviceVisible]);
 
   const handleTableChange = async (pagination: any) => {
     try {

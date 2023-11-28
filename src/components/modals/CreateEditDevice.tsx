@@ -32,8 +32,6 @@ export const CreateEditDevice = ({
   const [loader, setLoader] = useState<boolean>(false);
   const [base64String, setBase64String] = useState<string>("");
   const [editDevice, setEditDevice] = useState<any>(selectedDevice || {});
-  console.log('selectedDevice', selectedDevice);
-  console.log('editDevice', editDevice);
 
   useEffect(() => {
     setLoader(false);
@@ -42,13 +40,13 @@ export const CreateEditDevice = ({
     }, 1000);
   }, [selectedDevice])
 
-  // useEffect(() => {
-  //   if (!!selectedDevice) {
-  //     setEditDevice(selectedDevice);
-  //     setBrand((selectedDevice?.brandId as string) || "0");
-  //     setType((selectedDevice?.typeId as string) || "0");
-  //   }
-  // }, [selectedDevice]);
+  useEffect(() => {
+    if (!!selectedDevice) {
+      setEditDevice(selectedDevice);
+      setBrand((selectedDevice?.brandId as string) || "0");
+      setType((selectedDevice?.typeId as string) || "0");
+    }
+  }, [selectedDevice]);
 
   useEffect(() => {
     if (!show) {
@@ -76,7 +74,7 @@ export const CreateEditDevice = ({
       reader.onload = (loadEvent: any) => {
         const base64 = loadEvent.target.result;
         setBase64String(base64);
-        onChangeEdit("img", base64);
+        selectedDevice && onChangeEdit("img", base64);
       };
 
       reader.readAsDataURL(file);
@@ -139,8 +137,8 @@ export const CreateEditDevice = ({
         <Col className="d-flex justify-content-center flex-wrap gap-1">
           <Dropdown onSelect={handleType}>
             <Dropdown.Toggle>
-              {(editDevice && types[Number(editDevice?.typeId) - 1]?.name) ||
-                (type && types[Number(type) - 1]?.name) ||
+              {(editDevice && types[Number(editDevice?.typeId)]?.name) ||
+                (type && types.find((e: any) => e.id === Number(type))?.name) ||
                 t("product.select_type")}
             </Dropdown.Toggle>
             <Dropdown.Menu>
@@ -153,8 +151,8 @@ export const CreateEditDevice = ({
           </Dropdown>
           <Dropdown onSelect={handleBrand}>
             <Dropdown.Toggle>
-              {(editDevice && brands[Number(editDevice?.typeId) - 1]?.name) ||
-                (brand && brands[Number(brand) - 1]?.name) ||
+              {(editDevice && brands[Number(editDevice?.typeId)]?.name) ||
+                (brand && brands.find((e: any) => e.id === Number(brand))?.name) ||
                 t("product.select_brand")}
             </Dropdown.Toggle>
             <Dropdown.Menu>
@@ -196,6 +194,7 @@ export const CreateEditDevice = ({
             required
             rules={[{ required: true, message: "Description is required!" }]}
             name="description"
+            initialValue={editDevice?.description}
           >
             <Input />
           </Form.Item>
@@ -226,7 +225,14 @@ export const CreateEditDevice = ({
           </Form.Item>
           {base64String && (
             <img
-              src={base64String || editDevice.img}
+              src={base64String}
+              className={styles.imageReview}
+              alt='deviceReview'
+            />
+          )}
+          {editDevice.img && (
+            <img
+              src={editDevice.img}
               className={styles.imageReview}
               alt='deviceReview'
             />

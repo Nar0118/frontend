@@ -37,13 +37,6 @@ function Admin() {
     if (user.role !== "ADMIN") {
       history.push(SHOP_ROUTE);
     }
-
-    // removeOneOrder(1).then((res: any) => {
-    //   console.log(33333333333, res);
-    // })
-    // removeOneOrder(2).then((res: any) => {
-    //   console.log(33333333333, res);
-    // })
   }, [history, user]);
 
   const handleTableChange = (pagination: TablePaginationConfig) => {

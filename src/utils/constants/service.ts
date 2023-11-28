@@ -30,10 +30,6 @@ export const services: IService[] = [
     src: "animated.png",
   },
   {
-    title: "design",
-    src: "projecting540x311.png",
-  },
-  {
     title: "electric_network",
     src: "pimrs.jpg",
   },
