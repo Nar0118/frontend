@@ -2,35 +2,31 @@ import { IService } from "../../pages/home/types";
 
 export const services: IService[] = [
   {
-    title: "security_systems",
-    src: "security-systems.jpg",
+    title: "installation_surveillance_systems",
+    src: "installation_surveillance_systems.jpg",
   },
   {
     title: "fire_security",
     src: "fire-security.jpg",
   },
   {
-    title: "electricity",
-    src: "electricity.jpg",
+    title: "installation_networks",
+    src: "installation_networks.jpg",
   },
   {
-    title: "install_electricity",
-    src: "umnyy-schyotchik.jpg",
+    title: "electrical_installation_works",
+    src: "electrical_installation_works.jpg",
   },
   {
-    title: "techological_connection",
-    src: "tehprisoedinenie.jpg",
+    title: "building_management_automation",
+    src: "building_management_automation.jpg",
   },
   {
-    title: "techological_individual",
-    src: "dwLbRyV4AUAtat.jpg",
+    title: "wacker_installation",
+    src: "wacker_installation.jpg",
   },
   {
-    title: "production_automation",
-    src: "animated.png",
-  },
-  {
-    title: "electric_network",
-    src: "pimrs.jpg",
+    title: "powder_coating",
+    src: "powder_coating.jpg",
   },
 ];

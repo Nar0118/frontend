@@ -30,7 +30,7 @@ export const CreateEditDevice = ({
   const [brands, setBrands] = useState<any>([]);
   const [types, setTypes] = useState<any>([]);
   const [loader, setLoader] = useState<boolean>(false);
-  const [base64String, setBase64String] = useState<string>("");
+  const [base64String, setBase64String] = useState<string>(selectedDevice?.img ?? "");
   const [editDevice, setEditDevice] = useState<any>(selectedDevice || {});
 
   useEffect(() => {
@@ -99,7 +99,7 @@ export const CreateEditDevice = ({
       }
 
       editDevice?.id
-        ? await updateDevice(editDevice.id, { ...values, img: base64String, typeID: type, brandID: brand })
+        ? await updateDevice(editDevice.id, { ...values, img: base64String || editDevice?.img, typeID: type, brandID: brand })
         : await createDevice({ ...values, img: base64String, typeId: type, brandId: brand });
 
       openNotification({
@@ -223,16 +223,9 @@ export const CreateEditDevice = ({
               />
             </div>
           </Form.Item>
-          {base64String && (
+          {base64String || editDevice?.img && (
             <img
-              src={base64String}
-              className={styles.imageReview}
-              alt='deviceReview'
-            />
-          )}
-          {editDevice.img && (
-            <img
-              src={editDevice.img}
+              src={base64String || editDevice?.img}
               className={styles.imageReview}
               alt='deviceReview'
             />

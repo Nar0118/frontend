@@ -28,9 +28,7 @@ function Contact() {
     }
   }
 
-  const handleCopy = (text: string): void => {
-    navigator.clipboard.writeText(text);
-  }
+  const handleCopy = (text: string): Promise<void> => navigator.clipboard.writeText(text);
 
   const Content = (
     <div>
@@ -94,9 +92,25 @@ function Contact() {
         <div className={styles.message}>
           <img src="/images/message.avif" alt="" />
           <div>
-            <p><PhoneOutlined />{process.env.REACT_APP_PHONE}
+            <p>
+              <PhoneOutlined />
+              {t('contact.office')}` {process.env.REACT_APP_OFFICE}
               <Popover content={Content} title="Click me" trigger="click">
                 <CopyOutlined onClick={() => handleCopy(process.env.REACT_APP_PHONE ?? "")} />
+              </Popover>
+            </p>
+            <p>
+              <PhoneOutlined />
+              {t('contact.store')}` {process.env.REACT_APP_STORE}
+              <Popover content={Content} title="Click me" trigger="click">
+                <CopyOutlined onClick={() => handleCopy(process.env.REACT_APP_STORE ?? "")} />
+              </Popover>
+            </p>
+            <p>
+              <PhoneOutlined />
+              {t('home.service.powder_coating')}` {process.env.REACT_APP_POWDER_COATING}
+              <Popover content={Content} title="Click me" trigger="click">
+                <CopyOutlined onClick={() => handleCopy(process.env.REACT_APP_POWDER_COATING ?? "")} />
               </Popover>
             </p>
             <p>

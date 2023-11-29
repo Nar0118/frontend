@@ -124,14 +124,19 @@
     "our_partners": "Our partners",
     "our_services": "Our services",
     "service": {
-      "install_electricity": "INSTALLATION AND REPLACEMENT OF ELECTRICITY METERING DEVICES",
-      "techological_connection": "TECHNOLOGICAL CONNECTION “TURNKEY”",
-      "techological_individual": "TECHNOLOGICAL CONNECTION UP TO 15 kW FOR INDIVIDUALS",
-      "production_automation": "PRODUCTION AUTOMATION",
-      "electric_network": "CONSTRUCTION OF ELECTRIC SUPPLY NETWORKS",
       "security_systems": "Security systems",
-      "fire_security": "Fire safety",
-      "electricity": "Electricity"
+      "fire_security": "Installation of fire protection systems",
+      "installation_surveillance_systems": "Installation of video surveillance systems",
+      "installation_networks": "Installation of networks",
+      "powder_coating": "Powder coating",
+      "electrical_installation_works": "Electrical installation works",
+      "building_management_automation": "Automation and smart systems",
+      "wacker_installation": "Wacker installation"
     }
+  },
+  "contact": {
+    "powder_coating": "Powder Coating",
+    "office": "Office",
+    "store": "Store"
   }
 }

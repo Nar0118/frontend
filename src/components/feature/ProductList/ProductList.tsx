@@ -163,7 +163,7 @@ export const ProductList = () => {
                     className={styles.productImage}
                   />
                   <p>
-                    {t("product.price")}: {`${item.price}${t("product.amd")}`}
+                    {t("product.price")}: {`${item.price} ${t("product.amd")}`}
                   </p>
                   <Button
                     variant="outline-dark"
