@@ -2,7 +2,7 @@ import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import { Button, Form, Input, Popover } from "antd";
 import TextArea from "antd/es/input/TextArea";
-import { CopyOutlined, MailOutlined, PhoneOutlined } from "@ant-design/icons";
+import { CopyOutlined, MailOutlined, PhoneOutlined, ShopOutlined } from "@ant-design/icons";
 import Map from "../../components/feature/map";
 import openNotification from "../../components/share/notice";
 import { contact } from "../../http/userApi";
@@ -117,6 +117,13 @@ function Contact() {
               <MailOutlined />{process.env.REACT_APP_EMAIL}
               <Popover content={Content} title="Click me" trigger="click">
                 <CopyOutlined onClick={() => handleCopy(process.env.REACT_APP_EMAIL ?? "")} />
+              </Popover>
+            </p>
+            <p>
+
+              <ShopOutlined />{process.env.REACT_APP_ADDRESS}
+              <Popover content={Content} title="Click me" trigger="click">
+                <CopyOutlined onClick={() => handleCopy(process.env.REACT_APP_ADDRESS ?? "")} />
               </Popover>
             </p>
           </div>

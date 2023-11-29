@@ -7,4 +7,6 @@ export const partners: string[] = [
   "pesto.jpg",
   "viena.png",
   "vda.jpg",
+  "dors.jpg",
+  "grand.jpg"
 ];

@@ -15,7 +15,7 @@
     "description": "Описание",
     "rating": "Рейтинг",
     "review": "Обзор",
-    "submit": "Добавить",
+    "submit": "Отправить",
     "are_you_sure": "Вы уверены, что хотите удалить этот продукт?",
     "remove": "Удалять",
     "added": "Добавлен",
@@ -124,11 +124,11 @@
       "security_systems": "Установка системы безопасности",
       "fire_security": "Монтаж систем противопожарной защиты",
       "installation_surveillance_systems": "Монтаж систем видеонаблюдения",
-      "installation_networks": "Монтаж сетей",
+      "installation_networks": "Установка сетей",
       "powder_coating": "Порошковая покраска",
       "electrical_installation_works": "Электромонтажные работы",
-      "building_management_automation": "Автоматизация и интеллектуальные системы",
-      "wacker_installation": "Установка Ваккера"
+      "building_management_automation": "Автоматизация и умнные системы",
+      "wacker_installation": "Монтаж кабельных лотков"
     }
   },
   "contact": {

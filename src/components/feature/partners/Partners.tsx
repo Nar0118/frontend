@@ -4,7 +4,7 @@ import { partners } from "../../../utils/constants/partners";
 import styles from './partners.module.scss';
 
 const Partners = () => (
-  <Carousel autoplay className={styles.container}>
+  <Carousel  className={styles.container}>
     {
       partners.map((partner: string, i: number) => (
         <div key={i}>

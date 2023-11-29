@@ -1,7 +1,7 @@
 .contentStyle {
-  height: 160px;
+  // height: 160px;
   color: #fff;
-  line-height: 160px;
+  // line-height: 160px;
   text-align: center;
   display: flex;
   justify-content: center;
@@ -25,5 +25,10 @@
 
   :global(.slick-dots-bottom) {
     bottom: -5px;
+  }
+
+  :global(.slick-track) {
+    display: flex;
+    align-items: center;
   }
 }
