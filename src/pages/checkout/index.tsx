@@ -25,7 +25,7 @@ export default function Checkout() {
   const [form] = Form.useForm();
   const paymentMethod = [
     { label: t("form.cash"), value: "cash" },
-    { label: t("form.online_payment"), value: "card" },
+    // { label: t("form.online_payment"), value: "card" },
   ];
 
   const fetchData = useCallback(async () => {

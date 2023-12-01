@@ -223,7 +223,7 @@ export const CreateEditDevice = ({
               />
             </div>
           </Form.Item>
-          {base64String || editDevice?.img && (
+          {(base64String || editDevice?.img) && (
             <img
               src={base64String || editDevice?.img}
               className={styles.imageReview}
