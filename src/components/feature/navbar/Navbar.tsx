@@ -159,7 +159,7 @@ export const Header = () => {
         <Link to={HOME_ROUTE}>
           <img
             className={styles.logo}
-            src="/images/logo.jfif"
+            src="/images/logo.jpg"
             alt="logo"
           />
         </Link>
@@ -186,7 +186,7 @@ export const Header = () => {
               >
                 <Button>
                   <img
-                    src={`/gif/flags/${lang}.gif`}
+                    src={`/gif/flags/${lang ?? "US"}.gif`}
                     alt="Flag"
                     width="24"
                     height="16"
