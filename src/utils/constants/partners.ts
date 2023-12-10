@@ -1,14 +1,14 @@
 export const partners: string[] = [
   "acba.png",
   "evoca.png",
-  "flyArna.jpg",
-  "uls.jpg",
-  "fit24.webp",
-  "pesto.jpg",
+  "flyArna.png",
+  "uls.png",
+  "fit24.png",
+  "pesto.png",
   "viena.png",
-  "vda.jpg",
-  "dors.jpg",
-  "grand.jpg",
-  "ax.jpg",
-  "saber.jpg"
+  "vda.png",
+  "dors.png",
+  "grand.png",
+  "ax.png",
+  "saber.png"
 ];
