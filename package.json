@@ -64,6 +64,21 @@
     "@types/react-highlight-words": "^0.16.4",
     "@types/react-router-dom": "^5.3.3",
     "@types/three": "^0.158.2",
+    "husky": "^7.0.4",
+    "lint-staged": "^12.5.0",
     "node-sass": "^9.0.0"
+  },
+  "lint-staged": {
+    "src/**/*.{js,jsx,ts,tsx,json,css,scss}": [
+      "eslint --fix",
+      "stylelint --fix",
+      "git add"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "post-commit": "npm run build"
+    }
   }
 }
