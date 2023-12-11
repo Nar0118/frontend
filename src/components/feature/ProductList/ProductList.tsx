@@ -57,7 +57,7 @@ export const ProductList = () => {
   };
 
   const getDevices = useCallback(
-    async (signal?: any) => {
+    async (signal?: AbortSignal) => {
       try {
         const res = await fetchDevices(
           {

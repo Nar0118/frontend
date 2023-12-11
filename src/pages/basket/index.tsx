@@ -175,9 +175,6 @@ export default function Basket() {
                                   {`${Number(item?.device?.price) * Number(item?.quantity)} ${t("product.amd")}`}
                                 </MDBTypography>
                               </div>
-                              <a href="#">
-                                <MDBIcon fas icon="trash-alt" />
-                              </a>
                             </div>
                           </div>
                         </MDBCardBody>

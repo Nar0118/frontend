@@ -55,6 +55,7 @@ const Table = ({ deviceVisible }: any) => {
     }
 
     fetchData();
+    // eslint-disable-next-line
   }, [deviceVisible]);
 
   const handleTableChange = async (pagination: any) => {

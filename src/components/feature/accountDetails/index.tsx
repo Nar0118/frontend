@@ -1,4 +1,4 @@
-import { useLayoutEffect, useState } from "react";
+import { ChangeEvent, SetStateAction, useLayoutEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
 import { DeleteOutlined } from "@ant-design/icons";
@@ -6,12 +6,11 @@ import { Button, Checkbox, Form, Input } from "antd";
 import { check, update } from "../../../http/userApi";
 import { LOG_IN } from "../../../store/actionTypes";
 import openNotification from "../../share/notice";
+import { normFile } from "../../../utils/functions";
 
 import styles from "./accountDetails.module.scss";
 import uploadStyles from "../../modals/modal.module.scss";
 import authStyles from "../../../pages/auth/auth.module.scss";
-
-const normFile = (e: any) => Array.isArray(e) ? e : e?.fileList;
 
 export const AccountDetails = () => {
   const dispatch = useDispatch();
@@ -20,23 +19,25 @@ export const AccountDetails = () => {
   const [componentDisabled, setComponentDisabled] = useState<boolean>(true);
   const [base64String, setBase64String] = useState<string>("https://joesch.moe/api/v1/random");
 
-  const handleFileSelection = (event: any) => {
-    const file = event.target.files[0];
-    if (file && file.type.startsWith("image/")) {
-      const reader = new FileReader();
+  const handleFileSelection = (event: ChangeEvent<HTMLInputElement>) => {
+    if (event?.target?.files) {
+      const file = event.target.files[0];
+      if (file && file.type.startsWith("image/")) {
+        const reader = new FileReader();
 
-      reader.onload = (loadEvent: any) => {
-        const base64 = loadEvent.target.result;
-        setBase64String(base64);
-      };
+        reader.onload = (loadEvent: ProgressEvent<FileReader>) => {
+          const base64 = loadEvent?.target?.result as SetStateAction<string>;
+          setBase64String(base64);
+        };
 
-      reader.readAsDataURL(file);
+        reader.readAsDataURL(file);
+      }
     }
   };
 
   const getUser = async () => {
     try {
-      const data: any = await check();
+      const data = await check();
 
       setBase64String(data?.avatar);
     } catch {

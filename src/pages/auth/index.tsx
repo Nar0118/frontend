@@ -11,13 +11,12 @@ import {
   SHOP_ROUTE,
 } from "../../utils/constants/constants";
 import { LOG_IN } from "../../store/actionTypes";
+import openNotification from "../../components/share/notice";
+import { normFile } from "../../utils/functions";
 
 import styles from "../../components/feature/accountDetails/accountDetails.module.scss";
 import authStyles from "./auth.module.scss";
 import uploadStyles from "../../components/modals/modal.module.scss";
-import openNotification from "../../components/share/notice";
-
-const normFile = (e: any) => Array.isArray(e) ? e : e?.fileList;
 
 const Auth = () => {
   const state = useSelector((state: any) => state);

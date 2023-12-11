@@ -19,3 +19,5 @@ export const checkAuth = (status: number): void => {
 export const dateFormat = (originalDateString: string): string => {
   return moment(originalDateString).format("D MMMM, YYYY");
 };
+
+export const normFile = (e: any) => (Array.isArray(e) ? e : e?.fileList);

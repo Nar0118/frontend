@@ -13,11 +13,10 @@ import {
   updateDevice,
 } from "../../http/deviceApi";
 import openNotification from "../share/notice";
+import authStyles from "../../pages/auth/auth.module.scss";
+import { normFile } from "../../utils/functions";
 
 import styles from "./modal.module.scss";
-import authStyles from "../../pages/auth/auth.module.scss";
-
-const normFile = (e: any) => Array.isArray(e) ? e : e?.fileList;
 
 export const CreateEditDevice = ({
   show,

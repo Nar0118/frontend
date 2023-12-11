@@ -1,10 +1,11 @@
 import GoogleMapReact from 'google-map-react';
 import { Tooltip } from 'antd';
+import { IAnyReactComponent, LocationType } from './types';
 
 import styles from './map.module.scss';
 
 // this is details for 28 Vardanants St, Yerevan 0070 address
-const location: any = {
+export const location: LocationType = {
     lat: 40.170313,
     lng: 44.5215781,
 };
@@ -27,7 +28,7 @@ const Map = () =>
         </GoogleMapReact>}
     </div>
 
-const AnyReactComponent = ({ text }: any) => (
+const AnyReactComponent = ({ text }: IAnyReactComponent) => (
     <div className={styles.anyReactComponent}>
         <Tooltip placement="top" title={text}>
             <img src="/gif/location.gif" alt="location" className={styles.location} />

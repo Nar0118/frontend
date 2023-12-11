@@ -11,18 +11,17 @@
     height: 720px;
     background-repeat: no-repeat;
     background-position: center;
-    background-size: cover;
-    // display: flex;
+    background-size: contain;
     align-items: center;
     justify-content: center;
 
     div {
       font-family: "Rubik", Helvetica, Arial, Lucida, sans-serif;
       font-weight: 700;
-      font-size: 50px;
+      font-size: 30px;
       color: #ffffff;
       letter-spacing: 3px;
-      text-align: center;
+      padding: 20px;
     }
   }
 
@@ -41,6 +40,14 @@
   }
 }
 
+@media only screen and (min-width: 769px) and (max-width: 1399px) {
+  .container {
+    .home {
+      display: flex;
+    }
+  }
+}
+
 @media only screen and (max-width: 768px) {
   .container {
     .services {
@@ -48,10 +55,10 @@
     }
 
     .home {
-      height: 600px;
+      max-height: 290px;
 
       div {
-        font-size: 35px;
+        font-size: 20px;
       }
     }
   }
@@ -60,11 +67,7 @@
 @media only screen and (max-width: 450px) {
   .container {
     .home {
-      height: 400px;
-
-      div {
-        font-size: 25px;
-      }
+      max-height: 200px;
     }
   }
 }

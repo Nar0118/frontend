@@ -224,7 +224,7 @@ const DevicePage = () => {
         <List
           itemLayout="horizontal"
           dataSource={device?.ratings}
-          renderItem={(item: any, index: any) => {
+          renderItem={(item: any, index: number) => {
             const username: string = item.user.first_name
               ? `${item.user.first_name} ${item.user.last_name}`
               : item.user.email;

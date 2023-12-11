@@ -13,6 +13,7 @@ import {
 } from "mdb-react-ui-kit";
 import { ACCOUNT_ROUTE, SHOP_ROUTE } from "../../utils/constants/constants";
 import openNotification from "../../components/share/notice";
+import { DeviceIdsType } from "./types";
 
 import styles from "./checkout.module.scss";
 
@@ -20,7 +21,7 @@ export default function Checkout() {
   const user = useSelector((state: any) => state.user);
   const { t } = useTranslation();
   const [subtotal, setSubtotal] = useState<number>(0);
-  const [deviceIds, setDeviceIds] = useState<any>();
+  const [deviceIds, setDeviceIds] = useState<DeviceIdsType>();
   const history = useHistory();
   const [form] = Form.useForm();
   const paymentMethod = [
@@ -34,7 +35,7 @@ export default function Checkout() {
 
       let total = 0;
       const deviceIds: number[] = [];
-      const obj: any = {};
+      const obj: DeviceIdsType = {};
       data?.forEach((datum: any) => {
         total += datum.quantity * datum?.device?.price;
         deviceIds.push(datum.deviceId);
