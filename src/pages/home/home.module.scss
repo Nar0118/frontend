@@ -11,7 +11,6 @@
     height: 720px;
     background-repeat: no-repeat;
     background-position: center;
-    background-size: contain;
     align-items: center;
     justify-content: center;
 
@@ -43,7 +42,7 @@
 @media only screen and (min-width: 769px) and (max-width: 1399px) {
   .container {
     .home {
-      display: flex;
+      // display: flex;
     }
   }
 }
@@ -56,9 +55,10 @@
 
     .home {
       max-height: 290px;
+      background-size: contain;
 
       div {
-        font-size: 20px;
+        font-size: 15px;
       }
     }
   }
