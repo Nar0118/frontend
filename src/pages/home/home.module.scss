@@ -1,27 +1,29 @@
+@import "../../../public/styles/variables";
+
 .container {
-  .services {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    row-gap: 20px;
+  .contentStyle {
+    position: relative;
+
+    & > div {
+      position: absolute;
+      color: $white;
+      font-weight: 800;
+      top: 20px;
+      left: 20px;
+    }
+
+    img {
+      object-fit: cover;
+      width: -webkit-fill-available;
+    }
   }
 
-  .home {
-    background-image: url(../../../public/images/home/big.png);
-    height: 720px;
-    background-repeat: no-repeat;
-    background-position: center;
-    align-items: center;
+  .services {
+    display: flex;
     justify-content: center;
-
-    div {
-      font-family: "Rubik", Helvetica, Arial, Lucida, sans-serif;
-      font-weight: 700;
-      font-size: 30px;
-      color: #ffffff;
-      letter-spacing: 3px;
-      padding: 20px;
-    }
+    column-gap: 20px;
+    flex-wrap: wrap;
+    row-gap: 20px;
   }
 
   h1 {
@@ -32,39 +34,13 @@
 
 @media only screen and (max-width: 1400px) {
   .container {
-    .services {
-      justify-content: center;
-      padding: 0 10px;
+    .contentStyle {
+      font-size: 16px;
     }
   }
 }
 
-@media only screen and (min-width: 769px) and (max-width: 1399px) {
-  .container {
-    .home {
-      // display: flex;
-    }
-  }
-}
-
-@media only screen and (max-width: 768px) {
-  .container {
-    .services {
-      display: block;
-    }
-
-    .home {
-      max-height: 290px;
-      background-size: contain;
-
-      div {
-        font-size: 15px;
-      }
-    }
-  }
-}
-
-@media only screen and (max-width: 450px) {
+@media only screen and (max-width: 991px) {
   .container {
     .home {
       max-height: 200px;

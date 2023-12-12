@@ -1,3 +1,5 @@
+@import "../../../public/styles/variables";
+
 .table {
   overflow-x: auto;
 
@@ -31,7 +33,7 @@
     }
 
     :global(.ant-tabs-tab-active) {
-      border-bottom: 1px solid #1677ff;
+      border-bottom: 1px solid $blue;
     }
 
     :global(.ant-tabs-tab) {

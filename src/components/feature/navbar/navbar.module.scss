@@ -1,9 +1,11 @@
+@import "../../../../public/styles/variables";
+
 .flagImage {
   width: 25px;
 }
 
 .navbar {
-  background: #fff;
+  background: $white;
   max-width: 1330px;
   margin: 0 auto;
   margin-bottom: 20px;
@@ -29,14 +31,14 @@
     }
 
     a {
-      color: #000;
+      color: $black;
       text-decoration: none;
 
       &:hover,
       &:focus,
       &:focus-visible,
       &:active {
-        color: #1677ff;
+        color: $blue;
         text-decoration: underline;
       }
     }
@@ -59,14 +61,14 @@
 
     a {
       text-align: center;
-      border: 1px solid #148ac0;
+      border: 1px solid $blue;
       padding: 10px 20px;
       width: 100%;
       margin-top: 5px;
 
       &:hover {
-        color: #fff !important;
-        background: #148ac0;
+        color: $white !important;
+        background: $blue;
       }
     }
 

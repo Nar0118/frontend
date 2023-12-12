@@ -1,3 +1,1 @@
-export type DeviceIdsType = {
-  [key: string]: number;
-};
+export type DeviceIdsType = Record<string, number>;

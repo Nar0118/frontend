@@ -12,7 +12,7 @@ export const VIEW_ORDER_ROUTE = "/view-order";
 export const CONTACT_ROUTE = "/contact";
 export const ABOUT_ROUTE = "/about";
 
-export const languages: { [key: string]: string } = {
+export const languages: Record<string, string> = {
   en: "US",
   am: "AM",
   ru: "RU",

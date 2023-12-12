@@ -1,5 +1,7 @@
+@import "../../../public/styles/variables";
+
 .container {
-  background-color: #eee;
+  background-color: $silver;
   min-height: 90vh;
 
   .basketItems {
@@ -33,10 +35,6 @@
 
   .totalQuantity {
     width: 80px;
-  }
-
-  .trashIcon {
-    color: #cecece;
   }
 
   .plusMinus {

@@ -1,17 +1,19 @@
+@import "../../../public/styles/variables";
+
 .addCart {
-  background: #0095d1;
+  background: $lightBlue;
   border: 1px solid transparent;
   transition: 1s;
 
   &:hover {
-    color: #0095d1;
-    background: #fff;
-    border-color: #0095d1;
+    color: $lightBlue;
+    background: $white;
+    border-color: $lightBlue;
   }
 }
 
 .removeProduct {
-  background: #d07171;
+  background: $red;
 }
 
 .editProduct {
@@ -21,7 +23,7 @@
 
 .btn {
   font-size: 18px;
-  color: #fff;
+  color: $white;
   border: none;
   padding: 10px 31px;
 }

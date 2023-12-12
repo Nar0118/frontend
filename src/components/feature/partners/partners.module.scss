@@ -1,5 +1,7 @@
+@import "../../../../public/styles/variables";
+
 .contentStyle {
-  color: #fff;
+  color: $white;
   text-align: center;
   display: flex;
   justify-content: center;
@@ -14,7 +16,7 @@
   }
 
   button:not(:global(.slick-active)) {
-    background: #3f8be7 !important;
+    background: $blue !important;
   }
 
   :global(.slick-dots-bottom) {
