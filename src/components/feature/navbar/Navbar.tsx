@@ -156,11 +156,20 @@ export const Header = () => {
       className={styles.navbar}
     >
       <Navbar.Brand>
-        <Link to={HOME_ROUTE}>
+        <Link
+          to={HOME_ROUTE}
+          style={{
+            backgroundImage: 'url(/gif/snow.gif)'
+          }}>
           <img
             className={styles.logo}
-            src="/images/logo.jpg"
+            src="/images/logo-removebg-preview.png"
             alt="logo"
+          />
+          <img
+            className={styles.xmasHat}
+            src="/images/xmas-hat.png"
+            alt="xmasHat"
           />
         </Link>
       </Navbar.Brand>

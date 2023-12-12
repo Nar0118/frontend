@@ -54,6 +54,22 @@
   }
 }
 
+@keyframes putDown {
+  from {
+    transform: translateY(-20px);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+.xmasHat {
+  margin-left: -40px;
+  margin-top: -9px;
+  animation: putDown 1.5s ease;
+  width: 36px;
+}
+
 @media only screen and (max-width: 991px) {
   .nav {
     justify-content: center;
