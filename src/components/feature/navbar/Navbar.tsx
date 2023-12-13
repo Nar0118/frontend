@@ -93,25 +93,25 @@ export const Header = () => {
   const navBar = [
     {
       id: 0,
-      title: "home",
+      title: t("header.home"),
       visible: true,
       route: HOME_ROUTE,
     },
     {
       id: 1,
-      title: "shop",
+      title: t("header.shop"),
       visible: true,
       route: SHOP_ROUTE,
     },
     {
       id: 2,
-      title: "about",
+      title: t("header.about"),
       visible: true,
       route: ABOUT_ROUTE,
     },
     {
       id: 3,
-      title: "checkout",
+      title: t("header.checkout"),
       visible: user,
       route: CHECKOUT_ROUTE,
     },
@@ -123,7 +123,7 @@ export const Header = () => {
     },
     {
       id: 5,
-      title: "admin",
+      title: t("header.admin"),
       visible: user?.role === "ADMIN",
       route: ADMIN_ROUTE,
     },
@@ -135,13 +135,13 @@ export const Header = () => {
     },
     {
       id: 7,
-      title: 'contact',
+      title: t("header.contact"),
       visible: true,
       route: CONTACT_ROUTE,
     },
     {
       id: 8,
-      title: "authorization",
+      title: t("header.authorization"),
       visible: !user,
       route: LOGIN_ROUTE,
     },
@@ -181,9 +181,7 @@ export const Header = () => {
               (e) =>
                 e.visible && (
                   <Link key={e.id} to={e.route}>
-                    {typeof e.title === "string"
-                      ? t(`header.${e.title}`)
-                      : e.title}
+                    {e.title}
                   </Link>
                 )
             )}

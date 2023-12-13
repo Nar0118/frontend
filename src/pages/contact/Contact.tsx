@@ -5,6 +5,7 @@ import TextArea from "antd/es/input/TextArea";
 import { CopyOutlined, MailOutlined, PhoneOutlined, ShopOutlined } from "@ant-design/icons";
 import Map, { location } from "../../components/feature/map";
 import openNotification from "../../components/share/notice";
+import SocialMedia from "../../components/feature/socialMedia";
 import { contact } from "../../http/userApi";
 
 import styles from './contact.module.scss';
@@ -90,45 +91,47 @@ function Contact() {
           </Form.Item>
         </Form>
         <div className={styles.message}>
-          <img src="/images/message.avif" alt="" />
-          <div>
-            <p>
-              <PhoneOutlined />
-              {t('contact.office')}` <a href={`tel:${process.env.REACT_APP_OFFICE}`}>{process.env.REACT_APP_OFFICE}</a>
-              <Popover content={Content} title="Click me" trigger="click">
-                <CopyOutlined onClick={() => handleCopy(process.env.REACT_APP_PHONE ?? "")} />
-              </Popover>
-            </p>
-            <p>
-              <PhoneOutlined />
-              {t('contact.store')}` <a href={`tel:${process.env.REACT_APP_STORE}`}>{process.env.REACT_APP_STORE}</a>
-              <Popover content={Content} title="Click me" trigger="click">
-                <CopyOutlined onClick={() => handleCopy(process.env.REACT_APP_STORE ?? "")} />
-              </Popover>
-            </p>
-            <p>
-              <PhoneOutlined />
-              {t('home.service.powder_coating')}` <a href={`tel:${process.env.REACT_APP_POWDER_COATING}`}>{process.env.REACT_APP_POWDER_COATING}</a>
-              <Popover content={Content} title="Click me" trigger="click">
-                <CopyOutlined onClick={() => handleCopy(process.env.REACT_APP_POWDER_COATING ?? "")} />
-              </Popover>
-            </p>
-            <p>
-              <MailOutlined /><a href={`mailto:${process.env.REACT_APP_EMAIL}`}>{process.env.REACT_APP_EMAIL}</a>
-              <Popover content={Content} title="Click me" trigger="click">
-                <CopyOutlined onClick={() => handleCopy(process.env.REACT_APP_EMAIL ?? "")} />
-              </Popover>
-            </p>
-            <p>
-
-              <ShopOutlined />
-              <a href={`https://maps.google.com/?ll=${location.lat},${location.lng}`} target="_blank" rel="noreferrer">
-                {process.env.REACT_APP_ADDRESS}
-              </a>
-              <Popover content={Content} title="Click me" trigger="click">
-                <CopyOutlined onClick={() => handleCopy(process.env.REACT_APP_ADDRESS ?? "")} />
-              </Popover>
-            </p>
+          <img src="/images/message.avif" alt="message.avif" />
+          <div className={styles.socialMedia}>
+            <div>
+              <p>
+                <PhoneOutlined />
+                {t('contact.office')}` <a href={`tel:${process.env.REACT_APP_OFFICE}`}>{process.env.REACT_APP_OFFICE}</a>
+                <Popover content={Content} title="Click me" trigger="click">
+                  <CopyOutlined onClick={() => handleCopy(process.env.REACT_APP_PHONE ?? "")} />
+                </Popover>
+              </p>
+              <p>
+                <PhoneOutlined />
+                {t('contact.store')}` <a href={`tel:${process.env.REACT_APP_STORE}`}>{process.env.REACT_APP_STORE}</a>
+                <Popover content={Content} title="Click me" trigger="click">
+                  <CopyOutlined onClick={() => handleCopy(process.env.REACT_APP_STORE ?? "")} />
+                </Popover>
+              </p>
+              <p>
+                <PhoneOutlined />
+                {t('home.service.powder_coating')}` <a href={`tel:${process.env.REACT_APP_POWDER_COATING}`}>{process.env.REACT_APP_POWDER_COATING}</a>
+                <Popover content={Content} title="Click me" trigger="click">
+                  <CopyOutlined onClick={() => handleCopy(process.env.REACT_APP_POWDER_COATING ?? "")} />
+                </Popover>
+              </p>
+              <p>
+                <ShopOutlined />
+                <a href={`https://maps.google.com/?ll=${location.lat},${location.lng}`} target="_blank" rel="noreferrer">
+                  {process.env.REACT_APP_ADDRESS}
+                </a>
+                <Popover content={Content} title="Click me" trigger="click">
+                  <CopyOutlined onClick={() => handleCopy(process.env.REACT_APP_ADDRESS ?? "")} />
+                </Popover>
+              </p>
+              <p>
+                <MailOutlined /><a href={`mailto:${process.env.REACT_APP_EMAIL}`}>{process.env.REACT_APP_EMAIL}</a>
+                <Popover content={Content} title="Click me" trigger="click">
+                  <CopyOutlined onClick={() => handleCopy(process.env.REACT_APP_EMAIL ?? "")} />
+                </Popover>
+              </p>
+            </div>
+            <SocialMedia />
           </div>
         </div>
       </div>

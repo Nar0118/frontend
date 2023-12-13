@@ -6,11 +6,11 @@ import { Button, Table, TablePaginationConfig, Tabs } from "antd";
 import TabPane from "antd/es/tabs/TabPane";
 import { LOG_OUT } from "../../store/actionTypes";
 import { LOGIN_ROUTE, VIEW_ORDER_ROUTE } from "../../utils/constants/constants";
+import { dateFormat } from "../../utils/functions";
 import { getOrder } from "../../http/deviceApi";
+import { AccountDetails } from "../../components/feature/accountDetails";
 
 import styles from "./account.module.scss";
-import { dateFormat } from "../../utils/functions";
-import { AccountDetails } from "../../components/feature/accountDetails";
 
 const Account = () => {
   const user = useSelector((state: any) => state.user);
